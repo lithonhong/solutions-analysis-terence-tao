@@ -1,0 +1,211 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{gensymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage[utf8]{inputenc}
+
+
+\newcommand{\succr}[1]{#1 \! +\!\!\!+}
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newenvironment{exer}[2]{
+    \setlength{\parskip}{1em}
+    \textsc{\textbf{Exercise #1}}. \textit{#2} \par
+    \noindent \textit{Solution.}
+}{\vspace{3mm}}
+
+
+\title{Solutions for Analysis I by Terence Tao}
+\author{Li Thon Hong}
+\date{May 2026}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\vspace{5mm}
+\begin{remark}
+    This document follows the third edition of \textit{Analysis I}.
+\end{remark}
+
+\pagebreak
+
+\section{Introduction}
+No exercises from this chapter.
+
+\section{Starting at the beginning: the natural numbers}
+\subsection{The Peano axioms}
+No exercises from this subchapter.
+
+\subsection{Addition}
+\begin{exer}{2.2.1}{Prove Proposition 2.2.5 (Addition is associative): For any natural numbers $a, b, c$, we have $(a + b) + c = a + (b + c)$.}
+    We induct on $a$, keeping $b$ and $c$ fixed.
+    
+    First, consider the base case $a = 0$.
+    Then we have $(0 + b) + c = 0 + (b + c)$. By Lemma 2.2.2, we obtain $b + c = b + c$ as desired.
+    \par
+    Now we assume inductively that $(a + b) + c = a + (b + c)$;
+    we now have to show $((\succr{a}) + b) + c = (\succr{a}) + (b+c)$ to close the induction.
+    By applying Lemma 2.2.3 twice on the left-hand side, $((\succr{a}) + b) + c = (\succr{(a+b)}) + c = \succr{(a + b + c)}$.
+    Similarly, applying Lemma 2.2.3 on the right-hand side yields $(\succr{a}) + (b+c) = \succr{(a + b + c}$.
+    Thus, both sides are equal, and we have closed the induction. \qed
+\end{exer}
+
+\begin{exer}{2.2.2}{Prove Lemme 2.2.10: Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $\succr{b} = a$.}
+    We induct on $a$.
+    
+    First, consider the base case $a = 1$.
+    By Definition 2.1.3, $1 = \succr{0}$.
+    Suppose there is another natural number $b$ such that $\succr{b} = 1$.
+    However, by Axiom 2.4, if $\succr{b} = \succr{0} = 1$, then $b = 0$.
+    Thus, there is exactly one natural number $b$ such that $\succr{b} = 1$.
+    Hence, the base case is proven.
+
+    Suppose inductively that there exists exactly one natural number $b$ such that $\succr{b} = a$.
+    We now have to show there exists exactly one natural number $b'$ such that $\succr{b'} = \succr{a}$.
+    By the inductive hypothesis, $\succr{a} = \succr{(\succr{b})} = \succr{b'}$.
+    As per Axiom 2.4, there exists exactly one solution for $b'$, namely $b' = a$.
+    This closes the induction. \qed
+\end{exer}
+
+\begin{exer}{2.2.3}{Prove Proposition 2.2.12 (Basic properties of order of natural numbers).}
+    Let $a, b, c$ be natural numbers. Then
+    \begin{enumerate}[label=(\alph*)]
+        \item \textit{Reflexivity: $a \ge a$.}
+        
+            By Lemma 2.2.2, $a + 0 = a$. Thus, by Definition 2.2.11, $a \ge a$.
+
+        \item \textit{Transitivity: If  $a \ge b$ and $b \ge c$, then $a \ge c$.}
+        
+            By Definition 2.2.11, write $a = b + m$, $b = c + n$, where $m$ and $n$ are natural numbers.
+            Thus, $a = (c + n) + m = c + (n + m)$ by associativity of addition.
+            By mathematical induction, it is trivial to prove that $n + m$ is a natural number.
+            Therefore, $a \ge c$. \qed
+
+        \item \textit{Anti-symmetry: If $a \ge b$ and $b \ge a$, then $a = b$.}
+
+            By Definition 2.2.11, if $a \ge b$, then for a natural number $m$, $a = b + m$.
+            But also if $b \ge a$, then $b = a + n$, where $n$ is a natural number.
+            Thus $a = (a + n) + m = a + (n + m)$.
+            By Lemma 2.2.2 and Proposition 2.2.6 (cancellation law), $0 = n + m$.
+            By Corollary 2.2.9, this results in $m = n = 0$.
+            Thus $a = b + 0 = b$ as required. \qed
+
+        \item \textit{Preservation of order: $a \ge b$ if and only if $a + c \ge b + c$.}
+
+            First, prove $a \ge b \implies a + c \ge b + c$.
+            According to Definition 2.2.11, if $a \ge b$, then $a = b + m$, where $m$ is a natural number.
+            Thus $a + c = (b + m) + c = (b + c) + m$, thus $a + c \ge b + c$.
+
+            Conversely, consider $a + c = (b + c) + m$, where $m$ is a natural number.
+            By Proposition 2.2.6 (cancellation law) and the associativity of addition, $a = b + m$, meaning $a \ge b$.
+
+            Because $a \ge b \implies a + c \ge b + c$ and $a + c \ge b + c \implies a \ge b$, $a + c \ge b + c \iff a \ge b$. \qed
+
+        \item \textit{$a < b$ if and only if $\succr{a} < b$.}
+
+            First, consider $a < b \implies \succr{a} \le b$.
+            According to Definition 2.2.11, if $a < b$, then $b = a + m$, where $m$ is a natural number. 
+            Note that $m \ne 0$ because we would otherwise obtain $a = b$, which is contradictory to the given condition $a < b$.
+            Therefore, by Axiom 2.3, we have $m = \succr{n}$, where $n$ is a natural number.
+            Thus, by the definition and commutativity of addition, $b = a + \succr{m} = \succr{(a + m)} = (\succr{a}) + m$.
+            It follows that $a \le b$.
+
+            Now consider the converse.
+            From $\succr{a} \le b$, we obtain $b = \succr{a} + p$, where $p$ is a natural number.
+            Thus, by the definition and commutativity of addition, $b = \succr{a} + p = \succr{(a + p)} = a + \succr{p}$.
+            According to Axiom 2.3, $0$ is not the successor of any natural number, so $\succr{p} \ne 0$.
+            Hence, $a \le b$.
+
+            Because $a < b \implies \succr{a} \le b$ and $\succr{a} \le b \implies a < b$, $a < b \iff \succr{a} \le {b}.$ \qed
+
+        \item \textit{$a < b$ if and only if $b = a + d$ for some positive number $d$.}
+
+            First consider $a < b \implies b = a + d$. 
+            From $a < b$ we know $a \ge b$, or $b = a + d$ for a natural number $d$.
+            For the sake of contradiction, suppose $d = 0$.
+            Therefore $a = b$, which contradicts $a < b$.
+            Hence, $d$ is positive; thus, $a < b \implies b = a + d$ for some positive number $d$.
+
+            Now consider the converse.
+            From Definition 2.2.11, $b = a + d$ implies $b \ge a$, or $a \le b$.
+            If $b = a$, by Proposition 2.2.6 (cancellation law), $d = 0$, which contradicts the given condition that $d$ is positive.
+            Therefore, $a \ne b$, which implies $a < b$.
+
+            Because the statement and the converse are both true, we can conclude that for some positive number $d$, $a < b$ if and only if $b = a + d$. \qed
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{2.2.4}{Justify the three lemmas marked with (why?) in Proposition 2.2.13 (trichotomy of order for natural numbers).}
+    \begin{enumerate}[label=(\alph*), topsep=0mm]
+        \item \textit{For all $b$, $0 \le b$.}
+
+            From the definition of addition, $0 + b = b$.
+            By Definition 2.2.11, this implies $0 \le b$. \qed
+            
+        \item \textit{If $a > b$, then $\succr{a} > b$.}
+
+            From Definition 2.2.11, $a = b + m$, where $m$ is a natural number.
+            Thus, by the definition of addition, $\succr{a} = \succr{(b + m)} = b + \succr{m}$.
+            Because $\succr{m}$ is positive by Proposition 2.2.8, $\succr{a} > b$. \qed
+        
+        \item \textit{If $a = b$, then $\succr{a} > b$.}
+
+            From Axiom 2.4, if $a = b$, then $\succr{a} = \succr{b}$.
+            Recall that $\succr{b} = b + 1$, thus $\succr{a} = b + 1$.
+            By Definition 2.2.11, this implies $\succr{a} > b$. \qed
+            
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{2.2.5}{Prove Proposition 2.14 (Strong principle of induction): Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $m \ge m_0$, we have the following implication: if $P(m')$ is true for all natural numbers $m_0 \le m' < m$, then $P(m)$ is also true. Then we can conclude that $P(m)$ is true for all natural numbers $m \ge m_0$.}
+    Let $Q(n)$ be the property such that $P(m)$ is true for all $m_0 \le m < n$.
+    Note that the supposed implication becomes ``If $Q(n)$ is true, then $P(n)$ is also true.
+    We induct on $n$.
+
+    First, consider the base case $n \le m_0$.
+    In this case, $Q(n)$ is vacuously true as there is no such natural number $m$.
+    Hence, the base case is proven.
+
+    Now, we assume inductively that $Q(n)$ is true; we will now prove $Q(\succr{n})$ is true.
+    By the inductive hypothesis, $P(m)$ is true for all $m$ where $m_0 \le m < n$.
+    According to the supposed implication, because $Q(n)$ is true, $P(n)$ is also true.
+    Therefore, $P(m)$ is true for $m_0 \le m \le n$, which implies $Q(\succr{n})$ is also true.
+    This closes the induction. \qed
+    
+\end{exer}
+
+
+\begin{exer}{2.2.6}{Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(\succr{m})$ is true, then $P(m)$ is true. Suppose that $P(n)$ is also true. Prove that $P(m)$ is true for all natural numbers $m \le n$; this is known as the \emph{principle of backwards induction}.}
+    Write $Q(n)$ as the property ``If $P(n)$ is true, $P(m)$ is true for all natural numbers $m \le n$. We apply induction on $n$.
+
+    Consider the base case $n = 0$. The statement $m \le n$ implies $0 = m + x$ for a natural number $x$.
+    According to Corollary 2.2.9, this leads to $m = x = 0$.
+    Thus, $Q(n)$ is equivalent to ``If $P(n)$ is true, $P(n)$ is true.", which is always true regardless of whether $P(n)$ is true or false.
+    Hence, the base case is proven.
+
+    Suppose inductively that $Q(n)$ is true; we now need to show $Q(\succr{n})$ is true.
+    From the definition of $P(m)$, $P(\succr{n})$ being true implies $P(n)$ is true.
+    By the inductive statement, $P(m)$ is true for all natural numbers $m \le n$.
+    Thus if $P(\succr{n})$ is true, $P(m)$ is true for all $m \le \succr{n}$.
+    This is precisely the definition of $Q(\succr{n})$, so $Q(\succr{n})$ is also true.
+    This closes the induction. \qed
+\end{exer}
+
+
+\end{document}
