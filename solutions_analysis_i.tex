@@ -48,12 +48,14 @@
 \section{Introduction}
 No exercises from this chapter.
 
+\pagebreak
+
 \section{Starting at the beginning: the natural numbers}
 \subsection{The Peano axioms}
 No exercises from this subchapter.
 
 \subsection{Addition}
-\begin{exer}{2.2.1}{Prove Proposition 2.2.5 (Addition is associative): For any natural numbers $a, b, c$, we have $(a + b) + c = a + (b + c)$.}
+\begin{exer}{2.2.1}{Prove Proposition 2.2.5 (Associativity of addition): For any natural numbers $a, b, c$, we have $(a + b) + c = a + (b + c)$.}
     We induct on $a$, keeping $b$ and $c$ fixed.
     
     First, consider the base case $a = 0$.
@@ -62,11 +64,11 @@ No exercises from this subchapter.
     Now we assume inductively that $(a + b) + c = a + (b + c)$;
     we now have to show $((\succr{a}) + b) + c = (\succr{a}) + (b+c)$ to close the induction.
     By applying Lemma 2.2.3 twice on the left-hand side, $((\succr{a}) + b) + c = (\succr{(a+b)}) + c = \succr{(a + b + c)}$.
-    Similarly, applying Lemma 2.2.3 on the right-hand side yields $(\succr{a}) + (b+c) = \succr{(a + b + c}$.
+    Similarly, applying Lemma 2.2.3 on the right-hand side yields $(\succr{a}) + (b+c) = \succr{(a + b + c)}$.
     Thus, both sides are equal, and we have closed the induction. \qed
 \end{exer}
 
-\begin{exer}{2.2.2}{Prove Lemme 2.2.10: Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $\succr{b} = a$.}
+\begin{exer}{2.2.2}{Prove Lemma 2.2.10: Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $\succr{b} = a$.}
     We induct on $a$.
     
     First, consider the base case $a = 1$.
@@ -207,5 +209,112 @@ No exercises from this subchapter.
     This closes the induction. \qed
 \end{exer}
 
+\subsection{Multiplication}
+
+\begin{exer}{2.3.1}{Prove Lemma 2.3.2 (Commutativity of multiplication): Let $n, m$ be natural numbers. Then $n \times m = m \times n$.}
+    First, we introduce a few lemmas.
+    For all lemmas, we induct on $n$, keeping $m$ fixed (when it appears).
+    \begin{lemma}
+        For any natural number $n$, $n \times 0 = n$.
+    \end{lemma}
+    \begin{proof}
+        In the base case $n = 0$, $0 \times 0 = 0$ is true by the definition of multiplication, and $0$ is a natural number.
+        Now suppose inductively that $n \times 0 = 0$; we will now prove $(\succr{n}) \times 0 = 0$.
+        By the definition of multiplication, $(\succr{n}) \times 0 = (n \times 0) + 0 = 0 + 0 = 0$.
+    \end{proof}
+    \begin{lemma}
+        For any natural numbers $n$ and $m$, $n \times (\succr{m}) = (n \times m) + n$.
+    \end{lemma}
+    \begin{proof}
+        In the base case $n = 0$, $0 \times \succr{m} = 0$ by the definition of multiplication. 
+        Also, $(0 \times m) + 0 = 0$.
+        Thus, the left-hand side is true.
+        
+        Now suppose inductively that $n \times (\succr{m}) = (n \times m) + n$;
+        we must now show $(\succr{n}) \times (\succr{m}) = ((\succr{n}) \times m) + (\succr{n})$.
+        We start on the left-hand side.
+        \begin{align*}
+              & (\succr{n}) \times (\succr{m})                                       \\
+            = & n \times (\succr{m}) + \succr{m}     & \text{(Definition 2.3.1)}     \\
+            = & (n \times m) + n + \succr{m}         & \text{(Inductive hypothesis)} \\
+            = & (n \times m) + m + \succr{n}         & \text{(Addition properties)}  \\
+            = & ((\succr{n}) \times m) + (\succr{n}) & \text{(Definition 2.3.1)}
+        \end{align*}
+        This closes the induction.
+    \end{proof}
+
+    We can now prove the main statement $n \times m = m \times n$.
+    Consider the base case $n = 0$. Thus, $0 \times m = m \times 0 = 0$.
+    Hence, the base case is true.
+    
+    Now suppose inductively that $n \times m = m \times n$;
+    we will now prove $(\succr{n}) \times m = m \times (\succr{n})$.
+    By the definition of multiplication, $(\succr{n}) \times m = (n \times m) + m$.
+    From the second lemma, the right-hand side is also equivalent to $(n \times m) + m$.
+    Because both sides are equal, the statement is true. This closes the induction. \qed
+    
+\end{exer}
+
+\begin{exer}{2.3.2}{Prove Lemma 2.3.3 (Positive natural numbers have no zero divisors): Let $m, n$ be natural numbers. Then $n \times m = 0$ if and only if at least one of $n, m$ is equal to zero. In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.}
+    We will prove the second statement first.
+    For the sake of contradiction, suppose there exist positive numbers $m, n$ such that $mn = 0$.
+    Because $m, n$ are positive numbers, write $m = \succr{p}, n = \succr{q}$, thus $(\succr{q}) \times (\succr{p})  = 0$.
+    From the definition of multiplication, $(q \times (\succr{p})) + (\succr{p}) = 0$.
+    According to Corollary 2.2.9, this implies $q \times (\succr{p}) = \succr{p} = 0$,
+    which is contradictory as Axiom 2.3 states $0$ is not the successor of any natural number.
+    Hence, if $m, n$ are both positive, then $mn$ is positive.
+
+    Now consider the first statement.
+    The left-to-right implication is simply the contrapositive of the second statement, which is true.
+    Observe the right-to-left implication.
+    If $n = 0$, then $0 \times m = 0$ by the definition of multiplication.
+    If $m = 0$, then by commutativity of multiplication, $m \times 0 = 0 \times m = 0$.
+    Hence, the statements are proven as desired. \qed
+\end{exer}
+
+\begin{exer}{2.3.3}{Prove Proposition 2.3.5 (Associativity of multiplication): For any natural numbers $a, b, c$, we have $(a \times b) \times c = a \times (b \times c)$.}
+    We induct on $a$, keeping $b$ and $c$ fixed.
+    
+    First, consider the base case $a = 0$.
+    According to the definition of multiplication, the left-hand side leads to $(0 \times b) \times c = 0 \times c = 0$.
+    Similarly, the right-hand side results in $0 \times (b \times c) = 0$.
+    Because both sides are equal, our base case is proven.
+
+    Now we assume inductively that $(a \times b) \times c = a \times (b \times c)$;
+    we need to show that $((a+1) \times b) \times c = (a+1)(b \times c)$.
+    By the distributive law, the left-hand side results in $((a + 1) \times b) \times c = (a \times b + b) \times c = (a \times b) \times c + b \times c$.
+    The right-hand side produces $(a + 1) \times (b \times c) = a \times (b \times c) + b \times c$, which, by the inductive hypothesis, is equal to $(a \times b) \times c + b \times c$.
+    Thus, both sides are equal, and this closes the induction. \qed
+\end{exer}
+
+\begin{exer}{2.3.4}{Prove the identity $(a + b)^2 = a^2 + 2ab + b^2$ for all natural numbers $a, b$.}
+    By Proposition 2.3.4 (distributive law) and Proposition 2.3.5 (commutativity of multiplication):
+    \begin{align*}
+        (a+b)^2
+        & = (a+b)(a+b) \\
+        & = a(a + b) + b(a + b) \\
+        & = a^2 + ab + ab + b^2 \\
+        & = a^2 + 2ab +b^2 \qedhere
+    \end{align*}
+\end{exer}
+
+\begin{exer}{2.3.5}{Prove Proposition 2.3.9 (Euclidean algorithm): Let $n$ be a natural number, and let $q$ be a positive number. Then there exists natural numbers $m, r$ such that $0 \le r < q$ and $n = mq + r$.}
+    We induct on $n$, fixing $q$.
+
+    First, observe the base case $n = 0$.
+    There is an obvious solution of $m = 0, r = 0$.
+    Hence, the base case is proven.
+
+    Now, suppose inductively that there exist natural numbers $m, r$ such that $0 \le r < q$ and $n = mq + r$;
+    we now have to show there exists natural numbers $m', r'$ such that $0 \le r' < q$ and $n+1 = m'q + r'$.
+    By the induction hypothesis, $n + 1 = mq + r + 1$.
+    Since $r < q$, $r + 1 \le q$.
+    Thus, we have two cases:
+    \begin{enumerate}[label=(\alph*), topsep=0mm]
+        \item $r + 1 < q$: In this case, we can have $n + 1 = mq + (r + 1)$ with $0 \le r + 1 < q$. Thus, we can have $m' = m$, $r' = r + 1$.
+        \item $r + 1 = q$: In this case, we have $n + 1 = mq + q = (m + 1)q$ by the distributive law. Therefore, $m' = m + 1, r = 0$.
+    \end{enumerate}
+    This closes the induction.
+\end{exer}
 
 \end{document}
