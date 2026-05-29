@@ -2,6 +2,7 @@
 
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{gensymb}
@@ -14,6 +15,9 @@
 \usepackage{wrapfig}
 \usepackage[utf8]{inputenc}
 
+
+
+\setlist{parsep=1em}
 
 \newcommand{\succr}[1]{#1 \! +\!\!\!+}
 
@@ -294,10 +298,9 @@ No exercises from this subchapter.
         & = (a+b)(a+b) \\
         & = a(a + b) + b(a + b) \\
         & = a^2 + ab + ab + b^2 \\
-        & = a^2 + 2ab +b^2 \qedhere
+        & = a^2 + 2ab + b^2 
     \end{align*}
 \end{exer}
-
 \begin{exer}{2.3.5}{Prove Proposition 2.3.9 (Euclidean algorithm): Let $n$ be a natural number, and let $q$ be a positive number. Then there exists natural numbers $m, r$ such that $0 \le r < q$ and $n = mq + r$.}
     We induct on $n$, fixing $q$.
 
@@ -314,7 +317,376 @@ No exercises from this subchapter.
         \item $r + 1 < q$: In this case, we can have $n + 1 = mq + (r + 1)$ with $0 \le r + 1 < q$. Thus, we can have $m' = m$, $r' = r + 1$.
         \item $r + 1 = q$: In this case, we have $n + 1 = mq + q = (m + 1)q$ by the distributive law. Therefore, $m' = m + 1, r = 0$.
     \end{enumerate}
-    This closes the induction.
+    This closes the induction. \qed
+\end{exer}
+
+\pagebreak
+\section{Set theory}
+\subsection{Fundamentals}
+\begin{exer}{3.1.1}{Show that the definition of equality in Definition 3.1.4 is reflexive, symmetric, and transitive.}
+    Let $A$, $B$, and $C$ be sets.
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{Reflexivity: $A = A$}
+
+            For every element $x$ of $A$, $x$ is clearly an element of $A$.
+            Thus by Definition 3.1.4, $A = A$.
+
+        \item \textit{Symmetry: If $A = B$, then $B = A$.}
+
+            Suppose $A = B$.
+            Then for every element $x \in B$, $x \in A$, and for every element $y \in A$, $y \in B$.
+            Thus $B = A$.
+
+        \item \textit{Transitivity: If $A = B$ and $B = C$, then $A = C$.}
+        
+            Suppose $A = B$ and $B = C$.
+            Thus, for an arbitrary element $x \in A$, $x \in B$ because $A = B$,
+            and since $B = C$, we see that $x \in C$.
+            Similarly, for an arbitrary element $y \in C$, it follows that $y \in B$, and then $y \in A$.
+            Hence, by Definition 3.1.4, it follows that $A = C$ if $A = B$ and $B = C$. \qed
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{3.1.2}{Using only Definition 3.1.4, Axiom 3.1, Axiom 3.2, and Axiom 3.3, prove that the sets $\varnothing$, $\{ \varnothing \}$, $\{ \{ \varnothing \} \}$, and $\{ \varnothing, \{ \varnothing \} \}$ are all distinct (i.e., no two of them are equal to each other).}
+    First, let's show that $\varnothing$ is different from every other set.
+    The empty set $\varnothing$ has no elements.
+    However, $\varnothing$ is an element of $\{ \varnothing \}$ and $\{\varnothing, \{ \varnothing \} \}$, and $\{ \varnothing \}$ is an element of $\{ \{ \varnothing \} \}$.
+    Thus, $\varnothing$ is different from the other sets.
+
+    Now observe the set $\{ \varnothing \}$.
+    According to Axiom 3.3, $x \in \{ \varnothing \}$ if and only if $x = \varnothing$.
+    However, $\{ \varnothing \}$ is an element of both $\{ \{ \varnothing \} \}$ and $\{ \varnothing, \{ \varnothing \} \}$.
+    Hence, $\{ \varnothing \}$ is different from the other sets.
+
+    We now need to show that $\{ \{ \varnothing \} \} \ne \{ \varnothing, \{ \varnothing \} \}$.
+    Notice $\varnothing \notin \{ \{ \varnothing \} \}$ but $\varnothing \in \{ \varnothing, \{ \varnothing \} \}$.
+    Therefore, $\{ \{ \varnothing \} \}$ and $\{ \varnothing, \{ \varnothing \} \}$ are distinct sets too. We conclude that the sets $\varnothing$, $\{ \varnothing \}$, $\{ \{ \varnothing \} \}$, and $\{ \varnothing, \{ \varnothing \} \}$ are all distinct. \qed
+
+    
+    
+\end{exer}
+
+\begin{exer}{3.1.3}{Prove the remaining claims in Lemma 3.1.13.}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{If $a$ and $b$ are objects, then $\{ a, b \} = \{ a \} \cup \{ b \}$.}
+
+            By Axiom 3.4, for an object $x$, $x \in \{ a \} \cup \{ b \} \iff (x \in \{ a \}  \text{ or } x \in \{ b \})$.
+            Also, Axiom 3.3 states that $x \in \{ a \} \iff x = a$.
+            Similarly, $x \in \{ b \} \iff x = b$.
+            Axiom 3.3 also states that $x = a$ or $x = b$ if and only if $x \in \{ a, b \}$.
+            Therefore, if $x \in \{ a \} \cup \{ b \}$, $x \in \{ a, b \}$.
+            According to Definition 3.1.4, this implies $\{ a, b \} = \{ a \} \cup \{ b \}$. \qed
+
+        \item \textit{(Commutativity of the union operation) $A \cup B = B \cup A$.}
+
+            For any object $x$, $x \in A \cup B \iff (x \in A \text{ or } x \in B)$.
+            If $x \in A$, then by Axiom 3.4, then $x \in B \cup A$.
+            Similarly, if $x \in B$, then $x \in B \cup A$.
+            We can show in a similar fashion that $x \in B \cup A \implies x \in A \cup B$.
+            Hence, by Definition 3.1.4, $A \cup B = B \cup A$. \qed
+
+        \item \textit{$A \cup A = A \cup \varnothing = \varnothing \cup A = A$.}
+
+            First, by Axiom 3.4, for an object $x$, $x \in A \cup A \iff (x \in A \text{ or } x \in A)$.
+            But, $(x \in A \text{ or } x \in A)$ is equivalent to $x \in A$.
+            So, $x \in A \cup A \iff x \in A$, thus $A \cup A = A$.
+
+            Now consider $A \cup \varnothing$.
+            From Axiom 3.4, for an object $y$, $y \in A \cup \varnothing \iff (y \in A \text{ or } y \in \varnothing)$.
+            However, Axiom 3.2 states that for an arbitrary $y$, $y \notin \varnothing$.
+            Therefore, $y \in A \cup \varnothing \iff y \in A$, which implies $A \cup \varnothing = A$.
+
+            As we have proven the union operation is commutative, $A \cup \varnothing = \varnothing \cup A = A$. \qed
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{3.1.4}{Prove the remaining claims in Proposition 3.1.18.}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{If $A \subseteq B$ and $B \subseteq A$, then $A = B$.}
+
+            According to Definition 3.1.15, because $A \subseteq B$, for any object $x$, $x \in A \implies x \in B$.
+            Similarly, because $B \subseteq A$, $x \in B \implies x \in A$.
+            Thus, $x \in A \iff x \in B$, which implies $A = B$.
+
+        \item \textit{If $A \subsetneq B$ and $B \subsetneq C$, then $A \subsetneq C$.}
+
+            Let $x$ be an arbitrary element of $A$.
+            Since $A \subsetneq B$ and $B \subsetneq C$, it follows that $x \in B$, and thus $x \in C$.
+            This shows that $A \subseteq C$.
+            However, because $A \subsetneq B$, there exists an element $y \in B$ with $y \notin A$.
+            Since $B \subsetneq C$, $y \in C$.
+            Thus, we have an element $y$ where $y \in C$ and $y \notin A$.
+            This shows that $A \ne C$.
+            Hence, because $A \subseteq C$ and $A \ne C$, we can conclude that $A \subsetneq C$.
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{3.1.5}{Let $A, B$ be sets. Show that the three statements $A \subseteq B$, $A \cup B = B$, $A \cap B = A$ are logically equivalent (any one of them implies the other two).}
+    First, we show that $A \subseteq B \implies A \cup B = B$.
+    To prove $A \cup B = B$, we need to prove that if $A \subseteq B$, then $x \in A \cup B \iff x \in B$ for any object $x$.
+    Clearly, $x \in B \implies x \in A \cup B$, so we only need to prove $x \in A \cup B \implies x \in B$.
+    Because $A \subseteq B$, we know $x \in A \implies x \in B$.
+    Thus, $x \in A \cup B$ implies $x \in A$ or $x \in B$, which is logically equivalent to $x \in B$.
+    Therefore, $A \subseteq B \implies A \cup B = B$.
+
+    Now consider $A \cup B = B \implies A \cap B = A$.
+    To prove $A \cap B = A$, we need to show that if $A \cup B = B$, then $x \in A \cap B \iff x \in A$.
+    Proving $x \in A \cap B \implies x \in A$ is trivial based on Definition 3.1.23.
+    Consider the converse implication $x \in A \implies x \in A \cap B$.
+    Suppose $x \in A$.
+    This implies $x \in A \cup B$, and because $A \cup B = B$, $x \in B$.
+    By Definition 3.1.23, $x \in A$ and $x \in B \iff x \in A \cap B$.
+    Therefore, $A \cup B = B \implies A \cap B = A$.
+
+    Lastly, we need to prove $A \cap B = A \implies A \subseteq B$.
+    Because $A \cap B = A$, for all $x \in A, x \in A \cap B$.
+    However, $x \in A \cap B \iff x \in A \text{ and } x \in B$.
+    Therefore, $x \in A \implies x \in B$. \qed
+\end{exer}
+
+\begin{exer}{3.1.6}{Prove Proposition 3.1.28 (Sets form a boolean algebra).}
+    Let $A, B, C$ be sets, and let $X$ be a set containing $A, B, C$ as subsets.
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{(Minimal element) We have $A \cup \varnothing = A$ and $A \cap \varnothing = \varnothing$.}
+
+            Consider $A \cup \varnothing$.
+            From Axiom 3.4, for an object $y$, $y \in A \cup \varnothing \iff (y \in A \text{ or } y \in \varnothing)$.
+            However, Axiom 3.2 states that for an arbitrary $y$, $y \notin \varnothing$.
+            Therefore, $y \in A \cup \varnothing \iff y \in A$, which implies $A \cup \varnothing = A$. \qed
+
+            Now consider $A \cap \varnothing$.
+            For an object $y$, $y \in A \cap \varnothing \iff (y \in A \text{ or } y \in \varnothing)$.
+            However, Axiom 3.2 states that for an arbitrary $y$, $y \notin \varnothing$.
+            Therefore, no elements fulfil such conditions, or $A \cap \varnothing = \varnothing$. \qed
+        
+        \item \textit{(Maximal element) We have $A \cup X = X$ and $A \cap X = A$.}
+
+            Consider $A \cup X$.
+            From Axiom 3.4, for an object $y$, $y \in A \cup X \iff y \in A \text{ or } y \in X$.
+            However, if $y \in A$, then $y \in X$ because $A \subseteq X$.
+            Thus, $y \in A \cup X \iff y \in A$, or $A \cup X = X$
+
+            Now consider $A \cap X = A$.
+            From Definition 3.1.23, $y \in A \cap X \iff y \in A \text{ and } y \in X$.
+            However, if $y \in A$, then $y \in X$ because $A \subseteq X$.
+            Thus, $y \in A \cap X \iff y \in A$, or $A \cap X = A$. \qed
+            
+        \item \textit{(Identitiy) We have $A \cap A= A$ and $A \cup A = A$.}
+
+            First, consider $A \cap A = A$.
+            Definition 3.1.23 states that if an arbitrary object $y \in A \cap A$, then $y \in A$ and $y \in A$.
+            Thus, $y \in A \cap A \iff y \in A$, or $A \cap A = A$ as required.
+            Similarly, for $A \cup A = A$, Axiom 3.4 states that if an arbitrary object $y \in A \cup A$, then $y \in A$ or $y \in A$.
+            This leads to $y \in A \cup A \iff y \in A$, or $A \cup A = A$ as required. \qed
+
+        \item \textit{(Commutativity) We have $A \cup B = B \cup A$ and $A \cap B = B \cap A$.}
+
+            Commutativity of the union operation, or $A \cup B = B \cup A$ has been proven in Exercise 3.1.3 (b).
+            We will only show that the intersection operation is commutative, or $A \cap B = B \cap A$.
+            Let $y$ be an object such that $y \in A \cap B$.
+            Then $y \in A$ and $y \in B$.
+            This is logically equivalent to $y \in B$ and $y \in A$.
+            The converse is proven in a similar fashion, hence, $y \in A \cap B \iff y \in B \cup A$, or $A \cap B = B \cap A$. \qed
+        
+        \item \textit{(Associativity) We have $(A \cup B) \cup C = A \cup (B \cup C)$and $(A \cap B) \cap C = A \cap (B \cap C)$.}
+
+            The proof of the associativity of the union operation can be found in Lemma 3.1.13.
+            We will only prove the associativity of the intersection operation.
+            By Definition 3.1.14, we need to prove that all elements of $(A \cap B) \cap C$ is an element of $A \cap (B \cap C)$.
+            Suppose $y$ is an arbitrary element of $(A \cap B) \cap C$.
+            Thus, by Definition 3.1.23, $y$ is both an element of $(A \cap B)$ and $C$.
+            Because $y \in A \cap B$, $y \in A$ and $y \in B$.
+            Since $y \in B$ and $y \in C$, then $y \in B \cap C$.
+            Also, as $y \in A$, we can conclude that $y \in A \cap (B \cap C)$.
+            The converse is proven similarly.
+            Hence, $(A \cap B) \cap C = A \cap (B \cap C)$ as desired. \qed
+        
+        \item \textit{(Distributivity) We have $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C)=(A \cup B) \cap (A \cup C)$.}
+
+            First consider $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+            Suppose $x \in A \cap (B \cup C)$.
+            Then, $x \in A$ and $x \in B \cup C$.
+            So $x \in B$ or $x \in C$.
+            We will now split into two cases.
+            If $x \in B$, then $x \in A \cap B$, thus $x \in (A \cap B) \cup (A \cap C)$.
+            Similarly, if $x \in C$, then $x \in A \cap C$, thus $x \in (A \cap B) \cup (A \cap C)$.
+            Thus, $x \in A \cap (B \cup C) \implies x \in (A \cap B) \cup (A \cap C)$.
+            
+            For the converse, suppose instead $x \in (A \cap B) \cup (A \cap C)$.
+            Then, $x \in A \cap B$ or $x \in(A \cap C$.
+            If $x \in A \cap B$, then $x \in A$ and $x \in B$.
+            Because $x \in B$, we know $x \in B \cup C$.
+            Therefore, $x \in A \cap (B \cup C)$.
+            In a similar fashion, if $x \in A \cap C$, we can conclude that $x \in A \cap (B \cup C)$.
+            Hence, $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ as required.
+
+            We will now consider $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+            Suppose $x$ is an element of $A \cup (B \cap C)$.
+            We know that $x \in A$ or $x \in (B \cap C)$.
+            We will now split into two cases.
+            If $x \in A$, then $x \in A \cup B$ and $x \in A \cup C$.
+            If instead $x \in B \cap C$, then $x \in B$ and $x \in C$, so $x \in A \cup B$ and $x \in A \cup C$ as well.
+            In both cases, we can conclude that $x \in (A \cup B) \cap (A \cup C)$. \qed
+        
+        \item \textit{(Partition) We have $A \cup (X \setminus A) = X$ and $A \cap (X \setminus A) = \varnothing$.}
+
+            We will first consider $A \cup (X \setminus A)$.
+            We know that $x \in A$ or $x \in X \setminus A$.
+            If $x \in A$, then $x \in X$ because $A \subseteq X$.
+            If $x \in X \setminus A$ instead, then $x \in X$ and $x \notin A$.
+            Either way, we obtain $x \in X$, thus $x \in A \cup (X \setminus A) \implies x \in X$.
+            
+            Now consider the converse.
+            Suppose instead $x \in X$.
+            If $x \in A$, then $x \in A \cup (X \setminus A)$.
+            If instead $x \notin A$, then $x \in X \setminus A$ because $x \in X$.
+            Either way, $x \in X \implies x \in A \cup (X \setminus A)$.
+            Hence, $A \cup (X \setminus A) = X$ as desired.
+
+            Consider instead $A \cap (X \setminus A)$.
+            Suppose $x \in A \cap (X \setminus A)$.
+            Then, $x \in A$ and $x \in X \setminus A$.
+            Because $x \in X \setminus A$, $x \notin A$, which contradicts $x \in A$ obtained earlier.
+            Thus, no element $x$ fulfills $x \in A \cap (X \setminus A)$, or $x \in \varnothing$.
+            Hence $A \cap (X \setminus A) = \varnothing$. \qed
+        
+        \item \textit{(De Morgan Laws) We have $X \setminus (A \cup B) = (X \setminus A) \cap (X \setminus B)$ and $X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$.}
+
+            First prove $X \setminus (A \cup B) = (X \setminus A) \cap (X \setminus B)$.
+            Suppose $x \in X \setminus (A \cup B)$.
+            Then, $x \in X$ and $x \notin A \cup B$, or $x \notin A$ and $x \notin B$.
+            Thus, we obtain $x \in X \setminus A$ and $x \in X \setminus B$.
+            This leads to $x \in (X \setminus A) \cap (X \setminus B)$.
+            
+            Now consider the converse.
+            Suppose instead $x \in (X \setminus A) \cap (X \setminus B)$.
+            Because $x \in X \setminus A$ and $X \setminus B$, $x \in X$, $x \notin A$ and $x \notin B$.
+            Thus, $x \notin A \cup B$, and $x \in X \setminus (A \cup B)$.
+            Hence, $X \setminus (A \cup B) = (X \setminus A) \cap (X \setminus B)$.
+
+            We will now show that $X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$.
+            Suppose $x \in X \setminus (A \cap B)$.
+            Then, $x \in X$ and $x \notin A \cap B$.
+            Because $x \notin A \cap B$, $x \notin A$ or $x \notin B$.
+            If $x \notin A$, then $x \notin A$ or $x \notin B$ since the former statement is true.
+            Thus, $x \in (X \setminus A)$ or $x \in (X \setminus B)$, or $x \in (X \setminus A) \cup (X \setminus B)$.
+
+            Consider instead the converse.
+            Suppose instead $x \in (X \setminus A) \cup (X \setminus B)$.
+            Then, $x \in (X \setminus A)$ or $x \in (X \setminus B)$.
+            If $x \in (X \setminus A)$, then $x \in X$ and $x \notin A$.
+            Because $x \notin A$, $x \notin A \cap B$.
+            Thus, $x \in X \setminus (A \cap B)$ because $x \in X$.
+            Similarly, if $x \in (X \setminus B)$, $x \in X \setminus (A \cap B)$.
+            Hence, we obtain $X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$. \qed
+
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{3.1.7}{Let $A, B, C$ be sets. Show that $A \cap B \subseteq A$ and $A \cap B \subseteq B$. Furthermore, show that $C \subseteq A$ and $C\subseteq B$ if and only if $C \subseteq A \cap B$. In a similar spirit, show that $A \subseteq A \cup B$ and $B \subseteq A \cup B$, and furthermore that $A \subseteq C$ and $B \subseteq C$ if and only if $A \cup B \subseteq C$.}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{Show that $A \cap B \subseteq A$ and $A \cup B \subseteq B$.}
+        
+            From Definition 3.1.23, for all objects $x \in A \cap B$, $x \in A$ and $x \in B$.
+            Thus, $x \in A \cap B \implies x \in A$, which is equivalent to $A \cap B \subseteq A$.
+            Similarly, using the commutativity of the union operation, $A \cup B \subseteq B$.
+
+        \item \textit{Show that $C \subseteq A$ and $C\subseteq B$ if and only if $C \subseteq A \cap B$.}
+        
+            Suppose $x \in C$.
+            We will first prove the implication.
+            If $C \subseteq A$ and $C \subseteq B$, then $x \in A$ and $x \in B$.
+            Therefore, $x \in A \cap B$, and $C \subseteq A \cap B$.
+            Now consider the converse.
+            If $C \subseteq A \cap B$, then $x \in A \cap B$.
+            Thus, $x \in A$ and $x \in B$, or $C \subseteq A$ and $C \subseteq B$.
+
+        \item \textit{Show that $A \subseteq A \cup B$ and $B \subseteq A \cup B$.}
+
+            For all objects $x \in A$, $x \in A \cup B$, thus $A \subseteq A \cup B$.
+            Similarly, for all objects $x \in B$, $x \in A \cup B$, thus $B \subseteq A \cup B$.
+
+        \item \textit{Show that $A \subseteq C$ and $B \subseteq C$ if and only if $A \cup B \subseteq C$.}
+
+            We will first prove the implication.
+            Suppose $x \in A \cup B$. Then, $x \in A$ or $x \in B$.
+            If $x \in A$, then $x \in C$ because $A \subseteq C$.
+            Similarly, if $x \in B$, then $x \in C$.
+            Therefore, $A \cup B \subseteq C$.
+            
+            Now consider the converse.
+            Suppose instead $x \in A$, thus $x \in A \cup B$.
+            Because $A \cup B \subseteq C$, $x \in A \cup B \implies x \in C$.
+            Thus $x \in A \implies x \in C$, or $A \subseteq C$.
+            Similarly, by swapping the roles of $A$ and $B$ in the above argument, $B \subseteq C$.
+            Hence, the statement is proven. \qed
+            
+            
+            
+    \end{enumerate}
+
+\end{exer}
+
+\begin{exer}{3.1.8}{Let $A, B$ be sets. Prove the \emph{absorption laws} $A \cap (A \cup B) = A$ and $A \cup (A \cap B) = A$.}
+    First, consider $A \cap (A \cup B) = A$.
+    Suppose $x$ is an element of $A \cap (A \cup B)$, thus $x \in A$ and $x \in A \cup B$.
+    In particular, because $x \in A$, we obtain $A \cap (A \cup B) \subseteq A$.
+    Instead, let $x \in A$, thus $x \in A \cup B$.
+    This leads to $x \in A \cap (A \cup B)$, so $A \subseteq A \cap (A \cup B)$.
+    Hence, $A \cap (A \cup B) = A$.
+
+    Now consider $A \cup (A \cap B) = A$.
+    Using the distributivity of the union operation proven in Proposition 3.1.28 (f), the left-hand side is equivalent to $(A \cup A) \cap (A \cup B) = A \cap (A \cup B)$.
+    From the previous results, this is equal to $A$.
+    Therefore, we obtain $A \cup (A \cap B) = A$ as desired. \qed    
+\end{exer}
+
+\begin{exer}{3.1.9}{Let $A, B, X$ be sets such that $A \cup B = X$ and $A \cap B = \varnothing$. Show that $A = X \setminus B$ and $B = X \setminus A$.}
+    Suppose $x \in A$.
+    From $A \cup B = X$, we know $x \in A \cup B$, and thus $x \in X$.
+    Also, from $A \cap B = \varnothing$, $A$ and $B$ are disjoint, therefore $x \notin B$.
+    Thus, because $x \in X$ and $x \notin B$, $x \in X \setminus B$.
+    Suppose instead that $x \in X \setminus B$.
+    This implies $x \in X$ and $x \notin B$.
+    Because $x \notin B$ and $x \in A \cup B$, $x \in A$.
+    Hence, $A = X \setminus B$.
+    In a similar fashion, we can swap the roles of $A$ and $B$ in the above proof to show $B = X \setminus A$. \qed
+\end{exer}
+
+\begin{exer}{3.1.10}{Let $A$ and $B$ be sets. Show that the three sets $A \setminus B$, $A \cap B$ and $B \setminus A$ are disjoint, and that their union is $A \cup B$.}
+    To show the three sets are mutually disjoint, we prove that the intersections of any two of the sets have no elements.
+    Elements in $A \setminus B$ are in $A$ and not $B$.
+    However, elements in $A \cap B$ are in both $A$ and $B$,
+    and elements in $B \setminus A$ are in set $B$ and not $A$.
+    Because an object cannot both be in a set and not in a set, all three intersections are empty sets.
+
+    We will now prove that the union of the three sets is $A \cup B$.
+    Consider the following cases for an object $x$:
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item $x \in A$, $x \in B$: $x \in A \cap B$;
+        \item $x \in A$, $x \notin B$: $x \in A \setminus B$;
+        \item $x \notin A, x \in B$: $x \in B \setminus A$,
+        \item $x \notin A, x \notin B$: $x$ is not an element of any of the sets, and is therefore also not in the union.
+    \end{enumerate}
+    Thus, if $x \in A$ or $x \in B$, $x$ is an element of exactly one of the sets.
+    This is logically equivalent to saying $A \cup B$ is the union of the three sets as per Axiom 3.4. \qed
+\end{exer}
+
+\begin{exer}{3.1.11}{Show that the axiom of replacement implies the axiom of specification.}
+    Let $A$ be a set, and $P(x)$ be a property pertaining to $x$.
+    To prove the axiom of specification, we need to construct the set $\{x \in A: P(x) \}$ using only the axiom of replacement.
+    Let $Q(x, y)$ be the property that $y = x$ and $P(x)$ is true.
+    To use the axiom of replacement, for each $x \in A$, there must be at most one $y$ such that $Q(x, y)$ is true.
+    Indeed, for each $x \in A$, there is only one $y$ such that $y = x$.
+    Therefore, there is at most one $y$ such that $Q(x, y)$ is true.
+    We can now show that there exists a set $\{y : Q(x, y) \text{ for some } x \in A \}$ such that for an object $z$,
+    \begin{align*}
+             & z \in \{y : Q(x, y) \text{ for some } x \in A \} \\
+        \iff & Q(x, z) \text{ is true for some } x \in A \\
+        \iff & x = z \text{ and } P(x) \text{ is true for some } x \in A \\
+        \iff & P(x) \text{ for some  } x \in A.
+    \end{align*}
+    Thus, we can construct the set $\{x \in A: P(x) \}$, which means we have proven the axiom of specification. \qed
 \end{exer}
 
 \end{document}
