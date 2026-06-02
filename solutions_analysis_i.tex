@@ -689,4 +689,103 @@ No exercises from this subchapter.
     Thus, we can construct the set $\{x \in A: P(x) \}$, which means we have proven the axiom of specification. \qed
 \end{exer}
 
+
+\subsection{Russell's Paradox}
+
+\begin{exer}{3.2.1}{Show that the universal specification axiom, Axiom 3.8, if assumed to be true, would imply Axioms 3.2, 3.3, 3.4, 3.5, and 3.6. (If we assume that all natural numbers are objects, we also obtain Axiom 3.7.)}
+    Recall that Axiom 3.8 states that if for every object $x$ we have a property $P(x)$ pertaining to $x$, then there exists a set $\{ x : P(x) \}$ such that for every object $y$, $y \in \{x : P(x) \} \iff P(y)$.
+    
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{Axiom 3.2: Empty set.}
+        
+            Let $P(x)$ be a property pertaining to an object $x$ that is always false.
+            From Axiom 3.8, the set $\{ x : P(x) \}$ exists.
+            However, for any object $y$, $P(y)$ is false.
+            It follows that $y \in \{ x : P(x) \}$ is false for all objects $y$.
+            Therefore, the set $\{ x : P(x) \}$ has no elements.
+            This is precisely the claim of Axiom 3.2. \qed
+            
+        \item \textit{Axiom 3.3: Singleton sets and pair sets.}
+        
+            Let $a$ be an arbitrary object and $P(x)$ be the property pertaining to $x$ such that $x = a$.
+            From Axiom 3.8, the set $\{ x : x = a \}$ exists, and it has exactly one element $a$.
+            Thus, the singleton set $\{ a \}$ exists.
+                   
+            Suppose instead $a$ and $b$ are arbitrary objects, and let $Q(x)$ be the property pertaining to $x$ such that $x = a$ or $x = b$.
+            From Axiom 3.8, the set $\{ x : x = a \text{ or } x = b\}$ exists, which has exactly two elements $a$ and $b$.
+            Thus, the pair set $\{ a, b \}$ exists.
+            
+        \item \textit{Axiom 3.4: Pairwise union.}
+        
+            Let $A$ and $B$ be sets, and $x$ be an object.
+            Write $P(x)$ as the property pertaining to $x$ that $x \in A$ or $x \in B$.
+            Thus, there exists a set $\{x : x \in A \text{ or } x \in B \}$.        
+            We denote this set as the union of sets $A$ and $B$, or $A \cup B$.
+            For any object $y$, $(y \in A \text{ or } y \in B) \iff y \in A \cup B$.
+            This is precisely the claim of Axiom 3.4. \qed
+            
+        \item \textit{Axiom 3.5: Axiom of specification.}
+        
+            Let $A$ be a set, and let $P(x)$ be a property pertaining to an object $x \in A$.
+            Let $Q(x)$ be the property that $P(x)$ is true and $x \in A$.
+            By Axiom 3.8, the set $\{ x : Q(x) \}$ exists.
+            For any object $y$, $y \in \{ x : Q(x) \} \iff (y \in A \text{ and } P(y))$.
+            This is exactly the claim of Axiom 3.5. \qed
+            
+        \item \textit{Axiom 3.6: Replacement.}
+        
+            Let $A$ be a set, and $P(x, y)$ be a property pertaining to $x$ and $y$.
+            Let $Q(y)$ be a property pertaining to $y$ that $P(x, y)$ is true for some $x \in A$.
+            According to Axiom 3.8, there exists a set $\{ y : P(x, y) \text{ for some } x \in A \}$, such that for any object $z$, $z \in \{ y : P(x, y) \text{ for some } x \in A \} \iff P(x, z) \text{ for some } x \in A$.
+            This is exactly the claim of Axiom 3.6. \qed
+            
+        \item \textit{Axiom 3.7: Infinity.}
+        
+            Suppose all natural numbers are objects.          
+            Let $P(x)$ be the statement that $x$ is a natural number.
+            Then the set $\{ x : P(x) \}$ exists.
+            We denote this set as $\mathbb{N}$. \qed
+    \end{enumerate}
+\end{exer}
+
+\begin{exer}{3.2.2}{Use the axiom of regularity (and the singleton set axiom) to show that if $A$ is a set, then $A \notin A$. Furthermore, show that if $A$ and $B$ are two sets, then either $A \notin B$ or $B \notin A$ (or both).}
+    We will first prove that if $A$ is a set, then $A \notin A$.
+    Consider the set $\{ A \}$ which exists by the singleton set axiom.
+    By the axiom of regularity, there is at least one element $x \in \{ A \}$ such that $x$ is either not a set, or is disjoint from $\{ A \}$.
+    From the singleton set axiom, we know that $x = A$.
+    However, $A$ is a set, so $A$ and $\{ A \}$ must be disjoint sets, i.e. $A \cap \{ A \} = \varnothing$.
+    If $A \in A$, then $A$ is an element of $A \cap \{ A \}$, which is contradictory.
+    Therefore $A \notin A$ as desired.
+    
+    We will now show that if $A$ and $B$ are two sets, then either $A \notin B$ or $B \notin A$ (or both).
+    Consider the set $\{ A, B \}$, which exists by the pair set axiom.
+    According to the axiom of regularity, there is at least one element $x \in \{  A, B \}$ such that $x$ is either not a set, or is disjoint from $\{ A, B \}$.
+    Since both $A$ and $B$ are sets, $x$ must be a set, thus $x$ must be disjoint from $\{ A, B \}$.
+    If $x = A$, then $A$ is disjoint from $\{ A, B \}$.
+    Thus, for any object $y$, $y \notin A \cap \{ A, B \}$, in particular, $B \notin A \cap \{ A, B \}$.
+    Since $B \in \{ A, B \}$, it follows that $B \notin A$.
+    Similarly, if $x = B$, we can deduce that $A \notin B$.
+    Hence, either $B \notin A$ or $A \notin B$ as required. \qed
+\end{exer}
+
+\begin{exer}{3.2.3}{Show (assuming the other axioms of set theory) that the universal specification axiom, Axiom 3.8, is equivalent to an axiom postulating the existence of a ``universal set" $\Omega$ consisting of all objects (i.e., for all objects $x$, we have $x \in \Omega$). In other words, if Axiom 3.8 is true, then a universal set exists, and conversely, if a universal set exists, then Axiom 3.8 is true.}
+    We will first show the statement.
+    Suppose Axiom 3.8 is true.
+    Then, let $P(x)$ be a property pertaining to $x$ that is true for all $x$.
+    Thus, there exists a set $\{ x : P(x) \}$ such that or every object $y$, $y \in \{ x : P(x) \} \iff P(y)$.
+    Because $P(y)$ is true for all $y$, all objects are elements of $\{ x : P(x) \}$.
+    Thus, the set $\{ x : P(x) \}$ is a universal set.
+    
+    Now consider the converse.
+    Suppose all objects are in a universal set $\Omega$.
+    We want to show that there exists a set $\{ x : P(x) \}$ such that for every object $y$, $y \in \{x : P(x) \} \iff P(y)$.
+    Let $A$ be a set, and $P(x)$ be the property pertaining to $x$.
+    By the axiom of specification, there exists a set $\{ x \in A : P(x) \}$ such that $y \in \{x \in A : P(x) \} \iff (y \in A \text{ and } P(y))$.
+    Take $A = \Omega$.
+    It follows that $x \in A$ for all $x$.
+    Therefore, there exists a set $\{ x : P(x) \}$ such that $y \in \{x : P(x) \} \iff P(y))$, which is exactly the claim of Axiom 3.8. \qed
+\end{exer}
+
+\end{exer}
+
 \end{document}
