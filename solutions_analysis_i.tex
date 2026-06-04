@@ -2,6 +2,7 @@
 
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{thmtools}
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{float}
@@ -9,12 +10,12 @@
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{mathtools}
 \usepackage{multirow}
 \usepackage{physics}
 \usepackage{tabularx}
 \usepackage{wrapfig}
 \usepackage[utf8]{inputenc}
-
 
 
 \setlist{parsep=1em}
@@ -33,6 +34,16 @@
     \noindent \textit{Solution.}
 }{\vspace{3mm}}
 
+\declaretheoremstyle[%
+  spaceabove=0pt,%
+  spacebelow=6pt,%
+  headfont=\normalfont\itshape,%
+  postheadspace=1em,%
+  qed=\qedsymbol%
+]{mystyle} 
+\declaretheorem[name={Proof},style=mystyle,unnumbered,
+]{prf}
+
 
 \title{Solutions for Analysis I by Terence Tao}
 \author{Li Thon Hong}
@@ -49,14 +60,17 @@
 
 \pagebreak
 
+
 \section{Introduction}
 No exercises from this chapter.
 
 \pagebreak
 
+
 \section{Starting at the beginning: the natural numbers}
 \subsection{The Peano axioms}
 No exercises from this subchapter.
+
 
 \subsection{Addition}
 \begin{exer}{2.2.1}{Prove Proposition 2.2.5 (Associativity of addition): For any natural numbers $a, b, c$, we have $(a + b) + c = a + (b + c)$.}
@@ -72,6 +86,7 @@ No exercises from this subchapter.
     Thus, both sides are equal, and we have closed the induction. \qed
 \end{exer}
 
+
 \begin{exer}{2.2.2}{Prove Lemma 2.2.10: Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $\succr{b} = a$.}
     We induct on $a$.
     
@@ -84,10 +99,10 @@ No exercises from this subchapter.
 
     Suppose inductively that there exists exactly one natural number $b$ such that $\succr{b} = a$.
     We now have to show there exists exactly one natural number $b'$ such that $\succr{b'} = \succr{a}$.
-    By the inductive hypothesis, $\succr{a} = \succr{(\succr{b})} = \succr{b'}$.
-    As per Axiom 2.4, there exists exactly one solution for $b'$, namely $b' = a$.
+    As per Axiom 2.4, if $\succr{b'} = \succr{a'}$, then we must have $b' = a$, which is the only solution.
     This closes the induction. \qed
 \end{exer}
+
 
 \begin{exer}{2.2.3}{Prove Proposition 2.2.12 (Basic properties of order of natural numbers).}
     Let $a, b, c$ be natural numbers. Then
@@ -101,7 +116,7 @@ No exercises from this subchapter.
             By Definition 2.2.11, write $a = b + m$, $b = c + n$, where $m$ and $n$ are natural numbers.
             Thus, $a = (c + n) + m = c + (n + m)$ by associativity of addition.
             By mathematical induction, it is trivial to prove that $n + m$ is a natural number.
-            Therefore, $a \ge c$. \qed
+            Therefore, $a \ge c$.
 
         \item \textit{Anti-symmetry: If $a \ge b$ and $b \ge a$, then $a = b$.}
 
@@ -110,8 +125,8 @@ No exercises from this subchapter.
             Thus $a = (a + n) + m = a + (n + m)$.
             By Lemma 2.2.2 and Proposition 2.2.6 (cancellation law), $0 = n + m$.
             By Corollary 2.2.9, this results in $m = n = 0$.
-            Thus $a = b + 0 = b$ as required. \qed
-
+            Thus $a = b + 0 = b$ as required.
+            
         \item \textit{Preservation of order: $a \ge b$ if and only if $a + c \ge b + c$.}
 
             First, prove $a \ge b \implies a + c \ge b + c$.
@@ -121,7 +136,7 @@ No exercises from this subchapter.
             Conversely, consider $a + c = (b + c) + m$, where $m$ is a natural number.
             By Proposition 2.2.6 (cancellation law) and the associativity of addition, $a = b + m$, meaning $a \ge b$.
 
-            Because $a \ge b \implies a + c \ge b + c$ and $a + c \ge b + c \implies a \ge b$, $a + c \ge b + c \iff a \ge b$. \qed
+            Because $a \ge b \implies a + c \ge b + c$ and $a + c \ge b + c \implies a \ge b$, $a + c \ge b + c \iff a \ge b$.
 
         \item \textit{$a < b$ if and only if $\succr{a} < b$.}
 
@@ -129,8 +144,8 @@ No exercises from this subchapter.
             According to Definition 2.2.11, if $a < b$, then $b = a + m$, where $m$ is a natural number. 
             Note that $m \ne 0$ because we would otherwise obtain $a = b$, which is contradictory to the given condition $a < b$.
             Therefore, by Axiom 2.3, we have $m = \succr{n}$, where $n$ is a natural number.
-            Thus, by the definition and commutativity of addition, $b = a + \succr{m} = \succr{(a + m)} = (\succr{a}) + m$.
-            It follows that $a \le b$.
+            Thus, by the definition and commutativity of addition, $b = a + \succr{n} = \succr{(a + n)} = (\succr{a}) + n$.
+            It follows that $\succr{a} \le b$.
 
             Now consider the converse.
             From $\succr{a} \le b$, we obtain $b = \succr{a} + p$, where $p$ is a natural number.
@@ -138,11 +153,11 @@ No exercises from this subchapter.
             According to Axiom 2.3, $0$ is not the successor of any natural number, so $\succr{p} \ne 0$.
             Hence, $a \le b$.
 
-            Because $a < b \implies \succr{a} \le b$ and $\succr{a} \le b \implies a < b$, $a < b \iff \succr{a} \le {b}.$ \qed
+            Because $a < b \implies \succr{a} \le b$ and $\succr{a} \le b \implies a < b$, $a < b \iff \succr{a} \le {b}.$
 
         \item \textit{$a < b$ if and only if $b = a + d$ for some positive number $d$.}
 
-            First consider $a < b \implies b = a + d$. 
+            First, consider $a < b \implies b = a + d$. 
             From $a < b$ we know $a \ge b$, or $b = a + d$ for a natural number $d$.
             For the sake of contradiction, suppose $d = 0$.
             Therefore $a = b$, which contradicts $a < b$.
@@ -154,51 +169,54 @@ No exercises from this subchapter.
             Therefore, $a \ne b$, which implies $a < b$.
 
             Because the statement and the converse are both true, we can conclude that for some positive number $d$, $a < b$ if and only if $b = a + d$. \qed
+            
     \end{enumerate}
 \end{exer}
+
 
 \begin{exer}{2.2.4}{Justify the three lemmas marked with (why?) in Proposition 2.2.13 (trichotomy of order for natural numbers).}
     \begin{enumerate}[label=(\alph*), topsep=0mm]
         \item \textit{For all $b$, $0 \le b$.}
 
             From the definition of addition, $0 + b = b$.
-            By Definition 2.2.11, this implies $0 \le b$. \qed
+            By Definition 2.2.11, this implies $0 \le b$.
             
         \item \textit{If $a > b$, then $\succr{a} > b$.}
 
             From Definition 2.2.11, $a = b + m$, where $m$ is a natural number.
             Thus, by the definition of addition, $\succr{a} = \succr{(b + m)} = b + \succr{m}$.
-            Because $\succr{m}$ is positive by Proposition 2.2.8, $\succr{a} > b$. \qed
+            Because $\succr{m}$ is positive by Proposition 2.2.8, $\succr{a} > b$.
         
         \item \textit{If $a = b$, then $\succr{a} > b$.}
 
             From Axiom 2.4, if $a = b$, then $\succr{a} = \succr{b}$.
             Recall that $\succr{b} = b + 1$, thus $\succr{a} = b + 1$.
             By Definition 2.2.11, this implies $\succr{a} > b$. \qed
-            
+
     \end{enumerate}
 \end{exer}
+
 
 \begin{exer}{2.2.5}{Prove Proposition 2.14 (Strong principle of induction): Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $m \ge m_0$, we have the following implication: if $P(m')$ is true for all natural numbers $m_0 \le m' < m$, then $P(m)$ is also true. Then we can conclude that $P(m)$ is true for all natural numbers $m \ge m_0$.}
     Let $Q(n)$ be the property such that $P(m)$ is true for all $m_0 \le m < n$.
     Note that the supposed implication becomes ``If $Q(n)$ is true, then $P(n)$ is also true.
     We induct on $n$.
 
-    First, consider the base case $n \le m_0$.
-    In this case, $Q(n)$ is vacuously true as there is no such natural number $m$.
+    First, consider the base case $n = m_0$.
+    In this case, $Q(m_0)$ is vacuously true as there is no such natural number $m$.
     Hence, the base case is proven.
+    (Note that $Q(n)$ is also vacuously true for $n < m_0$.)
 
     Now, we assume inductively that $Q(n)$ is true; we will now prove $Q(\succr{n})$ is true.
     By the inductive hypothesis, $P(m)$ is true for all $m$ where $m_0 \le m < n$.
     According to the supposed implication, because $Q(n)$ is true, $P(n)$ is also true.
     Therefore, $P(m)$ is true for $m_0 \le m \le n$, which implies $Q(\succr{n})$ is also true.
     This closes the induction. \qed
-    
 \end{exer}
 
 
 \begin{exer}{2.2.6}{Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(\succr{m})$ is true, then $P(m)$ is true. Suppose that $P(n)$ is also true. Prove that $P(m)$ is true for all natural numbers $m \le n$; this is known as the \emph{principle of backwards induction}.}
-    Write $Q(n)$ as the property ``If $P(n)$ is true, $P(m)$ is true for all natural numbers $m \le n$. We apply induction on $n$.
+    Write $Q(n)$ as the property pertaining to $n$ that ``If $P(n)$ is true, $P(m)$ is true for all natural numbers $m \le n$. We apply induction on $n$.
 
     Consider the base case $n = 0$. The statement $m \le n$ implies $0 = m + x$ for a natural number $x$.
     According to Corollary 2.2.9, this leads to $m = x = 0$.
@@ -213,6 +231,7 @@ No exercises from this subchapter.
     This closes the induction. \qed
 \end{exer}
 
+
 \subsection{Multiplication}
 
 \begin{exer}{2.3.1}{Prove Lemma 2.3.2 (Commutativity of multiplication): Let $n, m$ be natural numbers. Then $n \times m = m \times n$.}
@@ -221,15 +240,15 @@ No exercises from this subchapter.
     \begin{lemma}
         For any natural number $n$, $n \times 0 = n$.
     \end{lemma}
-    \begin{proof}
+    \begin{prf}
         In the base case $n = 0$, $0 \times 0 = 0$ is true by the definition of multiplication, and $0$ is a natural number.
         Now suppose inductively that $n \times 0 = 0$; we will now prove $(\succr{n}) \times 0 = 0$.
         By the definition of multiplication, $(\succr{n}) \times 0 = (n \times 0) + 0 = 0 + 0 = 0$.
-    \end{proof}
+    \end{prf}
     \begin{lemma}
         For any natural numbers $n$ and $m$, $n \times (\succr{m}) = (n \times m) + n$.
     \end{lemma}
-    \begin{proof}
+    \begin{prf}
         In the base case $n = 0$, $0 \times \succr{m} = 0$ by the definition of multiplication. 
         Also, $(0 \times m) + 0 = 0$.
         Thus, the left-hand side is true.
@@ -245,7 +264,7 @@ No exercises from this subchapter.
             = & ((\succr{n}) \times m) + (\succr{n}) & \text{(Definition 2.3.1)}
         \end{align*}
         This closes the induction.
-    \end{proof}
+    \end{prf}
 
     We can now prove the main statement $n \times m = m \times n$.
     Consider the base case $n = 0$. Thus, $0 \times m = m \times 0 = 0$.
@@ -256,8 +275,8 @@ No exercises from this subchapter.
     By the definition of multiplication, $(\succr{n}) \times m = (n \times m) + m$.
     From the second lemma, the right-hand side is also equivalent to $(n \times m) + m$.
     Because both sides are equal, the statement is true. This closes the induction. \qed
-    
 \end{exer}
+
 
 \begin{exer}{2.3.2}{Prove Lemma 2.3.3 (Positive natural numbers have no zero divisors): Let $m, n$ be natural numbers. Then $n \times m = 0$ if and only if at least one of $n, m$ is equal to zero. In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.}
     We will prove the second statement first.
@@ -276,6 +295,7 @@ No exercises from this subchapter.
     Hence, the statements are proven as desired. \qed
 \end{exer}
 
+
 \begin{exer}{2.3.3}{Prove Proposition 2.3.5 (Associativity of multiplication): For any natural numbers $a, b, c$, we have $(a \times b) \times c = a \times (b \times c)$.}
     We induct on $a$, keeping $b$ and $c$ fixed.
     
@@ -291,6 +311,7 @@ No exercises from this subchapter.
     Thus, both sides are equal, and this closes the induction. \qed
 \end{exer}
 
+
 \begin{exer}{2.3.4}{Prove the identity $(a + b)^2 = a^2 + 2ab + b^2$ for all natural numbers $a, b$.}
     By Proposition 2.3.4 (distributive law) and Proposition 2.3.5 (commutativity of multiplication):
     \begin{align*}
@@ -298,9 +319,12 @@ No exercises from this subchapter.
         & = (a+b)(a+b) \\
         & = a(a + b) + b(a + b) \\
         & = a^2 + ab + ab + b^2 \\
-        & = a^2 + 2ab + b^2 
+        & = a^2 + 2ab + b^2
     \end{align*}
+    Hence proven. \qed  % This line is here solely because I can't get \qedhere to work
 \end{exer}
+
+
 \begin{exer}{2.3.5}{Prove Proposition 2.3.9 (Euclidean algorithm): Let $n$ be a natural number, and let $q$ be a positive number. Then there exists natural numbers $m, r$ such that $0 \le r < q$ and $n = mq + r$.}
     We induct on $n$, fixing $q$.
 
@@ -315,12 +339,14 @@ No exercises from this subchapter.
     Thus, we have two cases:
     \begin{enumerate}[label=(\alph*), topsep=0mm]
         \item $r + 1 < q$: In this case, we can have $n + 1 = mq + (r + 1)$ with $0 \le r + 1 < q$. Thus, we can have $m' = m$, $r' = r + 1$.
-        \item $r + 1 = q$: In this case, we have $n + 1 = mq + q = (m + 1)q$ by the distributive law. Therefore, $m' = m + 1, r = 0$.
+        \item $r + 1 = q$: In this case, we have $n + 1 = mq + q = (m + 1)q$ by the distributive law. Therefore, $m' = m + 1, r' = 0$.
     \end{enumerate}
     This closes the induction. \qed
 \end{exer}
 
 \pagebreak
+
+
 \section{Set theory}
 \subsection{Fundamentals}
 \begin{exer}{3.1.1}{Show that the definition of equality in Definition 3.1.4 is reflexive, symmetric, and transitive.}
@@ -347,6 +373,7 @@ No exercises from this subchapter.
     \end{enumerate}
 \end{exer}
 
+
 \begin{exer}{3.1.2}{Using only Definition 3.1.4, Axiom 3.1, Axiom 3.2, and Axiom 3.3, prove that the sets $\varnothing$, $\{ \varnothing \}$, $\{ \{ \varnothing \} \}$, and $\{ \varnothing, \{ \varnothing \} \}$ are all distinct (i.e., no two of them are equal to each other).}
     First, let's show that $\varnothing$ is different from every other set.
     The empty set $\varnothing$ has no elements.
@@ -361,10 +388,8 @@ No exercises from this subchapter.
     We now need to show that $\{ \{ \varnothing \} \} \ne \{ \varnothing, \{ \varnothing \} \}$.
     Notice $\varnothing \notin \{ \{ \varnothing \} \}$ but $\varnothing \in \{ \varnothing, \{ \varnothing \} \}$.
     Therefore, $\{ \{ \varnothing \} \}$ and $\{ \varnothing, \{ \varnothing \} \}$ are distinct sets too. We conclude that the sets $\varnothing$, $\{ \varnothing \}$, $\{ \{ \varnothing \} \}$, and $\{ \varnothing, \{ \varnothing \} \}$ are all distinct. \qed
-
-    
-    
 \end{exer}
+
 
 \begin{exer}{3.1.3}{Prove the remaining claims in Lemma 3.1.13.}
     \begin{enumerate}[topsep=0mm, label=(\alph*)]
@@ -375,7 +400,7 @@ No exercises from this subchapter.
             Similarly, $x \in \{ b \} \iff x = b$.
             Axiom 3.3 also states that $x = a$ or $x = b$ if and only if $x \in \{ a, b \}$.
             Therefore, if $x \in \{ a \} \cup \{ b \}$, $x \in \{ a, b \}$.
-            According to Definition 3.1.4, this implies $\{ a, b \} = \{ a \} \cup \{ b \}$. \qed
+            According to Definition 3.1.4, this implies $\{ a, b \} = \{ a \} \cup \{ b \}$.
 
         \item \textit{(Commutativity of the union operation) $A \cup B = B \cup A$.}
 
@@ -383,7 +408,7 @@ No exercises from this subchapter.
             If $x \in A$, then by Axiom 3.4, then $x \in B \cup A$.
             Similarly, if $x \in B$, then $x \in B \cup A$.
             We can show in a similar fashion that $x \in B \cup A \implies x \in A \cup B$.
-            Hence, by Definition 3.1.4, $A \cup B = B \cup A$. \qed
+            Hence, by Definition 3.1.4, $A \cup B = B \cup A$.
 
         \item \textit{$A \cup A = A \cup \varnothing = \varnothing \cup A = A$.}
 
@@ -397,8 +422,10 @@ No exercises from this subchapter.
             Therefore, $y \in A \cup \varnothing \iff y \in A$, which implies $A \cup \varnothing = A$.
 
             As we have proven the union operation is commutative, $A \cup \varnothing = \varnothing \cup A = A$. \qed
+            
     \end{enumerate}
 \end{exer}
+
 
 \begin{exer}{3.1.4}{Prove the remaining claims in Proposition 3.1.18.}
     \begin{enumerate}[topsep=0mm, label=(\alph*)]
@@ -417,9 +444,10 @@ No exercises from this subchapter.
             Since $B \subsetneq C$, $y \in C$.
             Thus, we have an element $y$ where $y \in C$ and $y \notin A$.
             This shows that $A \ne C$.
-            Hence, because $A \subseteq C$ and $A \ne C$, we can conclude that $A \subsetneq C$.
+            Hence, because $A \subseteq C$ and $A \ne C$, we can conclude that $A \subsetneq C$. \qed
     \end{enumerate}
 \end{exer}
+
 
 \begin{exer}{3.1.5}{Let $A, B$ be sets. Show that the three statements $A \subseteq B$, $A \cup B = B$, $A \cap B = A$ are logically equivalent (any one of them implies the other two).}
     First, we show that $A \subseteq B \implies A \cup B = B$.
@@ -444,6 +472,7 @@ No exercises from this subchapter.
     Therefore, $x \in A \implies x \in B$. \qed
 \end{exer}
 
+
 \begin{exer}{3.1.6}{Prove Proposition 3.1.28 (Sets form a boolean algebra).}
     Let $A, B, C$ be sets, and let $X$ be a set containing $A, B, C$ as subsets.
     \begin{enumerate}[topsep=0mm, label=(\alph*)]
@@ -452,12 +481,12 @@ No exercises from this subchapter.
             Consider $A \cup \varnothing$.
             From Axiom 3.4, for an object $y$, $y \in A \cup \varnothing \iff (y \in A \text{ or } y \in \varnothing)$.
             However, Axiom 3.2 states that for an arbitrary $y$, $y \notin \varnothing$.
-            Therefore, $y \in A \cup \varnothing \iff y \in A$, which implies $A \cup \varnothing = A$. \qed
+            Therefore, $y \in A \cup \varnothing \iff y \in A$, which implies $A \cup \varnothing = A$.
 
             Now consider $A \cap \varnothing$.
             For an object $y$, $y \in A \cap \varnothing \iff (y \in A \text{ or } y \in \varnothing)$.
             However, Axiom 3.2 states that for an arbitrary $y$, $y \notin \varnothing$.
-            Therefore, no elements fulfil such conditions, or $A \cap \varnothing = \varnothing$. \qed
+            Therefore, no elements fulfil such conditions, or $A \cap \varnothing = \varnothing$.
         
         \item \textit{(Maximal element) We have $A \cup X = X$ and $A \cap X = A$.}
 
@@ -469,7 +498,7 @@ No exercises from this subchapter.
             Now consider $A \cap X = A$.
             From Definition 3.1.23, $y \in A \cap X \iff y \in A \text{ and } y \in X$.
             However, if $y \in A$, then $y \in X$ because $A \subseteq X$.
-            Thus, $y \in A \cap X \iff y \in A$, or $A \cap X = A$. \qed
+            Thus, $y \in A \cap X \iff y \in A$, or $A \cap X = A$.
             
         \item \textit{(Identitiy) We have $A \cap A= A$ and $A \cup A = A$.}
 
@@ -477,7 +506,7 @@ No exercises from this subchapter.
             Definition 3.1.23 states that if an arbitrary object $y \in A \cap A$, then $y \in A$ and $y \in A$.
             Thus, $y \in A \cap A \iff y \in A$, or $A \cap A = A$ as required.
             Similarly, for $A \cup A = A$, Axiom 3.4 states that if an arbitrary object $y \in A \cup A$, then $y \in A$ or $y \in A$.
-            This leads to $y \in A \cup A \iff y \in A$, or $A \cup A = A$ as required. \qed
+            This leads to $y \in A \cup A \iff y \in A$, or $A \cup A = A$ as required.
 
         \item \textit{(Commutativity) We have $A \cup B = B \cup A$ and $A \cap B = B \cap A$.}
 
@@ -486,7 +515,7 @@ No exercises from this subchapter.
             Let $y$ be an object such that $y \in A \cap B$.
             Then $y \in A$ and $y \in B$.
             This is logically equivalent to $y \in B$ and $y \in A$.
-            The converse is proven in a similar fashion, hence, $y \in A \cap B \iff y \in B \cup A$, or $A \cap B = B \cap A$. \qed
+            The converse is proven in a similar fashion, hence, $y \in A \cap B \iff y \in B \cup A$, or $A \cap B = B \cap A$.
         
         \item \textit{(Associativity) We have $(A \cup B) \cup C = A \cup (B \cup C)$and $(A \cap B) \cap C = A \cap (B \cap C)$.}
 
@@ -499,7 +528,7 @@ No exercises from this subchapter.
             Since $y \in B$ and $y \in C$, then $y \in B \cap C$.
             Also, as $y \in A$, we can conclude that $y \in A \cap (B \cap C)$.
             The converse is proven similarly.
-            Hence, $(A \cap B) \cap C = A \cap (B \cap C)$ as desired. \qed
+            Hence, $(A \cap B) \cap C = A \cap (B \cap C)$ as desired.
         
         \item \textit{(Distributivity) We have $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C)=(A \cup B) \cap (A \cup C)$.}
 
@@ -526,7 +555,7 @@ No exercises from this subchapter.
             We will now split into two cases.
             If $x \in A$, then $x \in A \cup B$ and $x \in A \cup C$.
             If instead $x \in B \cap C$, then $x \in B$ and $x \in C$, so $x \in A \cup B$ and $x \in A \cup C$ as well.
-            In both cases, we can conclude that $x \in (A \cup B) \cap (A \cup C)$. \qed
+            In both cases, we can conclude that $x \in (A \cup B) \cap (A \cup C)$.
         
         \item \textit{(Partition) We have $A \cup (X \setminus A) = X$ and $A \cap (X \setminus A) = \varnothing$.}
 
@@ -548,7 +577,7 @@ No exercises from this subchapter.
             Then, $x \in A$ and $x \in X \setminus A$.
             Because $x \in X \setminus A$, $x \notin A$, which contradicts $x \in A$ obtained earlier.
             Thus, no element $x$ fulfills $x \in A \cap (X \setminus A)$, or $x \in \varnothing$.
-            Hence $A \cap (X \setminus A) = \varnothing$. \qed
+            Hence $A \cap (X \setminus A) = \varnothing$.
         
         \item \textit{(De Morgan Laws) We have $X \setminus (A \cup B) = (X \setminus A) \cap (X \setminus B)$ and $X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$.}
 
@@ -582,6 +611,7 @@ No exercises from this subchapter.
 
     \end{enumerate}
 \end{exer}
+
 
 \begin{exer}{3.1.7}{Let $A, B, C$ be sets. Show that $A \cap B \subseteq A$ and $A \cap B \subseteq B$. Furthermore, show that $C \subseteq A$ and $C\subseteq B$ if and only if $C \subseteq A \cap B$. In a similar spirit, show that $A \subseteq A \cup B$ and $B \subseteq A \cup B$, and furthermore that $A \subseteq C$ and $B \subseteq C$ if and only if $A \cup B \subseteq C$.}
     \begin{enumerate}[topsep=0mm, label=(\alph*)]
@@ -621,11 +651,9 @@ No exercises from this subchapter.
             Similarly, by swapping the roles of $A$ and $B$ in the above argument, $B \subseteq C$.
             Hence, the statement is proven. \qed
             
-            
-            
     \end{enumerate}
-
 \end{exer}
+
 
 \begin{exer}{3.1.8}{Let $A, B$ be sets. Prove the \emph{absorption laws} $A \cap (A \cup B) = A$ and $A \cup (A \cap B) = A$.}
     First, consider $A \cap (A \cup B) = A$.
@@ -641,6 +669,7 @@ No exercises from this subchapter.
     Therefore, we obtain $A \cup (A \cap B) = A$ as desired. \qed    
 \end{exer}
 
+
 \begin{exer}{3.1.9}{Let $A, B, X$ be sets such that $A \cup B = X$ and $A \cap B = \varnothing$. Show that $A = X \setminus B$ and $B = X \setminus A$.}
     Suppose $x \in A$.
     From $A \cup B = X$, we know $x \in A \cup B$, and thus $x \in X$.
@@ -652,6 +681,7 @@ No exercises from this subchapter.
     Hence, $A = X \setminus B$.
     In a similar fashion, we can swap the roles of $A$ and $B$ in the above proof to show $B = X \setminus A$. \qed
 \end{exer}
+
 
 \begin{exer}{3.1.10}{Let $A$ and $B$ be sets. Show that the three sets $A \setminus B$, $A \cap B$ and $B \setminus A$ are disjoint, and that their union is $A \cup B$.}
     To show the three sets are mutually disjoint, we prove that the intersections of any two of the sets have no elements.
@@ -672,6 +702,7 @@ No exercises from this subchapter.
     This is logically equivalent to saying $A \cup B$ is the union of the three sets as per Axiom 3.4. \qed
 \end{exer}
 
+
 \begin{exer}{3.1.11}{Show that the axiom of replacement implies the axiom of specification.}
     Let $A$ be a set, and $P(x)$ be a property pertaining to $x$.
     To prove the axiom of specification, we need to construct the set $\{x \in A: P(x) \}$ using only the axiom of replacement.
@@ -684,7 +715,8 @@ No exercises from this subchapter.
              & z \in \{y : Q(x, y) \text{ for some } x \in A \} \\
         \iff & Q(x, z) \text{ is true for some } x \in A \\
         \iff & x = z \text{ and } P(x) \text{ is true for some } x \in A \\
-        \iff & P(x) \text{ for some  } x \in A.
+        \iff & P(x) \text{ for some } x \in A \\
+        \iff & P(z) \text{ for some } z \in A.
     \end{align*}
     Thus, we can construct the set $\{x \in A: P(x) \}$, which means we have proven the axiom of specification. \qed
 \end{exer}
@@ -703,7 +735,7 @@ No exercises from this subchapter.
             However, for any object $y$, $P(y)$ is false.
             It follows that $y \in \{ x : P(x) \}$ is false for all objects $y$.
             Therefore, the set $\{ x : P(x) \}$ has no elements.
-            This is precisely the claim of Axiom 3.2. \qed
+            This is precisely the claim of Axiom 3.2.
             
         \item \textit{Axiom 3.3: Singleton sets and pair sets.}
         
@@ -722,7 +754,7 @@ No exercises from this subchapter.
             Thus, there exists a set $\{x : x \in A \text{ or } x \in B \}$.        
             We denote this set as the union of sets $A$ and $B$, or $A \cup B$.
             For any object $y$, $(y \in A \text{ or } y \in B) \iff y \in A \cup B$.
-            This is precisely the claim of Axiom 3.4. \qed
+            This is precisely the claim of Axiom 3.4.
             
         \item \textit{Axiom 3.5: Axiom of specification.}
         
@@ -730,14 +762,14 @@ No exercises from this subchapter.
             Let $Q(x)$ be the property that $P(x)$ is true and $x \in A$.
             By Axiom 3.8, the set $\{ x : Q(x) \}$ exists.
             For any object $y$, $y \in \{ x : Q(x) \} \iff (y \in A \text{ and } P(y))$.
-            This is exactly the claim of Axiom 3.5. \qed
+            This is exactly the claim of Axiom 3.5.
             
         \item \textit{Axiom 3.6: Replacement.}
         
             Let $A$ be a set, and $P(x, y)$ be a property pertaining to $x$ and $y$.
             Let $Q(y)$ be a property pertaining to $y$ that $P(x, y)$ is true for some $x \in A$.
             According to Axiom 3.8, there exists a set $\{ y : P(x, y) \text{ for some } x \in A \}$, such that for any object $z$, $z \in \{ y : P(x, y) \text{ for some } x \in A \} \iff P(x, z) \text{ for some } x \in A$.
-            This is exactly the claim of Axiom 3.6. \qed
+            This is exactly the claim of Axiom 3.6.
             
         \item \textit{Axiom 3.7: Infinity.}
         
@@ -747,6 +779,7 @@ No exercises from this subchapter.
             We denote this set as $\mathbb{N}$. \qed
     \end{enumerate}
 \end{exer}
+
 
 \begin{exer}{3.2.2}{Use the axiom of regularity (and the singleton set axiom) to show that if $A$ is a set, then $A \notin A$. Furthermore, show that if $A$ and $B$ are two sets, then either $A \notin B$ or $B \notin A$ (or both).}
     We will first prove that if $A$ is a set, then $A \notin A$.
@@ -768,13 +801,14 @@ No exercises from this subchapter.
     Hence, either $B \notin A$ or $A \notin B$ as required. \qed
 \end{exer}
 
+
 \begin{exer}{3.2.3}{Show (assuming the other axioms of set theory) that the universal specification axiom, Axiom 3.8, is equivalent to an axiom postulating the existence of a ``universal set" $\Omega$ consisting of all objects (i.e., for all objects $x$, we have $x \in \Omega$). In other words, if Axiom 3.8 is true, then a universal set exists, and conversely, if a universal set exists, then Axiom 3.8 is true.}
     We will first show the statement.
     Suppose Axiom 3.8 is true.
-    Then, let $P(x)$ be a property pertaining to $x$ that is true for all $x$.
-    Thus, there exists a set $\{ x : P(x) \}$ such that or every object $y$, $y \in \{ x : P(x) \} \iff P(y)$.
-    Because $P(y)$ is true for all $y$, all objects are elements of $\{ x : P(x) \}$.
-    Thus, the set $\{ x : P(x) \}$ is a universal set.
+    Then, let $P(x)$ be a property pertaining to $x$ such that $x = x$.
+    Thus, there exists a set $\{ x : x = x \}$ such that for every object $y$, $y \in \{ x : x = x\} \iff P(y)$.
+    Because $P(y)$ is true for all $y$, all objects are elements of $\{ x : x = x \}$.
+    Thus, the set $\{ x : x = x \}$ is a universal set.
     
     Now consider the converse.
     Suppose all objects are in a universal set $\Omega$.
@@ -783,7 +817,201 @@ No exercises from this subchapter.
     By the axiom of specification, there exists a set $\{ x \in A : P(x) \}$ such that $y \in \{x \in A : P(x) \} \iff (y \in A \text{ and } P(y))$.
     Take $A = \Omega$.
     It follows that $x \in A$ for all $x$.
-    Therefore, there exists a set $\{ x : P(x) \}$ such that $y \in \{x : P(x) \} \iff P(y))$, which is exactly the claim of Axiom 3.8. \qed
+    Therefore, there exists a set $\{ x : P(x) \}$ such that $y \in \{x : P(x) \} \iff P(y)$, which is exactly the claim of Axiom 3.8. \qed
 \end{exer}
+
+
+\subsection{Functions}
+\begin{exer}{3.3.1}{Show that the definition of equality in Definition 3.3.7 is reflexive, symmetric, and transitive. Also verify the substitution property: if $f, \tilde{f} : X \to Y$ and $g, \tilde{g} : Y \to Z$ are functions such that $f = \tilde{f}$ and $g = \tilde{g}$, then $g \circ f = \tilde{g} \circ \tilde{f}.$}
+        For the first section of this exercise, let $X$ and $Y$ be sets, and $f : X \to Y$, $g : X \to Y$, and $h : X \to Y$ be functions of the same domain and range.
+
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{Reflexivity: $f = f$.}
+        
+            Notice that $f$ and $f$ have the same domain and range.
+            For every value $x \in X$, clearly $f(x) = f(x)$ by reflexivity of elements in set $Y$.
+            Thus, by Definition 3.3.7, $f = f$.
+        
+        \item \textit{Symmetry: If $f = g$, $g = f$}
+            
+            Suppose $f = g$.
+            Then $f(x) = g(x)$ forall $x \in X$.
+            But, from the symmetry of elements in set $Y$, for all $x \in X$, $g(x) = f(x)$.
+            Heence $g = f$.
+        
+        \item \textit{Transitivity: If $f = g$ and $g = h$, then $f = h$.}
+        
+            Suppose $f = g$ and $g = h$.
+            Then, $f(x) = g(x)$ and $g(x) = h(x)$.
+            For any $x \in X$, $f(x) = g(x)$ and $g(x) = h(x)$.
+            By the transitivity of elements in set $Y$, we obtain $f(x) = h(x)$.
+            Since $x$ is arbitrary, we can conclude that $f = h$.
+           
+    \end{enumerate}
+    
+    Suppose instead $X, Y, Z$ are sets, and suppose also $f, \tilde{f} : X \to Y$ and $g, \tilde{g} : Y \to Z$ such that $f = \tilde{f}$ and $g = \tilde{g}$.
+    Thus, by Definition 3.3.7, $f(x) = \tilde{f} (x)$ for all $x \in X$ and $g(y) = \tilde{g} (y)$ for all $y \in Y$.
+    By the substitution axiom, $g(f(x)) = g(\tilde{f} (x))$.
+    Since $g = \tilde{g}$, $g(f(x)) = g(\tilde{f}(x)) = \tilde{g} (\tilde{f} (x))$, or $(g \circ f)(x) = (\tilde{g} \circ \tilde{f})(x).$
+    By Definition 3.3.7, we obtain $g \circ f = \tilde{g} \circ \tilde{f}$ as required. \qed
+\end{exer}
+
+
+\begin{exer}{3.3.2}{Let $f : X \to Y$ and $g : Y \to Z$ be functions. Show that if $f$ and $g$ are both injective, then so is $g \circ f$; similarly, show that if $f$ and $g$ are both surjective, then so is $g \circ f$.}
+    Note that $g \circ f : X \to Z$.
+    
+    First, we will show that if $f$ and $g$ are both injective, then so is $g \circ f$.
+    Suppose $g(f(x)) = g(f(x'))$, where $x, x' \in X$.
+    Then, by injectivity of $g$, we obtain $f(x) = f(x')$.
+    Similarly, by injectivity of $f$, we obtain $x = x'$.
+    Therefore, $g \circ f$ is injective.
+
+    We will now prove if $f$ and $g$ are both surjective, then so is $g \circ f$.
+    Because $f$ is surjective, for every $y \in Y$, there exists an $x \in X$ such that $f(x) = y$.
+    Similarly, because $g$ is surjective, for every $z \in Z$, there exists an $y \in Y$ such that $g(y) = z$.
+    Combining these two results, for every $z \in Z$, there exists an $x \in X$ such that $g(f(x)) = z$.
+    Therefore, by definition, $g \circ f$ is surjective. \qed
+\end{exer}
+
+
+\begin{exer}{3.3.3}{When is the empty function injective? Surjective? Bijective?}
+    Let $X$ be a set, and $f : \varnothing \to X$ be the empty function.
+
+    The function $f$ is considered \textbf{injective} if for any $p, p' \in \varnothing$ where $p \ne p'$, then $f(p) \ne f(p')$.
+    This statement is vacuously true because there is no such $p$ and $p'$ in the empty set $\varnothing$.
+    Thus, $f$ is always injective.
+
+    The function $f$ is considered \textbf{surjective} if for any value $x$ in $X$, there is a $p \in \varnothing$ such that $f(p) = x$.
+    This statement is false if $X \ne \varnothing$ as the empty set $\varnothing$ has no elements, there is no such $p$.
+    However, when $X = \varnothing$, this statement is vacuously true because no such $x$ exists.
+    Thus, $f$ is surjective only when $X = \varnothing$.
+
+    Since $f$ is always injective and surjective only when $X = \varnothing$, $f$ is only \textbf{bijective} when $X = \varnothing$. \qed
+\end{exer}
+
+
+\begin{exer}{3.3.4}{In this section we give some cancellation laws for composition. Let $f : X \to Y$, $\tilde{f} : X \to Y$, $g : Y \to Z$, and $\tilde{g} : Y \to Z$ be functions. Show that if $g \circ f = g \circ \tilde{f}$ and $g$ is injective, then $f = \tilde{f}.$ Is the same statement true if $g$ is not injective? Show that if $g \circ f = \tilde{g} \circ f$ and $f$ is surjective, then $g = \tilde{g}$. Is the same statement true if $g$ is not surjective?}
+    We will first solve the first part of the exercise.
+    Because $g$ is injective, if $g(f(x)) = g(\tilde{f}(x))$, then $f(x) = \tilde{f}(x)$ for any $x \in X$.
+    Because $f$ and $\tilde{f}$ has the same domain and range, by Definition 3.3.7 (equality of functions), $f = \tilde{f}$.
+    This statement is not true if $g$ is not injective.
+    As a counterexample, take $g$ as a constant function, that is, $g(y) = c$ where $y \in Y$.
+    Then, $g(f(x)) = g(\tilde{f}(x))$ for any $f$ and $\tilde{f}$, including when $f \ne \tilde{f}$.
+
+    Now, consider the second part of the exercise.
+    Because $f$ is surjective, for any $y \in Y$, there exists $x \in X$ such that $y = f(x)$.
+    Then, $g(y) = \tilde{g}(y)$ for any $y \in Y$.
+    Because $g$ and $\tilde{g}$ has the same domain and range, $g = \tilde{g}$.
+    This statement is not true if $f$ is not surjective.
+    As a counterexample, take $f$ as a constant function, that is, $f(x) = c$, where $x \in X$, $c \in Y$, and $Y \ne \{ c \}$.
+    Evidently $f$ is not surjective.
+    Thus, $g(c) = \tilde{g}(c)$ implies $g$ and $\tilde{g}$ are equal at $c$, but not necessarily at any other points.
+    For instance, let $f(x) = 0$, $g(x) = x$, $\tilde{g}(x) = 2x$.
+    Then, $g \ne \tilde{g}$ even though $g(0) = \tilde{g}(0)$. \qed    
+\end{exer}
+
+\begin{exer}{3.3.5}{Let $f : X \to Y$ and $g : Y \to Z$ be functions. Show that if $g \circ f$ is injective, then $f$ must be injective. Is it true that $g$ must also be injective? Show that if $g \circ f$ is surjective, then $g$ must be surjective. Is it true that $f$ must also be surjective?}
+    We will first solve the first part of the exercise.
+    For the sake of contradiction, suppose $f$ isn't injective.
+    In other words, suppose there exists objects $x, x' \in X$ such that $x \ne x'$ and $f(x) = f(x')$.
+    This leads to $g(f(x)) = g(f(x'))$.
+    But $x \ne x'$, which implies $g \circ f$ is not injective, which is contradictory.
+    Thus, \textbf{$f$ must be injective}.
+    However, $g$ need not be injective.
+    As a counterexample, let $X = \{ 0, 1 \}$, $Y = Z = \{ 0, 1, 2 \}$ and $f(0) = 0$, $f(1) = 1$.
+    Let $g$ such that $g(0) = 0, g(1) = 1, g(2) = 0$ such that $g \circ f$ is injective.
+    Evidently, $g$ is not injective.
+
+    Now consider the second part of the exercise.
+    For the sake of contradiction, suppose $g$ is not surjective.
+    In other words, there exists a $z \in Z$ such that for all $y \in Y$, $g(y) \ne z$.
+    In particular, since $f(x) \in Y$, for all $x \in X$, $g(f(x)) \ne z$.
+    This contradicts the condition that $g \circ f$ is surjective.
+    Hence, \textbf{$g$ must be surjective}.
+    However, $f$ need not be surjective.
+    As a counterexample, let $X = Y = \{ 0, 1 \}$, $Z = \{ 0 \}$.
+    We define $f$ such that $f(0) = 0$, $f(1) = 0$, and $g$ such that $g(0) = 0$, $g(1) = 0$.
+    In this case, $g \circ f$ is surjective, but $f$ is not. \qed
+\end{exer}
+
+
+\begin{exer}{3.3.6}{Let $f: X \to Y$ be a bijective function, and let $f^{-1} : Y \to X$ be its inverse. Verify the cancellation laws $f^{-1} (f(x)) = x$ for all $x \in X$ and $f(f^{-1}(y)) = y$ for all $y \in Y$. Conclude that $f^{-1}$ is also invertible, and has $f$ has its inverse (thus $(f^{-1})^{-1} = f$).}
+    Suppose $x$ is an arbitrary element of $X$, and $y = f(x)$, $y \in Y$.
+    By the definition of inverse functions, because $f$ is bijective, for every $y \in Y$, there is exactly one $x' \in X$ such that $y = f(x')$, which is $x' = f^{-1}(y)$.
+    Because $f(x) = y = f(x')$, the injectivity of $f$ leads to $x = x'$.
+    Thus, $x = f^{-1}(y) = f^{-1}(f(x))$ as required.
+
+    Suppose instead $y$ be an arbitrary element of $Y$.
+    Since $f$ is bijective, there is exactly one value of $x \in X$ such that $f(x) = y$.
+    This value of $x$ is denoted as $f^{-1}(y)$.
+    Thus, $f(f^{-1}(y)) = y$ as desired.
+
+    Now, to show that $f^{-1}$ is also invertible, we need to show that $f^{-1}$ is bijective.
+    In other words, we need to prove the injectivity and surjectivity of $f^{-1}$.
+    Suppose $f^{-1}(y) = f^{-1}(y')$ for $y, y' \in Y$.
+    Applying $f$ to both sides, we obtain $f(f^{-1}(y)) = f(f^{-1}(y'))$, which leads to $y = y'$ from previous results.
+    Thus, $f^{-1}$ is injective.
+    Because $f$ is bijective, for every $x \in X$, there exists $y \in Y$ such that $f(x) = y$.
+    This is precisely the definition for $f^{-1}$ to be surjective.
+    Hence, we have shown that $f^{-1}$ is bijective as required. \qed
+\end{exer}
+
+
+\begin{exer}{3.3.7}{Let $f : X \to Y$ and $g : Y \to Z$ be functions. Show that if $f$ and $g$ are bijective, then so is $g \to f$, and we have $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.}
+    From Exercise 3.3.2, we know $g \circ f$ is both injective and surjective, thus $g \circ f$ is bijective.
+    In this exercise, we only need to show $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.
+
+    Let $z$ be an arbitrary element of $Z$.
+    Because $g$ is bijective, for every $z \in Z$, there exists exactly one $y \in Y$ such that $g(y) = z$, or $y = g^{-1}(z)$.
+    Similarly, because $f$ is bijective, for every $y \in Y$, there exists exactly one $x \in X$ such that $f(x) = y$, or $x = f^{-1}(y)$.
+    Thus, for every $z \in Z$, there exists exactly one $x \in X$ such that $(g \circ f)(x) = z$, $x = f^{-1}(g^{-1}(z))$.
+    Therefore, $x = (g \circ f)^{-1}(z) = (f^{-1} \circ g^{-1})(z)$, or $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$ as desired. \qed
+\end{exer}
+
+
+\begin{exer}{3.3.8}{If $X$ is a subset of $Y$, let $\iota_{X \to Y} : X \to Y$ be the \emph{inclusion map from $X$ to $Y$}. defined by mapping $x \mapsto x$for all $x \in X$, i.e. $\iota_{X \to Y}(x) \coloneqq x$ for all $x \in X$. The map $\iota_{X \to X}$ in particular is called the \emph{identity map} on $X$.}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item \textit{Show that if $X \subseteq Y \subseteq Z$ then $\iota_{Y \to Z} \circ \iota_{X \to Y} = \iota_{X \to Z}$.}
+
+            Note that $\iota_{Y \to Z} \circ \iota_{X \to Y}$ and $\iota_{X \to Z}$ have the same domain and range, and that the range of $\iota_{X \to Y}$ is equal to the domain of $\iota_{Y \to Z}$.
+            Let $x$ be an arbitrary element of $X$.
+            Thus, $\iota_{Y \to Z}(\iota_{X \to Y}(x)) = \iota_{Y \to Z}(x) = x$ because $x \in Y$.
+            Also, $\iota_{X \to Z}(x) = x$.
+            Hence, $\iota_{Y \to Z}(\iota_{X \to Y}(x)) = \iota_{X \to Z}(x)$ for all $x \in X$, thus $\iota_{Y \to Z} \circ \iota_{X \to Y} = \iota_{X \to Z}$.
+
+        \item \textit{Show that if $f : A \to B$ is any function, then $f = f \circ \iota_{A \to A} = \iota_{B \to B} \circ f$.}
+
+            The compositions $f \circ \iota_{A \to A}$ and $\iota_{B \to B} \circ f$ have the same domain and range as $f$, so we just have to prove these functions agree on all inputs.
+            Let $a$ be an arbitrary element of $A$.
+            Then, $f(\iota_{A \to A}(a)) = f(a)$.
+            Also, $\iota_{B \to B}(f(a)) = f(a)$.
+            As all three functions have the same output for all $a \in A$, $f = f \circ \iota_{A \to A} = \iota_{B \to B} \circ f$.
+
+        \item \textit{Show that, if $f : A \to B$ is a bijective function, then $f \circ f^{-1} = \iota_{B \to B}$ and $f^{-1} \circ f = \iota_{A \to A}$.}
+
+            Let $b$ be an arbitrary element of $B$.
+            Since $f$ is bijective, there exists exactly one $a \in A$ such that $f(a) = b$.
+            Thus, $f(f^{-1}(b)) = f(a) = b = \iota_{B \to B}(b)$ for all $b \in B$.
+            Because $f \circ f^{-1}$ and $\iota_{B \to B}$ have the same domain and range, $f \circ f^{-1} = \iota_{B \to B}$.
+            In a similar fashion, we can show that $f^{-1} \circ f = \iota_{A \to A}$ as required.
+
+        \item \textit{Show that if $X$ and $Y$ are disjoint sets, and $f : X \to Z$ and $g : Y \to Z$ are functions, then there is a unique function $h : X \cup Y \to Z$ such that $h \circ \iota_{X \to X \cup Y} = f$ and $h \circ \iota_{Y \to X \cup Y} = g$.}
+
+            We will first show the existence of the function $h$.
+            Define $h$ as such: for any $p \in X \cup Y$, if $p \in X$, then $h(p) \coloneqq f(p)$; if $p \in Y$, then $h(p) \coloneqq g(p)$.
+            Because $p$ must be in exactly one of $X$ and $Y$, this definition makes sense.
+            Thus, $h(\iota_{X \to X \cup Y}(x)) = h(x) = f(x)$ for any $x \in X$ and $h(\iota_{Y \to X \cup Y}(y)) = g(y)$ for any $y \in Y$.
+            This matches the given definition of $h$, hence the function $h$ exists.
+
+            We will now show the uniqueness of the function $h$.
+            Suppose $\tilde{h} : X \cup Y \to Z$ is another function such that $\tilde{h} \circ \iota_{X \to X \cup Y} = f$ and $\tilde{h} \circ \iota_{Y \to X \cup Y} = g$.
+            Let $p$ be an element in $X \cup Y$.
+            If $p \in X$, then $\iota_{X \to X \cup Y}(p) = p$, thus $\tilde{h}(p) = \tilde{h}(\iota_{X \to X \cup Y}(p)) = f(p)$. However, this is equal to $h(p)$.
+            Similarly, if $p \in Y$, $\tilde{h}(p) = h(p)$.
+            Because $\tilde{h}(p) = h(p)$ for all $p \in X \cup Y$, $\tilde{h} = h$.
+            Hence, the function $h$ is unique. \qed
+    \end{enumerate}
+\end{exer}
+
 
 \end{document}

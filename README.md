@@ -5,7 +5,7 @@ This repository stores my solutions for Analysis I (and II when I get to it) by 
 ## Progress
 ### Analysis I
 * ☑ Chapter 2 (Completed)
-* ☐ Chapter 3 (Completed to Chapter 3.1)
+* ☐ Chapter 3 (Completed to Chapter 3.3)
 * ☒ Chapters 4 - 11 (Incomplete)
 
 ### Analysis II
