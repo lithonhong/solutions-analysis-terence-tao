@@ -14,5 +14,6 @@ Not started yet!
 ## Disclaimer
 I am a pre-university student (as of writing) and have yet to receive any formal training on university mathematics.
 
-
 Pull requests to suggest fixes to any problems with the solutions are welcome!
+
+_Last updated on: 5th June 2026 12:35 a.m. (UTC+8)_
