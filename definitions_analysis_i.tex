@@ -23,6 +23,7 @@
 \newcommand{\succr}[1]{#1 \! +\!\!\!+}
 
 \newenvironment{df}[2][\relax]{
+\vspace{4mm}
     \noindent\setlength{\parskip}{1em}%
     \ifx#1\relax%
         \textbf{#2. }%
@@ -30,7 +31,7 @@
         \textbf{#2} (#1)\textbf{. }%
     \fi%
     \ignorespaces%
-}{\vspace{4mm}}
+}{}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
@@ -391,5 +392,151 @@ No definitions found in this chapter.
 \begin{df}[Regularity]{Axiom 3.9}
     If $A$ is a non-empty set, then there is at least one element $x$ of $A$ which is either not a set, or is disjoint from $A$.
 \end{df}
+
+
+\subsection{Functions}
+\begin{df}[Functions]{Definition 3.3.1}
+     Let $X$, $Y$ be sets, and let $P(x, y)$ be a property pertaining to an object $x \in X$ and an object $y \in Y$, such that for every $x \in X$, there is exactly one $y \in Y$ for which $P(x, y)$ is true (this is sometimes known as the \emph{vertical line test}).
+     Then we define the \emph{function $f : X \to Y$ defined by $P$ on the domain $X$ and range $Y$} to be the object which, given any input $x \in X$, assigns an output $f(x) \in Y$, defined to be the unique object $f(x)$ for which $P(x, f(x))$ is true.
+     Thus, for any $x \in X$ and $y \in Y$,
+     {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+     \[
+        y = f(x) \iff P(x, y) \text{ is true.}
+    \]
+    }
+\end{df}
+
+
+\begin{df}[Equality of functions]{Definition 3.3.7}
+    Two functions $f : X \to Y$, $g : X \to Y$ with the same domain and range are said to be equal, $f = g$, if and only if $f(x) = g(x)$ for all $x \in X$.
+    (If $f(x)$ and $g(x)$ agree for some values of $x$, but not others, then we do not consider $f$ and $g$ to be equal.)
+\end{df}
+
+
+\begin{df}[Composition]{Definition 3.3.10}
+     Let $f : X \to Y$ and $g : Y \to Z$ be two functions, such that the range of $f$ is the same set as the domain of $g$.
+     We then define the composition $g \circ f : X \to Z$ of the two functions $g$ and $f$ to be the function defined explicitly by the formula
+     \[
+        (g \circ f)(x) \coloneqq g(f(x)).
+    \]
+    If the range of $f$ does not match the domain of $g$, we leave the composition $g \circ f$ undefined.
+\end{df}
+
+
+\begin{df}[Composition is associative]{Lemma 3.1.12}
+    Let $f : Z \to W$, $g : Y \to Z$, and $h : X \to Y$ be functions. Then $f \circ (g \circ h) = (f \circ g) \circ h$.
+\end{df}
+
+
+\begin{df}[One-to-one function]{Definition 3.3.14}
+    A function $f$ is \emph{one-to-one} (or \emph{injective}) if different elements map to different elements:
+    \[
+        x \ne x' \implies f(x) \ne f(x').
+    \]
+    Equivalently, a function is one-to-one if
+    {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+    \[
+        f(x) = f(x') \implies x = x'.
+    \]
+    }
+\end{df}
+
+
+\begin{df}[Onto functions]{Definition 3.3.17}
+    A function $f$ is \emph{onto} (or \emph{surjective}) if $f(X) = Y$, i.e., every element in $Y$ comes from applying $f$ to some element in $X$:
+    {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+    \[
+        \text{For every } y \in Y\text{, there exists } x \in X \text{ such that } f(x) = y.
+    \]
+    }
+\end{df}
+
+
+\begin{df}[Bijective functions]{Definition 3.3.20}
+    Functions $f : X \to Y$ which are both one-to-one and onto are also called \emph{bijective} or \emph{invertible}.
+\end{df}
+
+
+\subsection{Images and inverse images}
+\begin{df}[Images of sets]{Definition 3.4.1}
+    If $f : X \to Y$ is a function from $X$ to $Y$, and $S$ is a set in $X$, we define $f(S)$ to be the set
+    \[
+        f(S) \coloneqq \{ f(x): x \in S \};
+    \]
+    this set is a subset of $Y$, and is sometimes called the \emph{image} of $S$ under the map $f$.
+    In other words,
+    \[
+        x \in S \implies f(x) \in f(S),
+    \]
+    and
+    \[
+        y \in f(S) \iff y = f(x) \text{ for some } x \in S.
+    \]
+\end{df}
+
+
+\begin{df}[Inverse images]{Definition 3.4.4}
+     If $U$ is a subset of $Y$, we define the set $f^{-1}(U)$ to be the set
+     \[
+        f^{-1}(U) \coloneqq \{ x \in X : f(x) \in U \}.
+    \]
+    In other words, $f^{−1}(U)$ consists of all the elements of $X$ which map into $U$:
+    \[
+        f(x) \in U \iff x \in f^{-1}(U).
+    \]
+    We call $f^{−1}(U)$ the inverse image of $U$.
+\end{df}
+
+
+\begin{df}[Power set axiom]{Axiom 3.10}
+     Let $X$ and $Y$ be sets.
+     Then there exists a set, denoted $Y^X$, which consists of all the functions from $X$ to $Y$, thus
+     \[
+        f \in Y^X \iff (f \text{ is a function with domain } X \text{ and range } Y).
+    \]
+\end{df}
+
+
+\begin{df}{Lemma 3.4.9}
+    Let $X$ be a set. Then the set
+    \[
+        \{ Y : Y \text{ is a subset of } X \}
+    \]
+    is a set.
+    This set is known as the \emph{power set} of $X$ and is denoted $2^X$.
+\end{df}
+
+
+\begin{df}[Union]{Axiom 3.11}
+    Let $A$ be a set, all of whose elements are themselves sets.
+    Then there exists a set $\bigcup A$ whose elements are precisely those objects which are elements of the elements of $A$, thus for all objects $x$
+    \[
+        x \in \bigcup A \iff (x \in S \text{ for some } S \in A).
+    \]
+
+     If one has some set $I$, and for every element $\alpha \in I$ we have some set $A_\alpha$, then we can form the union set $\bigcup _{\alpha \in I} A_\alpha$ by defining
+     \[
+        \bigcup_{\alpha \in I} A_\alpha \coloneqq \bigcup \{ A_\alpha : \alpha \in I \}.
+     \]
+     More generally, for any objects $y$,
+     \[
+        y \in \bigcup_{\alpha \in I} A_\alpha \iff (y \in A_\alpha \text{ for some } \alpha \in I).
+     \]
+     We often refer to $I$ as an \emph{index set}, and the elements $\alpha$ of this index set as \emph{labels}; the sets $A_\alpha$ are then called a \emph{family of sets}, and are indexed by the labels $\alpha \in I$.
+
+    Similarly, we can form intersections of families of sets.
+    Given any non-empty set $I$, and given an assignment of a set $A_\alpha$ to each $\alpha \in I$, we can define the intersection $\bigcap _{\alpha \in I} A_\alpha$ by first choosing some element $\beta$ of $I$ (which we can do since $I$ is non-empty), and setting
+    \[
+        \bigcap_{\alpha \in I} A_\alpha := \{x \in A_\beta : x \in A_\alpha \text{ for all } \alpha \in I \}.
+    \]
+    Then, for any object $y$,
+    {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+    \[
+        y \in \bigcap_{\alpha \in I} A_\alpha \iff (y \in A_\alpha \text{ for all } \alpha \in I).
+    \]
+    }     
+\end{df}
+
+
 
 \end{document}

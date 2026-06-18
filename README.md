@@ -1,6 +1,9 @@
 # Solutions for Analysis I and II by Terence Tao
 
 This repository stores my solutions for Analysis I (and II when I get to it) by Terence Tao.
+I have also included a list of definitions used in my solutions,
+which serve as an aide in reading the contianed documents,
+as it involves much definition-citing.
 
 ## Progress
 ### Analysis I
@@ -13,7 +16,9 @@ Not started yet!
 
 ## Disclaimer
 I am a pre-university student (as of writing) and have yet to receive any formal training on university mathematics.
+On top of being my initial introduction to analysis, this repository also serves as practice for writing in LaTeX.
+Therefore, the contents of this repository (proof methods, styling, etc.) may be revamped from time to time.
 
-Pull requests to suggest fixes to any problems with the solutions are welcome!
+Pull requests to suggest fixes/improvements are welcome!
 
-_Last updated on: 5th June 2026 12:35 a.m. (UTC+8)_
+_Last updated on: 18th June 2026 10:56 a.m. (UTC+8)_
