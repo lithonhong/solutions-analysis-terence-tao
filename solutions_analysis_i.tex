@@ -1122,4 +1122,375 @@ No exercises from this subchapter.
 \end{exer}
 
 
+
+\subsection{Images and inverse images}
+\begin{exer}{3.4.1}{
+    Let $f : X \to Y$ be a bijective function, and let $f^{-1} : Y \to X$ be its inverse.
+    Let $V$ be any subset of $Y$.
+    Prove the forward image of $V$ under $f^{-1}$ be the same set as the inverse image of $V$ under $f$; thus the fact that both sets are denoted by $f^{-1}(V)$ will not lead to any inconsistencies.
+}
+    Let $F$ be the forward image of $V$ under $f^{-1}$, and $I$ be the inverse image of $V$ under $f$.
+    Thus, by Definition 3.4.1 and Definition 3.4.4, $F = \{f^{-1}(x) : x \in V \}$ and $I = \{x \in X : f(x) \in V \}$ respectively.
+    We need to show $F = I$, or $F \subseteq I$ and $I \subseteq F$.
+
+    We will first show $F \subseteq I$.
+    Let $a$ be an arbitrary element of $F$.
+    Then, there exists a $b \in V$ such that $a = f^{-1}(b)$, or $b = f(a)$, thus $f(a) \in V$.
+    Also, because $F \subseteq X$ and $a = f^{-1}(b)$, $a \in X$.
+    Thus, we have both $a \in X$ and $f(a) \in V$, which implies $a \in I$, hence $F \subseteq I$.
+
+    Consider instead the statement $I \subseteq F$.
+    Suppose $c \in I$, then $f(c) \in V$.
+    Write $d = f(c)$.
+    Thus, we have $c \in I$ and $c = f^{-1}(d)$ for some $d \in V$.
+    This implies $c \in F$ by definition of forward images, hence $I \subseteq F$.
+\end{exer}
+
+
+\begin{exer}{3.4.2}{
+    Let $f : X \to Y$ be a function from one set $X$ to another set $Y$, let $S$ be a subset of $X$, and let $U$ be a subset of $Y$.
+    What, in general, can one say about $f^{-1}(f(S))$ and $S$?
+    What about $f(f^{-1}(U))$ and $U$?
+}
+    We will consider the containment of each pair of sets.
+    Generally, we claim $S \ne f^{-1}(f(S))$, but $S \subseteq f^{-1}(f(S))$; and $f(f^{-1}(U)) \ne U$, but $f(f^{-1}(U)) \subseteq U$.
+    
+    First consider $f^{-1}(f(S))$ and $S$.
+    To show $f^{-1}(f(S)) \subseteq S$ is generally false, we will consider a counterexample.
+    Let $f : \{ 0, 1 \} \to \{ 1 \}$ such that $f(0) = f(1) = 1$, and $S = \{ 0 \}$.
+    Thus, $f(S) = \{ 1 \}$ and $f^{-1}(f(S)) = \{ 0, 1 \}$, which is not a subset of $S$.
+    Now, to prove $S \subseteq f^{-1}(f(S))$, suppose $x \in S$, thus $x \in X$.
+    Then, by Definition 3.4.1, $f(x) \in f(S)$.
+    This leads to $x \in f^{-1}(f(S))$ by Definition 3.4.4 because $x \in X$ and $f(x) \in f(S)$, which implies $S \subseteq f^{-1}(f(S))$ as desired.
+
+    Now consider $f(f^{-1}(U))$ and $U$.
+    To show $U \subseteq f(f^{-1}(U))$ is generally false, we will consider a counterexample.
+    Let $f : \{0 \} \to \{ 0, 1 \}$ such that $f(0) = 1$, and $U = \{ 0, 1 \}$.
+    Thus, $f^{-1}(U) = \{ 0 \}$ and $f(f^{-1}(U)) = \{ 1 \}$, which $U$ is not a subset of.
+    However, to show $f(f^{-1}(U)) \subseteq U$, suppose $x \in f(f^{-1}(U))$.
+    Then, there exists some $y \in f^{-1}(U)$ such that $x = f(y)$.
+    According to Definition 3.4.4, $y \in f^{-1}(U)$ if and only if $f(y) \in U$, thus $x \in U$ because $x = f(y)$.
+    Because $x \in U$ for all $x \in f(f^{-1}(U))$, we obtain $f(f^{-1}(U)) \subseteq U$ as desired. \qed
+\end{exer}
+
+
+\begin{exer}{3.4.3}{
+    Let $A, B$ be two subsets of a set $X$, and let $f : X \to Y$ be a function.
+    Show that $f(A \cap B) \subseteq f(A) \cap f(B)$, that $f(A) \setminus f(B) \subseteq f(A \setminus B)$, $f(A \cup B) = f(A) \cup f(B)$.
+    For the first two statements, is it true that the $\subseteq$ relation can be improved to $=$?
+}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item $f(A \cap B) \subseteq f(A) \cap f(B)$.
+
+            Let $y \in f(A \cap B)$.
+            Then, there exists some $x \in A \cap B$ such that $y = f(x)$.
+            This implies $x \in A$ and $x \in B$.
+            Because $y = f(x)$, $y \in f(A)$ and $y \in f(B)$, which leads to $y \in f(A) \cap f(B)$.
+            Because $y \in f(A) \cap f(B)$ for all $y \in f(A \cap B)$, $f(A \cap B) \subseteq f(A) \cap f(B)$.
+
+            Consider the reverse inclusion instead.
+            As a counterexample, let $A = \{ 0 \}$, $B = \{ 1 \}$, $f(x) = 5$.
+            Thus, $A \cap B = \varnothing$, and $f(\varnothing) = \varnothing$.
+            However, $f(A) = \{ 5 \}$, $f(B) = \{ 5 \}$, and $f(A) \cap f(B) = \{ 5 \}$, which is not a subset of $f(A \cap B) = \varnothing$.
+            Hence, the reverse inclusion is false.
+
+        \item $f(A) \setminus f(B) \subseteq f(A \setminus B)$.
+
+            Let $y \in f(A) \setminus f(B)$; thus $y \in f(A)$ and $y \notin f(B)$.
+            Then, there exists an $x \in A$ such that $y = f(x)$.
+            If $x \in B$, then $y \in f(B)$, therefore $x \notin B$.
+            Thus, we have $y = f(x)$ for some $x \in A \setminus B$, or $y \in f(A \setminus B)$ for all $y \in f(A) \setminus f(B)$.
+            Hence, $f(A) \setminus f(B) \subseteq f(A \setminus B)$.
+
+            Consider the reverse inclusion instead.
+            As a counterexample, let $A = \{ 1, 2 \}$, $B = \{ 1 \}$, and $f(x) = 4$ for any $x$.
+            Thus, $f(A) = f(B) = \{ 4 \}$, and $f(A) \setminus f(B) = \varnothing$.
+            However, $A \setminus B = \{ 2 \}$, and $f(A \setminus B) = \{ 4 \}$, which is not a subset of $f(A) \setminus f(B) = \varnothing$.
+            Hence, the reverse inclusion is false.
+
+        \item $f(A \cup B) = f(A) \cup f(B)$.
+
+            We will first consider $f(A \cup B) \subseteq f(A) \cup f(B)$.
+            Let $y \in f(A \cup B)$.
+            Then, there exists an $x \in A \cup B$ such that $y = f(x)$.
+            Thus, $x \in A$ or $x \in B$.
+            If $x \in A$, then $y = f(x) \in f(A)$, which implies $y \in f(A) \cup f(B)$.
+            Similarly, if $x \in B$, $y \in f(A) \cup f(B)$.
+            Because $y \in f(A) \cup f(B)$ for all $y \in f(A \cup B)$, we can conclude that $f(A \cup B) \subseteq f(A) \cup f(B)$.
+
+            Now consider the reverse inclusion.
+            Let $y \in f(A) \cup f(B)$.
+            Then, $y \in f(A)$ or $y \in f(B)$.
+            If $y \in f(A)$, then there exists an $x \in A$ such that $y = f(x)$.
+            Therefore, $x \in A \cup B$, and it follows that $y \in f(A \cup B)$.
+            Similarly, if $y \in f(B)$, then $y \in f(A \cup B)$.
+            Because $y \in f(A \cup B)$ for all $y \in f(A) \cup f(B)$, we can conclude that $f(A) \cup f(B) \subseteq f(A \cup B)$.
+            Hence, $f(A \cup B) = f(A) \cup f(B)$. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.4.4}{
+    Let $f : X \to Y$ be a function from one set $X$ to another set $Y$, and let $U$, $V$ be subsets of $Y$.
+    Show that $f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)$,
+    that $f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V)$,
+    and that $f^{-1}(U \setminus V) = f^{-1}(U) \setminus f^{-1}(V)$.
+}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item $f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)$.
+        
+            Suppose $x \in f^{-1}(U \cup V)$.
+            By definition, $f(x) \in U \cup V$; it follows that $f(x) \in U$ or $f(x) \in V$.
+            If $f(x) \in U$, then $x \in f^{-1}(U)$, and $x \in f^{-1}(U) \cup f^{-1}(V)$.
+            Similarly, if $f(x) \in V$, then $x \in f^{-1}(U) \cup f^{-1}(V)$.
+            Therefore, for any $x \in f^{-1}(U \cup V)$, we have $x \in f^{-1}(U) \cup f^{-1}(V)$.
+            
+            Now consider the converse.
+            Suppose $x \in f^{-1}(U) \cup f^{-1}(V)$, thus $x \in f^{-1}(U)$ or $x \in f^{-1}(V)$.
+            If $x \in f^{-1}(U)$, then $f(x) \in U$, and $f(x) \in U \cup V$.
+            Similarly, if $x \in f^{-1}(V)$, then $f(x) \in U \cup V$.
+            This leads to $x \in f^{-1}(U \cup V)$ for all $x \in f^{-1}(U) \cup f^{-1}(V)$.
+            Hence, $f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)$.         
+        
+        \item $f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V)$.
+
+            Suppose $x \in f^{-1}(U \cap V)$.
+            By definition, $f(x) \in U \cap V$; it follows that $f(x) \in U$ and $f(x) \in V$.
+            Therefore, $x \in f^{-1}(U)$ and $x \in f^{-1}(V)$, thus $x \in f^{-1}(U) \cap f^{-1}(V)$.
+            
+            Now consider the converse.
+            Suppose $x \in f^{-1}(U) \cap f^{-1}(V)$, thus $x \in f^{-1}(U)$ and $x \in f^{-1}(V)$.
+            By definition, $f(x) \in U$ and $f(X) \in V$, thus $f(x) \in U \cap V$.
+            This leads to $x \in f^{-1}(U \cap V)$ for all $x \in f^{-1}(U) \cap f^{-1}(V)$.
+            Hence, $f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V)$.            
+        
+        \item $f^{-1}(U \setminus V) = f^{-1}(U) \setminus f^{-1}(V)$.
+
+            Suppose $x \in f^{-1}(U \setminus V)$.
+            By definition, $f(x) \in U \setminus V$; it follows that $f(x) \in U$ and $f(x) \notin V$.
+            Therefore, $x \in f^{-1}(U)$ and $x \notin f^{-1}(V)$, thus $x \in f^{-1}(U) \setminus f^{-1}(V)$.
+            
+            Now consider the converse.
+            Suppose $x \in f^{-1}(U) \setminus f^{-1}(V)$, thus $x \in f^{-1}(U)$ and $x \notin f^{-1}(V)$.
+            By definition, $f(x) \in U$ and $f(x) \notin V$, thus $f(x) \in U \setminus V$.
+            This leads to $x \in f^{-1}(U \setminus V)$ for all $x \in f^{-1}(U) \setminus f^{-1}(V)$.
+            Hence, $f^{-1}(U \setminus V) = f^{-1}(U) \setminus f^{-1}(V)$. \qed    
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.4.5}{
+    Let $f : X \to Y$ be a function from one set $X$ to another set $Y$.
+    Show that $f(f^{-1}(S)) = S$ for every $S \subseteq Y$ if and only if $f$ is surjective.
+    Show that $f^{-1}(f(S))$ for every $S \subseteq X$ if and only if $f$ is injective.
+}
+    \begin{enumerate}[topsep=0mm, label=(\alph*)]
+        \item Show that $f(f^{-1}(S)) = S$ for every $S \subseteq Y$ if and only if $f$ is surjective.
+
+            We will first prove the implication.
+            Suppose $f(f^{-1}(S)) = S$ for every $S \subseteq Y$; we need to show that for all $y \in Y$, there exists an $x \in X$ such that $f(x) = y$.
+            Consider the subset $S = Y$ which contains all elements of $Y$.
+            By the initial assumption, we have $Y = f(f^{-1}(Y))$, thus $y \in f(f^{-1}(Y))$ for any $y \in Y$.
+            From the definition of forward images, there exists an $x \in f^{-1}(Y)$ such that $f(x) = y$, which is exactly our claim.
+
+            Now consider the converse.
+            Suppose $f$ is surjective; we need to show that $f(f^{-1}(S)) = S$.
+            Let $y$ be an arbitrary element of $S$.
+            Because $f$ is surjective, there exists an $x \in X$ such that $f(x) = y$.
+            Thus, $f(x) \in S$, which implies $x \in f^{-1}(S)$ by the definition of inverse images.
+            From the definition of forward images, $f(x) \in f(f^{-1}(S))$, which leads to $y \in f(f^{-1}(S))$.
+            From Exercise 3.4.2, we know $f(f^{-1}(S)) \subseteq S$.
+            Hence, $f(f^{-1}(S)) = S$ if $f$ is surjective.
+
+            As the implication and its converse are both true, we have $f(f^{-1}(S)) = S$ for every $S \subseteq Y$ if and only if $f$ is surjective.         
+        
+        \item Show that $f^{-1}(f(S)) = S$ for every $S \subseteq X$ if and only if $f$ is injective.
+
+            We will first prove the implication.
+            Suppose $f^{-1}(f(S)) = S$ for every $S \subseteq X$; we need to show that $f$ is injective.
+            Let $x, y \in X$ such that $f(x) = f(y)$.
+            We want to show that $x = y$.
+            Take $S = \{ x \}$.
+            Then, $f(\{ x \}) = \{ f(x) \}$.
+            Since $f(x) = f(y)$, $f(y)$ is an element of $f(\{ x \})$, therefore $y \in f^{-1}(f(\{ x \}))$ by the definition of inverse images.
+            Also, by the hypothesis, we have $f^{-1}(f(\{ x \})) = \{ x \}$.
+            Therefore, we have $y \in \{ x \}$, which implies $y = x$.
+            Hence, we can conclude that if $f^{-1}(f(S)) = S$ for every $S \subseteq X$, then $f$ is injective.
+
+            Now consider the converse.
+            Suppose $f$ is injective; we need to show $f^{-1}(f(S)) = S$ for every $S \subseteq X$.
+            Let $x \in f^{-1}(f(S))$.
+            Then, by definition, we have $f(x) \in f(S)$, and thus there exists some $x' \in S$ such that $f(x) = f(x')$.
+            Because $f$ is injective, we have $x = x'$, thus $x \in S$.
+            Thus, $f^{-1}(f(S)) \subseteq S$.
+            From Exercise 3.4.2, we know $S \subseteq f^{-1}(f(S))$.
+            Hence, we can conclude that if $f$ is injective, then $f^{-1}(f(S)) = S$ for every $S \subseteq X$.
+
+            Because the implication and its converse are both true, we have $f^{-1}(f(S)) = S$ for every $S \subseteq X$ if and only if $f$ is injective. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.4.6}{
+    Prove Lemma 3.4.9:
+    Let $X$ be a set.
+    Then the set
+    \[
+        \{ Y : Y \text{ is a subset of } X \}%
+    \] is a set.
+}
+    By the power set axiom, $\{ 0, 1 \}^X$ is a set, and its elements are exactly the functions mapping from $X$ to $\{ 0, 1 \}$.
+    For each function $f \in \{ 0, 1 \}^X$, define $A_f \coloneqq f^{-1}(\{1\})$.
+    Since $f$ has a domain of $X$, every element of $A_f$ is an element of $X$, thus we have $A_f \subseteq X$.
+    
+    Let $A$ be an arbitrary subset of $X$.
+    Then, we can define the function $f_A : X \to \{ 0, 1 \}$ such that for all $x \in X$, we have $f_A(x) = 1$ if $x \in A$, and $f_A(x) = 0$ otherwise.
+    Note that $f^{-1}_A(\{  1 \}) = A$.
+    Also, because $f_A$ has domain $X$ and range $\{ 0, 1 \}$, we have $f_A \in \{ 0, 1 \}^X$.
+    Thus, $A$ is a subset of $X$ if and only if $A = f^{-1}(X)$ for some $f \in \{ 0, 1 \}^X$.
+    For each $f$, there is exactly one $A$ such that $f^{-1}(\{1\}) =A$.
+    Hence, by the axiom of replacement, the collection $\{ A : f^{-1}(\{ 1 \}) \text{ for some } f \in \{ 0, 1 \}^X \}$ exists.
+    This is equivalent to saying $\{ A : A \text{ is a subset of } X \}$. \qed 
+\end{exer}
+
+
+\begin{exer}{3.4.7}{
+    Let $X$, $Y$ be sets. Define a \emph{partial function} from $X$ to $Y$ to be any function $f : X' \to Y'$ whose domain $X'$ is a subset of $X$, and whose range $Y'$ is a subset of $Y$. 
+    Show that the collection of all partial functions from $X$ to $Y$ is itself a set.
+}
+    From the problem statement, we have $X' \subseteq X$ and $Y' \subseteq Y$.
+    For any $X'$ and $Y'$, we have $Y'^{X'}$, a set with all functions mapping from $X'$ to $Y'$.
+    Also, by Lemma 3.4.9, we have the set $2^X$, the set of all subsets of $X$, and $2^Y$, the set of all subsets of $Y$.
+    Thus, $X' \in 2^X$ and $Y' \in 2^Y$.
+
+    We first fix a certain $X'$.
+    Let $A$ be a set, and $P(Y', A)$ be the property pertaining to $Y'$ that $A = Y'^{X'}$.
+    Then, for any $Y' \in 2^Y$, $P(Y', A)$ will be true for exactly one $A$.
+    Therefore, by the replacement axiom, the set $\{ A : A = Y'^{X'} \text{ for some } Y' \in 2^Y \} = \{ Y'^{X'} : Y' \in 2^Y \}$ exists.
+    Because each of the elements of this set is a set, we also have the set $\bigcup \{ Y'^{X'} : Y' \in 2^Y \} = \{ f \mid f : X' \to Y' \text{ for some } Y' \in 2^Y \}$.
+    Write this set as $S_{X'}$.
+
+    Now consider $X' \in 2^X$.
+    For every $X'$, we have exactly one set $S_{X'}$.
+    According to the replacement axiom (Axiom 3.6), the set $\{S_{X'} : X' \in 2^X \}$ exists.
+    By the union axiom (Axiom 3.11), this means the set $\bigcup_{X' \in 2^X} S_{X'}$ exists.
+    For any function $f$, $f$ is an element of this set if and only if we have $f : X' \to Y'$ for some $X' \subseteq X$ and $Y' \subseteq Y$.
+    This is precisely the collection of all partial functions from $X$ to $Y$. \qed
+\end{exer}
+
+
+\begin{exer}{3.4.8}{Show that Axiom 3.4 can be deduced from Axiom 3.1, Axiom 3.3 and Axiom 3.11.}
+    Let $A$ and $B$ be sets.
+    According to Axiom 3.1, the sets $A$ and $B$ are objects, and therefore can be elements of sets.
+    Therefore, we can construct the pair set $\{ A, B \}$.
+    From Axiom 3.11, there exists a set $\bigcup \{ A, B \}$ such that for any $x \in \bigcup \{ A, B \}$, $x \in S$ for some $S \in \{ A, B \}$.
+    However, since $\{ A, B \}$ is a pair set with two elements, we have $S = A$ or $S = B$.
+    Hence, $x \in A$ or $x \in B$ if and only if $x \in \bigcup \{ A, B \}$.
+    We denote $\bigcup\{ A, B \} = A \cup B$; this is precisely the definition of pairwise union as in Axiom 3.4. \qed
+\end{exer}
+
+
+\begin{exer}{3.4.9}{Show that if $\beta$ and $\beta'$ are two elements of a set $I$, and to each $\alpha \in I$ we assign a set $A_\alpha$, then
+    \[
+        \{x \in A_\beta : x \in A_\alpha\ \text{ for all } \alpha \in I \}
+        = \{x \in A_{\beta'} : x \in A_\alpha\ \text{ for all } \alpha \in I \},
+    \]
+    and so the definition of $\bigcap_{\alpha \in I} A_\alpha$ defined in (3.3) does not depend on $\beta$.
+    Also explain why (3.4) is true.
+}
+    Let $x$ be an element of $\{x \in A_\beta : x \in A_\alpha\ \text{ for all } \alpha \in I \}$.
+    Then, by the axiom of specification, $x$ is an element of $A_\alpha$ for all $\alpha \in I$.
+    This implies $x$ is an element of $A_{\beta'}$, and thus $\{x \in A_{\beta'} : x \in A_\alpha\ \text{ for all } \alpha \in I \}$.
+    The same argument can be made with the role of $\beta$ and $\beta'$ inverted.
+    Hence, we have $\{x \in A_\beta : x \in A_\alpha\ \text{ for all } \alpha \in I \} = \{x \in A_{\beta'} : x \in A_\alpha\ \text{ for all } \alpha \in I \}$ as desired.
+    Applying the specification axiom, we have $x \in \bigcap_{\alpha \in I} A_\alpha$ if and only if $x \in A_\alpha$ for all $\alpha \in I$, which is exactly as stated in (3.4).
+    \qed
+\end{exer}
+
+
+\begin{exer}{3.4.10}{
+    Suppose that $I$ and $J$ are two sets, and for all $\alpha \in I \cup J$ let $A_\alpha$ be a set.
+    Show that $(\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha) = \bigcup_{\alpha \in I \cup J} A_\alpha$.
+    If $I$ and $J$ are non-empty, show that $(\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha) = \bigcap_{\alpha \in I \cup J} A_\alpha$.
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item Show that $(\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha) = \bigcup_{\alpha \in I \cup J} A_\alpha$.
+    
+            We will first consider the left-to-right implication.
+            Let $y \in (\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha)$.
+            Then, $y \in \bigcup_{\alpha \in I} A_\alpha$ or $y \in \bigcup_{\alpha \in J} A_\alpha$.
+            If $y \in \bigcup_{\alpha \in I} A_\alpha$, then $y \in A_\alpha$ for some $\alpha \in I$.
+            This implies $y \in A_\alpha$ for some $\alpha \in I \cup J$, or $y \in \bigcup_{\alpha \in I \cup J} A_\alpha$.
+            Using a similar argument, if $y \in \bigcup_{\alpha \in J} A_\alpha$, then we have $y \in \bigcup_{\alpha \in I \cup J} A_\alpha$.
+            Thus, we have $(\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha) \subseteq \bigcup_{\alpha \in I \cup J} A_\alpha$.
+        
+            Now consider the converse.
+            Let $y \in \bigcup_{\alpha \in I \cup J} A_\alpha$.
+            Then, $y \in A_\alpha$ for some $\alpha \in I \cup J$.
+            We will split into two cases.
+            If $y \in A_\alpha$ for some $\alpha \in I$, then $y \in \bigcup_{\alpha \in I} A_\alpha$.
+            Similarly, if $y \in A_\alpha$ for some $\alpha \in J$, then $y \in \bigcup_{\alpha \in J} A_\alpha$.
+            Therefore, we have $y \in (\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha)$.
+            This is the same as $\bigcup_{\alpha \in I \cup J} A_\alpha \subseteq (\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha)$.
+        
+            Therefore, we have $(\bigcup_{\alpha \in I} A_\alpha) \cup (\bigcup_{\alpha \in J} A_\alpha) = \bigcup_{\alpha \in I \cup J} A_\alpha$.
+
+        \item If $I$ and $J$ are non-empty, show that $(\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha) = \bigcap_{\alpha \in I \cup J} A_\alpha$.
+
+            We will first consider the left-to-right implication.
+            Let $y \in (\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha)$.
+            Then, $y \in \bigcap_{\alpha \in I} A_\alpha$ and $y \in \bigcap_{\alpha \in J} A_\alpha$.
+            This means $y \in A_\alpha$ for all $\alpha \in I$ and for all $\alpha \in J$.
+            Thus, we have $y \in A_\alpha$ for all $\alpha \in I \cup J$, or $y \in \bigcap_{\alpha \in I \cup J} A_\alpha$.
+            Hence, $(\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha) \subseteq \bigcap_{\alpha \in I \cup J} A_\alpha$.
+
+            Now consider the converse.
+            Let $y \in \bigcap_{\alpha \in I \cup J} A_\alpha$.
+            Then, $y \in A_\alpha$ for all $\alpha \in (I \cup J)$.
+            This leads to $y \in A_\alpha$ for all $\alpha \in I$ and for all $\alpha \in J$.
+            Therefore, we have $y \in \bigcap_{\alpha \in I} A_\alpha$ and $y \in \bigcap_{\alpha \in J} A_\alpha$.
+            We then have $y \in (\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha)$.
+            Hence, $\bigcap_{\alpha \in I \cup J} A_\alpha \subseteq (\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha)$.
+
+            Therefore, we have $(\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha) = \bigcap_{\alpha \in I \cup J} A_\alpha$ as required. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.4.11}{
+    Let $X$ be a set, let $I$ be a non-empty set, and for all $\alpha \in I$ let $A_\alpha$ be a subset of $X$.
+    Show that
+    \[
+        X \setminus\bigcup_{\alpha \in I} A_\alpha = \bigcap_{\alpha \in I}(X \setminus A_\alpha)
+    \text{ and }
+        X \setminus\bigcap_{\alpha \in I} A_\alpha = \bigcup_{\alpha \in I}(X \setminus A_\alpha).
+    \]
+}
+    We will prove the first equation.
+    Let $x \in X \setminus \bigcup_{\alpha \in I} A_\alpha$.
+    Then, we have
+    \begin{align*}
+             x \in X \setminus \bigcup_{\alpha \in I} A_\alpha
+        \iff & x \in X \text{ and } x \notin \bigcup_{\alpha \in I} A_\alpha \\
+        \iff & x \in X \text{ and } x \notin A_\alpha \text{ for any } \alpha \in I  \\
+        \iff & x \in X \setminus A_\alpha \text{ for any } \alpha \in I  \\
+        \iff & x \in \bigcap_{\alpha \in I} (X \setminus A_\alpha)
+    \end{align*}
+    Thus, $X \setminus\bigcup_{\alpha \in I} A_\alpha = \bigcap_{\alpha \in I}(X \setminus A_\alpha)$.
+
+    We will now prove the second equation in a similar manner.
+    Let $x \in X \setminus \bigcap_{\alpha \in I} A_\alpha$.
+    Then, we have
+    \begin{align*}
+             x \in X \setminus \bigcap_{\alpha \in I} A_\alpha
+        \iff & x \in X \text{ and } x \notin \bigcap_{\alpha \in I} A_\alpha  \\
+        \iff & x \in X \text{ and } x \notin A_\alpha \text{ for some } \alpha \in I  \\
+        \iff & x \in X \setminus A_\alpha \text{ for some } \alpha \in I  \\
+        \iff & x \in \bigcup_{\alpha \in I} (X \setminus A_\alpha)
+    \end{align*}
+    Thus, $X \setminus\bigcap_{\alpha \in I} A_\alpha = \bigcup_{\alpha \in I}(X \setminus A_\alpha)$ as required. \qed
+\end{exer}
+
+
+
 \end{document}

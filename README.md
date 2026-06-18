@@ -8,7 +8,7 @@ as it involves much definition-citing.
 ## Progress
 ### Analysis I
 * ☑ Chapter 2 (Completed)
-* ☐ Chapter 3 (Completed to Chapter 3.3)
+* ☐ Chapter 3 (Completed to Chapter 3.4)
 * ☒ Chapters 4 - 11 (Incomplete)
 
 ### Analysis II
@@ -21,4 +21,4 @@ Therefore, the contents of this repository (proof methods, styling, etc.) may be
 
 Pull requests to suggest fixes/improvements are welcome!
 
-_Last updated on: 18th June 2026 10:56 a.m. (UTC+8)_
+_Last updated on: 19th June 2026 01:54 (UTC+8)_
