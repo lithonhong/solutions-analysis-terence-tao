@@ -39,7 +39,7 @@
 
 \title{Definitions in Analysis I by Terence Tao}
 \author{Li Thon Hong}
-\date{May 2026}
+\date{}
 
 \begin{document}
 
@@ -480,11 +480,11 @@ No definitions found in this chapter.
      \[
         f^{-1}(U) \coloneqq \{ x \in X : f(x) \in U \}.
     \]
-    In other words, $f^{−1}(U)$ consists of all the elements of $X$ which map into $U$:
+    In other words, $f^{-1}(U)$ consists of all the elements of $X$ which map into $U$:
     \[
         f(x) \in U \iff x \in f^{-1}(U).
     \]
-    We call $f^{−1}(U)$ the inverse image of $U$.
+    We call $f^{-1}(U)$ the inverse image of $U$.
 \end{df}
 
 
@@ -534,7 +534,56 @@ No definitions found in this chapter.
     \[
         y \in \bigcap_{\alpha \in I} A_\alpha \iff (y \in A_\alpha \text{ for all } \alpha \in I).
     \]
-    }     
+    }
+\end{df}
+
+
+\subsection{Cartesian products}
+\begin{df}[Ordered pair]{Definition 3.5.1}
+    If $x$ and $y$ are any objects (possibly equal), we define the ordered pair $(x, y)$ to be a new object, consisting of $x$ as its first component and $y$ as its second component.
+    Two ordered pairs $(x, y)$ and $(x', y')$ are considered equal if and only if both their components match, i.e.
+    {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+    \[
+        (x, y) = (x', y') \iff (x = x' and y = y').
+    \]
+    }
+\end{df}
+
+
+\begin{df}[Cartesian product]{Definition 3.5.4}
+    If $X$ and $Y$ are sets, then we define the Cartesian product $X \times Y$ to be the collection of ordered pairs, whose first component lies in $X$ and second component lies in $Y$, thus
+    \[
+        X \times Y = \{(x, y): x \in X, y \in Y \}
+    \]
+    or equivalently
+    {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+    \[
+        a \in (X \times Y) \iff (a = (x, y) \text{ for some } x \in X \text{ and } y \in Y ).
+    \]
+    }
+\end{df}
+
+
+\begin{df}[Ordered $n$-tuple and $n$-fold Cartesian product]{Definition 3.5.7}
+    Let $n$ be a natural number.
+    An ordered $n$-tuple $(x_i)_{1 \le i \le n}$ (also denoted $(x_1, \ldots , x_n)$) is a collection of objects $x_i$, one for every natural number $i$ between $1$ and $n$;
+    we refer to $xi$ as the \emph{$i$\textsuperscript{th} component} of the ordered
+    $n$-tuple.
+    
+    Two ordered $n$-tuples $(x_i)_{1 \le i \le n}$ and $(y_i)_{1 \le i \le n}$ are said to be equal iff $x_i = y_i$ for all $1 \le i \le n$.
+    
+    If $(X_i)_{1 \le i \le n}$ is an ordered $n$-tuple of sets, we define their \emph{Cartesian product} $\prod_{1 \le i \le n} X_i$ (also denoted $\prod^n_{i=1} X_i$ or $X_1 \times \ldots \times X_n$) by
+    \[
+        \prod_{1 \le i \le n} X_i \coloneqq \{(x_i)_{1 \le i \le n} : x_i \in X_i \text{ for all } 1 \le i \le n \}.
+    \]
+    If $n$ is a natural number, we often write $X^n$ as shorthand for the $n$-fold Cartesian product $X^n \coloneqq \prod_{1 \le i \le n} X$.
+\end{df}
+
+
+\begin{df}[Finite choice]{Lemma 3.5.12}
+    Let $n \ge 1$ be a natural number, and for each natural number $1 \le i \le n$, let $X_i$ be a non-empty set.
+    Then there exists an $n$-tuple $(x_i)_{1 \le i \le n}$ such that $x_i \in X_i$ for all $1 \le i \le n$.
+    In other words, if each $X_i$ is non-empty, then the set $\prod_{1 \le i \le n} X_i$ is also non-empty.
 \end{df}
 
 
