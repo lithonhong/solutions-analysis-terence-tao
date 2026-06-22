@@ -8,7 +8,7 @@ as it involves much definition-citing.
 ## Progress
 ### Analysis I
 * ☑ Chapter 2 (Completed)
-* ☐ Chapter 3 (Completed to Chapter 3.4)
+* ☐ Chapter 3 (Completed to Chapter 3.5)
 * ☒ Chapters 4 - 11 (Incomplete)
 
 ### Analysis II

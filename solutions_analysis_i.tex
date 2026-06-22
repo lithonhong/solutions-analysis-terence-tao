@@ -911,7 +911,7 @@ No exercises from this subchapter.
             For every value $x \in X$, clearly $f(x) = f(x)$ by reflexivity of elements in set $Y$.
             Thus, by Definition 3.3.7, $f = f$.
         
-        \item \textit{Symmetry: If $f = g$, $g = f$}
+        \item \textit{Symmetry: If $f = g$, $g = f$.}
             
             Suppose $f = g$.
             Then $f(x) = g(x)$ forall $x \in X$.
@@ -1492,5 +1492,412 @@ No exercises from this subchapter.
 \end{exer}
 
 
+\subsection{Cartesian products}
+\begin{exer}{3.5.1}{
+    Suppose we define the ordered pair $(x, y)$ for any objects $x$ and $y$ by the formula $(x, y) \coloneqq \{\{x\}, \{x, y\}\}$.
+    Show that such a definition indeed obeys the property (3.5), and also whenever $X$ and $Y$ are sets, the Cartesian product $X \times Y$ is also a set.
+    Thus this definition can be validly used as a definition of an ordered pair.
+    For an additional challenge, show that the alternate definition $(x, y) \coloneqq \{x, \{x, y\}\}$ also verifies (3.5) and is thus also an acceptable definition of ordered pair.
+}
+    Recall that (3.5) states two ordered pairs $(x, y)$ and $(x', y')$ are equal if and only if $x = x'$ and $y = y'$.
+    Write $(x, y) = \{ \{ x \}, \{ x, y \} \}$, $(x', y') = \{ \{ x' \}, \{ x', y' \} \}$.
 
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item Show that such a definition indeed obeys the property (3.5).
+
+            The right-to-left implication is easy to prove:
+            if $x = x'$ and $y = y'$, then $\{ \{ x \}, \{ x, y \} \} = \{ \{ x' \}, \{ x', y' \} \}$ by the substitution axiom (see Appendix A.7), thus $(x, y) = (x', y')$.
+            Now consider the converse;
+            we want to show if $\{ \{ x \}, \{ x, y \} \} = \{ \{ x' \}, \{ x', y' \}\}$, then $x = x'$ and $y = y'$.
+            We will consider two cases.
+            
+            If $x = y$, then $\{ \{ x \}, \{ x, y \} \}$  simplifies to the singleton $\{\{ x \}\}$.
+            Then, we have $\{ \{ x' \}, \{ x', y' \}\} = \{\{ x \}\}$.
+            Therefore, $\{ \{ x' \}, \{ x', y' \}\}$ is also a singleton.
+            A pair set is a singleton if and only if its elements are equal, therefore $\{ x' \} = \{ x', y' \}$, and thus $x' = y'$.
+            We can also deduce $\{ x \} \in \{ \{ x' \}, \{ x', y' \}\}$, which leads to $x = x'$.
+            By the hypothesis, we have $x = y$, thus we also have $y = y'$ because $x' = y'$, thus the property is true in the case that $x = y$.
+
+            Consider instead the case where $x \ne y$.
+            By the definition of equality of sets, we have $\{ x \} \in \{ \{ x' \}, \{ x', y' \}\}$, which implies $\{ x \} = \{ x' \}$ or $\{ x \} = \{ x', y' \}$.
+            The latter is false as the left-hand side is a singleton while the right-hand side is a pair set.
+            Thus, we have $\{ x \} = \{ x' \}$, or $x = x'$.
+            Similarly, we have $\{ x, y \} \in \{ \{ x' \}, \{ x', y' \}\}$, which implies $\{ x, y \} = \{ x', y' \}$ as $\{ x, y \} \ne \{ x \}$.
+            Therefore, $y \in \{ x', y'\}$, which leads to $y = x'$ or $y = y'$.
+            Because $x = x'$ and $y \ne x$, we have $y \ne x'$, thus $y = y'$.
+            We can now conclude that the property is true when $x \ne y$.
+        
+        \item Show that whenever $X$ and $Y$ are sets, the Cartesian product $X \times Y$ is also a set.
+
+            Because $x \in X$ and $y \in Y$, $\{ x \}$ and $\{ x, y \}$ are subsets of $X \cup Y$.
+            Therefore, both $\{ x \}$ and $\{ x, y \}$ are elements of $\mathcal{P}(X \cup Y)$.
+            We can then construct the set $\{\{ x \}, \{ x, y \} \}$, which is a subset of $\mathcal{P}(X \cup Y)$, and thus an element of $\mathcal{P}(\mathcal{P}(X \cup Y))$.
+            By the axiom of specification, we can construct a set $\{ S \in \mathcal{P}(\mathcal{P}(X \cup Y)) : S = \{\{x\}, \{x, y\}\} \text{ for some } x \in X, y \in Y \}$.
+            Therefore, if an object $a$ is in this set, $a$ is an ordered set $\{\{x\}, \{x, y\}\}$ for some $x \in X$ and $y \in Y$.
+            This is equivalent to the definition of the Cartesian product, $X \times Y$.
+
+        \item Show that the alternate definition $(x, y) \coloneqq \{x, \{x, y\}\}$ also verifies (3.5).
+
+            With the alternate definition, we want to show 
+            \[
+                 \{x, \{x, y\}\} = \{x', \{x', y'\}\} \iff x = x' \text{ and } y = y'.
+            \]
+
+            It is easy to prove the right-to-left implication:
+            suppose $x = x'$ and $y = y'$; then $\{x, \{x, y\}\} = \{x', \{x', y'\}\}$ by the substitution axiom, thus $(x, y) = (x', y')$.
+            
+            Now consider the converse.
+            Suppose $\{x, \{ x, y \}\} = \{x', \{x', y'\}\}$; we want to show $x = x'$ and $y = y'$.
+            By the definition of equality of sets, we have $x \in \{ x', \{ x', y' \} \}$, thus $x = x'$ or $x = \{ x', y' \}$.
+            Similarly, $x' \in \{ x, \{ x, y \} \}$, thus $x = x'$ or $x' = \{ x, y \}$.
+            Suppose $x \ne x'$, thus $x = \{ x', y' \}$ and $x' = \{ x, y \}$.
+            This means $x$ and $x'$ are members of each other: a direct contradiction to Exercise 3.2.2.
+            Thus, we have $x = x'$.
+            As $x = x'$ and $\{ x, y \} \ne x$ due to the axiom of regularity, we have $\{ x, y \} = \{ x', y' \}$.
+            Assume $y = y'$.
+            As $y \in \{ x', y' \}$ and $y' \in \{ x, y \}$, we have $y = x'$ and $y' = x$.
+            Because $x = x'$, we have $y = y'$, a contradiction.
+            Therefore, $y = y'$.
+            Hence, the property (3.5) is valid with this definition of ordered sets.
+    \end{enumerate}
+
+    \begin{remark}
+        My initial thought for (b) was to construct the set $X \times Y$ by the replacement axiom instead of looking for a master set.
+        However, it is less connected with the given definitions of ordered sets.
+        Nevertheless, I present the alternative solution:
+    
+        We first fix an arbitrary value of $y \in Y$, and let $x \in X$.
+        Let $A$ be an arbitrary set.
+        Because $y$ is fixed, there is exactly one $A$ such that $A = \{ x, \{ x, y \} \}$ by uniqueness of sets.
+        Therefore, by the axiom of replacement, the set $\{A : A = \{x, \{x, y \}\} \text{ for some } x \in X \}$ exists.
+        We simplify this set as $\{ \{ x, \{ x, y \} \} \text{ for some } x \in X \}$, and denote this set as $A_y$.
+    
+        Because for every element $y \in Y$ we have some set $A_y$, we can form the union set $\bigcup_{y \in Y} A_y = \bigcup \{A_y : y \in Y\} = \{ \{ x, \{ x, y \} \} \text{ for some } x \in X, y \in Y \}$.
+    \end{remark}
+\end{exer}
+
+
+\begin{exer}{3.5.2}{
+    Suppose we define an ordered $n$-tuple to be a surjective function $x : \{ i \in \mathbb{N} : 1 \le i \le n \} \to X$ whose range is some arbitrary set $X$ (so different ordered $n$-tuples are allowed to have different ranges);
+    we then write $x_i$ for $x(i)$, and also write $x$ as $(x_i)_{1 \le i \le n}$.
+    Using this definition, verify that we have $(x_i)_{1 \le i \le n} = (y_i)_{1 \le i \le n}$ if and only if $x_i = y_i$ for all $1 \le i \le n$.
+    Also, show that if $(X_i)_{1 \le i \le n}$ is an ordered $n$-tuple of sets, then the Cartesian product, as defined in Definition 3.5.7, is indeed a set.
+}
+    For the first statement, we have 
+    \begin{align*}
+        (x_i)_{1 \le i \le n} = (y_i)_{1 \le i \le n}
+        & \iff x(i) = y(i) \text{ for all } 1 \le i \le n \\
+        & \iff x_i = y_i \text{ for all } 1 \le i \le n.
+    \end{align*}
+    Because ordered $n$-tuples are defined to be surjective, $x$ and $y$ have the same range.
+    
+    For the second statement, suppose $(X_i)_{1 \le i \le n}$ is an ordered $n$-tuple of sets.
+    Let $I = \{ i \in \mathbb{N} : 1 \le i \le n \}$.
+    From the union axiom (Axiom 3.11), the set $A = \bigcup \{X_i : 1 \le i \le n \}$ contains all elements from $X_1$ to $X_n$.
+    From Exercise 3.4.7, the collection of all partial functions from $I$ to $A$ is a set.
+    This set certainly contains all functions that has a domain of $I$ and range a subset of $A$.
+    Using the axiom of specification, we can therefore produce the set $\{ x : I \to A : x(i) \in X_i \text{ for all } 1 \le i \le n \}$.
+    This is equivalent to the set $\{ (x_i)_{1 \le i \le n}: x(i) \in X_i \text{ for all } 1 \le i \le n \}$, the definition as in Definition 3.5.7. \qed
+\end{exer}
+
+
+\begin{exer}{3.5.3}{
+    Show that the definition of equality for ordered pair and ordered $n$-tuple obey the reflexivity, symmetry and transitivity axioms.
+}
+    We first show such properties for ordered pairs.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item \textit{Reflexivity: $(x, y) = (x, y)$.}
+
+            We have $x = x$ and $y = y$, which is true by reflexivity of objects.
+
+        \item \textit{Symmetry: If $(x, y) = (x', y')$, then $(x', y') = (x, y)$.}
+
+            We have $x = x'$ and $y = y'$ by the definition of equality of ordered tuples (Definition 3.5.1), thus $x' = x$, $y' = y$ by symmetry of objects.
+            Therefore, applying Definition 3.5.1 again, we have $(x', y') = (x, y)$.
+
+        \item \textit{Transitivity: If $(x, y) = (x', y')$ and $(x', y') = (x'', y'')$, then $(x, y) = (x'', y'')$.}
+
+            The first equality gives $x = x'$, $y = y'$, while the second equality gives $x' = x''$ and $y' = y''$.
+            By the transitivity of objects, we also have $x = x''$ and $y = y''$.
+            Hence, using Definition 3.5.1, we have $(x, y) = (x'', y'')$.
+    \end{enumerate}
+
+    We will now show such properties for ordered $n$-tuples.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item \textit{Reflexivity: $(x_i)_{1 \le i \le n} = (x_i)_{1 \le i \le n}$}
+            
+            By the definition of equality of ordered tuples (Definition 3.5.7), we have $x_i = x_i$ for all $1 \le i \le n$, which is true by reflexivity of objects.
+
+        \item \textit{Symmetry: If $(x_i)_{1 \le i \le n} = (y_i)_{1 \le i \le n}$, then $(y_i)_{1 \le i \le n} = (x_i)_{1 \le i \le n}$.}
+
+            For all $1 \le i \le n$, we have $x_i = y_i$ by definition of equality of ordered tuples (Definition 3.5.7).
+            Thus, we have $y_i = x_i$ for all $1 \le i \le n$ due to the symmetry of objects.
+            Applying Definition 3.5.7 again, we have $(y_i)_{1 \le i \le n} = (x_i)_{1 \le i \le n}$.
+
+        \item \textit{Transitivity: If $(x_i)_{1 \le i \le n} = (y_i)_{1 \le i \le n}$ and $(y_i)_{1 \le i \le n} = (z_i)_{1 \le i \le n}$, then $(x_i)_{1 \le i \le n} = (z_i)_{1 \le i \le n}$.}
+
+            According to the definition of equality of sets (Definition 3.5.7), we have $x_i = y_i$ and $y_i = z_i$ for all $1 \le i \le n$.
+            Thus, by the transitivity of objects, we have $x_i = z_i$ for all $1 \le i \le n$.
+            Using Definition 3.5.7 again, we obtain $(x_i)_{1 \le i \le n} = (z_i)_{1 \le i \le n}$. \qed
+    \end{enumerate}    
+\end{exer}
+
+
+\begin{exer}{3.5.4}{
+    Let $A$, $B$, $C$ be sets.
+    Show that $A \times (B \times C) = (A \times B) \cup (A \times C)$,
+    that $A \times (B \cap C) = (A \times B) \cap (A \times C)$,
+    and that $A \times (B \setminus C) = (A \times B) \setminus (A \times C)$.
+}
+    First, we prove a simple lemma:
+    \begin{lemma}
+        An ordered set $(x, y)$ is an element of the Cartesian product $X \times Y$ if and only if $x \in X$ and $y \in Y$. In other words,
+        \[
+            (x, y) \in X \times Y \iff x \in X \text{ and } y \in Y.
+        \]
+    \end{lemma}
+    \begin{prf}
+        By definition, $X \times Y$ is the set of all ordered pairs $(x', y')$ for some $x' \in X$ and $y' \in Y$.
+        Therefore, an ordered pair $(x, y)$ is an element of this set if and only if $x \in X$ and $y \in Y$.
+    \end{prf}
+    
+    We want to show if an ordered set $(x, y)$ is in either one of the set if and only if it is also in the other.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item Show that $A \times (B \cup C) = (A \times B) \cup (A \times C)$.
+            \begin{align*}
+                (x, y) \in A \times (B \cup C)
+                & \iff x \in A \text{ and } y \in B \cup C \\
+                & \iff x \in A \text{ and } (y \in B \text{ or } y \in C) \\
+                & \iff (x \in A \text{ and } y \in B) \text{ or } (x \in A \text{ and } y \in C) \\
+                & \iff ((x, y) \in A \times B) \text{ or } ((x, y) \in A \times C) \\
+                & \iff (x, y) \in (A \times B) \cup (A \times C).
+            \end{align*}
+        \item Show that $A \times (B \cap C) = (A \times B) \cap (A \times C)$.
+            \begin{align*}
+                (x, y) \in A \times (B \cap C)
+                & \iff x \in A \text{ and } y \in B \cap C \\
+                & \iff x \in A \text{ and } (y \in B \text{ and } y \in C) \\
+                & \iff (x \in A \text{ and } y \in B) \text{ and } (x \in A \text{ and } y \in C) \\
+                & \iff (x, y) \in A \times B \text{ and } (x, y) \in A \times C \\
+                & \iff (x, y) \in (A \times B) \cap (A \times C)
+            \end{align*}
+        \item $A \times (B \setminus C) = (A \times B) \setminus (A \times C)$.
+            \begin{align*}
+                (x, y) \in A \times (B \setminus C)
+                & \iff x \in A \text{ and } y \in B \setminus C \\
+                & \iff x \in A \text{ and } (y \in B \text{ and } y \notin C) \\
+                & \iff (x \in A \text{ and } y \in B) \text{ and } (x \in A \text{ and } y \notin C) \\
+                & \iff (x, y) \in A \times B \text{ and } (x, y) \notin A \times C \\
+                & \iff (x, y) \in (A \times B) \setminus (A \times C) \qed
+            \end{align*}
+    \end{enumerate}
+\end{exer}
+
+
+
+\begin{exer}{3.5.5}{
+    Let $A$, $B$, $C$, $D$ be sets.
+    Show that $(A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)$.
+    Is it true that $(A \times B) \cup (C \times D) = (A \cup C) \times (B \cup D)$?
+    Is it true that $(A \times B) \setminus (C \times D) = (A \setminus C) \times (B \setminus D)$?
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item Show that $(A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)$.
+            \begin{align*}
+                (x, y) \in (A \times B) \cap (C \times D)
+                & \iff ((x, y) \in A \times B) \text{ and } ((x, y) \in C \times D) \\
+                & \iff (x \in A \text{ and } y \in B) \text{ and } (x \in C \text{ and } y \in D) \\
+                & \iff (x \in A \text{ and } x \in C) \text{ and } (y \in B \text{ and } y \in D) \\
+                & \iff (x \in A \cap C) \text{ and } (y \in B \cap D) \\
+                & \iff (x, y) \in (A \cap C) \times (B \cap D).
+            \end{align*}
+            
+        \item Is it true that $(A \times B) \cup (C \times D) = (A \cup C) \times (B \cup D)$?
+        
+            This statement is false.
+            Let $A = \{ 1 \}$, $B = \{ 2 \}$, $C = \{ 3 \}$, $D = \{ 4 \}$.
+            Then, $(A \times B) \cup (C \times D) = \{(1, 2), (3, 4)\}$, but $(A \cup C) \times (B \cup D) = \{(1, 2), (1, 4), (3, 2), (3, 4)\}$.
+            
+        \item Is it true that $(A \times B) \setminus (C \times D) = (A \setminus C) \times (B \setminus D)$?
+        
+            This statement is also false.
+            Let $A = \{ 1, 2 \}$, $B = \{ 3, 4 \}$, $C = \{ 2 \}$, $D = \{ 4 \}$.
+            Then $(A \times B) \setminus (C \times D) = \{(1, 3), (1, 4), (2, 3)\}$, but $(A \setminus C) \times (B \setminus D) = \{(1, 3)\}$.
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.5.6}{
+    Let $A$, $B$, $C$, $D$ be non-empty sets.
+    Show that $A \times B \subseteq C \times D$ if and only if $A \subseteq C$ and $B \subseteq C$,
+    and that $A \times B = C \times D$ if and only if $A = C$ and $B = D$.
+    What happens if the hypotheses that $A$, $B$, $C$, $D$ are all non-empty are removed?
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item Show that $A \times B \subseteq C \times D$ if and only if $A \subseteq C$ and $B \subseteq D$.
+        
+            Let $A$, $B$, $C$, $D$ be non-empty sets.
+            We will first prove the left-to-right implication.
+            Suppose $a \in A$, $b \in B$.
+            Since $A \times B \subseteq C \times D$, we have $(a, b) \in C \times D$.
+            By the lemma from the previous exercise, $a \in C$ and $b \in D$.
+            Hence, $A \subseteq C$ and $B \subseteq D$.
+
+            Now consider the converse.
+            Suppose $A \subseteq C$ and $B \subseteq D$.
+            Let $(a, b) \in A \times B$.
+            Then, $a \in A$ and $b \in B$.
+            Since $A \subseteq C$, $a \in C$.
+            Since $B \subseteq D$, $b \in D$.
+            Thus, we have $(a, b) \in C \times D$.
+            This implies $A \times B \subseteq C \times D$.
+
+        \item Show that $A \times B = C \times D$ if and only if $A = C$ and $B = D$.
+
+            We will first prove the left-to-right implication.
+            Suppose $A \times B = C \times D$; then we have $A \times B \subseteq C \times D$.
+            From the first part of this exercise, this implies  $A \subseteq C$ and $B \subseteq D$.
+            Similarly, $C \times D \subseteq A \times B$ implies $C \subseteq A$ and $D \subseteq B$.
+            Hence, we have $A \times B = C \times D$ if $A = C$ and $B = D$.
+
+            Now consider the converse.
+            Suppose $A = C$ and $B = D$.
+            Then, we have $A \subseteq C$ and $B \subseteq D$.
+            From the first part of this exercise, this implies $A \times B \subseteq C \times D$.
+            Similarly, $C \subseteq D$ and $B \subseteq A$ implies $C \times D \subseteq A \times B$.
+            Hence, $A = C$ and $B = D$ if $A \times B = C \times D$.
+
+        \item What happens if the hypotheses that $A$, $B$, $C$, $D$ are all non-empty are removed?
+
+            The statements would then be false.
+            Let $A = \{ 0 \}$, $B = C = D = \varnothing$.
+            Then, $A \times B = C \times D = \varnothing$, but $A \not\subseteq C$. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.5.7}{
+    Let $X$, $Y$ be sets, and let $\pi_{X \times Y \to X} : X \times Y \to X$ and $\pi_{X \times Y \to Y} : X \times Y \to Y$ be the maps $\pi_{X \times Y \to X}(x, y) \coloneqq x$ and $\pi_{X \times Y \to Y} (x, y) \coloneqq y$;
+    these maps are known as the \emph{co-ordinate functions} on $X \times Y$.
+    Show that for any functions $f : Z \to X$ and $g : Z \to Y$ ,
+    there exists a unique function $h : Z \to X \times Y$ such that $\pi_{X \times Y \to X} \circ h = f$ and $\pi_{X \times Y \to Y} \circ h = g$.
+    This function h is known as the \emph{direct sum} of $f$ and $g$ and is denoted $h = f \oplus g$.
+}
+    We will first show the existence of the function $h$.
+    Define $h$ as such: $h(z) = (f(z), g(z))$ for any $z \in Z$. Thus, the range of $h$ is $X \times Y$
+    Thus, we have the following equalities:
+    \[
+        (\pi_{X \times Y \to X} \circ h)(z) = \pi_{X \times Y \to X}(h(x)) = \pi_{X \times Y \to X}((f(x), g(x)) = f(x)
+    \]
+    \[
+        (\pi_{X \times Y \to Y} \circ h)(z) = \pi_{X \times Y \to Y}(h(x)) = \pi_{X \times Y \to Y}((f(x), g(x)) = g(x)
+    \]
+    Therefore, for this definition of $h$, the condition holds.
+
+    We will now show the uniqueness of $h$.
+    Suppose there is another function $h'$ such that $\pi_{X \times Y \to X} \circ h = f$ and $\pi_{X \times Y \to Y} \circ h = g$.
+    For any $z \in Z$, $h'(z)$ must be an ordered set $(a, b)$.
+    Then, we have 
+    \[
+        a = (\pi_{X \times Y \to X} \circ h')(z) = f(z)
+        \qquad
+        b = (\pi_{X \times Y \to Y} \circ h')(z) = g(z)
+    \]
+    Thus, $h'(z) = (f(z), g(z))$ for all $z \in Z$, which is exactly equal as our initial definition.
+    Hence, the function $h$ is unique. \qed
+\end{exer}
+
+
+\begin{exer}{3.5.8}{
+    Let $X_1, \ldots , X_n$ be sets.
+    Show that the Cartesian product $\prod^n_{i=1}X_i$ is empty if and only if at least one of the $X_i$ is empty.
+}
+    We will first prove the left-to-right implication:
+    If at least one of the $X_i$ is empty, then the Cartesian product $\prod^n_{i=1}X_i$ is empty.
+    Suppose at least one of the $X_i$ is empty.
+    Then, all objects are not elements of that set.
+    From the definition of Cartesian products, this implies there is no ordered set $(x_i)_{1 \le i \le n}$ such that $x_i \in X_i \text{ for all } 1 \le i \le n$.
+    As such, the Cartesian product is empty.    
+    
+    Now consider the right-to-left implication:
+    If the Cartesian product $\prod^n_{i=1}X_i$ is empty, then at least one of the $X_i$ is empty.
+    If all $X_i$ are non-empty, then the Cartesian product will not be empty as per Lemma 3.5.12.
+    Thus, if the Cartesian product is empty, at least one of the $X_i$ is empty. \qed
+\end{exer}
+
+
+\begin{exer}{3.5.9}{
+    Suppose that $I$ and $J$ are two sets, and for all $\alpha \in I$ let $A_\alpha$ be a set, and for all $\beta \in J$ let $B_\beta$ be a set. Show that ($\bigcup_{\alpha \in I} A_\alpha) \cap (\bigcup_{\beta \in J} B_\beta) = \bigcup_{(\alpha, \beta) \in I \times J} (A_\alpha \cap B_\beta)$.
+}
+    We will first prove the left-to-right implication.
+    Let $x \in (\bigcup_{\alpha \in I} A_\alpha) \cap (\bigcup_{\beta \in J} B_\beta)$.
+    Then, $x \in \bigcup_{\alpha \in I} A_\alpha$ and $x \in \bigcup_{\beta \in J} B_\beta$.
+    We have $x \in A_\alpha$ for some $\alpha \in I$ and $x \in B_\beta$ for some $\beta \in J$.
+    Therefore, $x \in A_\alpha \cap B_\beta$ for some $\alpha \in I$ and $\beta \in J$.
+    This is the same as saying $x \in A_\alpha \cap B_\beta$ for some $(\alpha, \beta) \in I \times J$.
+    Hence, $x \in \bigcup_{(\alpha, \beta) \in I \times J} (A_\alpha \cap B_\beta)$.
+
+    Now consider the converse.
+    Let $x \in \bigcup_{(\alpha, \beta) \in I \times J} (A_\alpha \cap B_\beta)$.
+    We have $x \in A_\alpha \cap B_\beta$ for some $(\alpha, \beta) \in I \times J$.
+    Then, it follows that $x \in A_\alpha$ and $x \in \beta$ for some $\alpha \in I$ and $\beta \in J$.
+    We can rewrite this as $x \in \alpha$ for some $\alpha in I$ and $x \in \beta$ for some $\beta \in J$.
+    Thus, $x \in \bigcup_{\alpha \in I}$ and $x \in \bigcup_{\beta \in J}$, or $x \in (\bigcup_{\alpha \in I}) \cap (\bigcup_{\beta \in J})$.
+\end{exer}
+
+
+\begin{exer}{3.5.10}{
+    If $f : X \to Y$ is a function, define the \emph{graph} of $f$ to be the subset of $X \times Y$ defined by $\{(x, f(x)) : x \in X\}$.
+    Show that two functions $f : X \to Y$ , $\tilde{f} : X \to Y$ are equal if and only if they have the same graph.
+    Conversely, if $G$ is any subset of $X \times Y$ with the property that for each $x \in X$, the set $\{y \in Y : (x, y) \in G \}$ has exactly one element (or in other words, $G$ obeys the \emph{vertical line test}), show that there is exactly one function $f : X \to Y$ whose graph is equal to $G$.
+}
+    We will first show the first part of the exercise.
+    If $f = \tilde{f}$, then for any $x \in X$, $f(x) = \tilde{f}(x)$, and thus $(x, f(x)) = (x, \tilde{f}(x))$ for all $x$.
+    Then the graphs of $f$ and $\tilde{f}$ are equal.
+    Conversely, if the graphs of $f$ and $\tilde{f}$ are equal, then $(x, f(x)) = (x, \tilde{f}(x))$ for all $x \in X$.
+    This implies $f(x) = \tilde{f}(x)$ for all $x$; it follows that $f = \tilde{f}$.
+
+    Now consider the second part of the exercise.
+    We will first show the existence of the function $f$.
+    Denote the set $\{y \in Y : (x, y) \in G \}$ as $Y_x$.
+    For each $x$, there is exactly one $y \in Y$ such that $(x, y) \in G$.
+    Denote this $y$ as $y_x$.
+    We can define $f : X \to Y$ such that $f(x) = y_x$.
+    This is a valid function because for each $x \in X$, there is exactly one value of $y \in Y$.
+    The graph of $f$ is $\{(x, f(x)) : x \in X \}$.
+    If $(x, y) \in G$, then $y \in Y_x$. As $Y_x$ has exactly one element, it follows that $y = y_x = f(x)$.
+    Thus, $(x, y) = (x, f(x))$, which is in the graph of $f$.
+    Conversely, if $(x, y)$ is an element in the graph of $f$, then $y = f(x) = y_x$, and thus $y \in Y_x$, $(x, y) \in G$.
+    Hence, the graph of $f$ is equal to $G$.
+
+    We will now show the uniqueness of the function $f$.
+    Suppose there is another function $h$ whose graph is equal to $G$.
+    Then, the graph of $h$ is equal to the graph of $f$.
+    From the first part of the exercise, this implies $h$ and $f$ are equal functions.
+    Hence, the function $f$ is unique. \qed    
+\end{exer}
+
+
+\begin{exer}{3.5.11}{
+    Show that Axiom 3.10 can in fact be deduced from Lemma 3.4.9 and the other axioms of set theory, and thus Lemma 3.4.9 can be used as an alternate formulation of the power set axiom.
+}
+    By the definition of Cartesian products (Definition 3.5.7), the Cartesian product $X \times Y$ is a set.
+    From Lemma 3.4.9, the collection of all subsets of $X \times Y$ is also a set ($\mathcal{P}(X \times Y)$.
+    Using the axiom of specification (Axiom 3.5), we can construct the following set:
+    \[
+        A = \{ G \in \mathcal{P}(X \times Y) : G \text{ obeys the vertical line test}\}.
+    \]
+    Note that $A \subseteq \mathcal{P}(X \times Y)$.
+    According to Exercise 3.5.10, each element in $A$ is a graph.
+    For each $G \in A$, there is exactly one $f$ whose graph is exactly equal to $G$.
+    By the axiom of replacement (Axiom 3.6), we can now construct the following set:
+    \[
+        \{f : f \text{ has the graph } G \text{ for some } G \in \mathcal{P}(X \times Y) \}
+    \]
+    which is exactly equal to $Y^X$, the set of all functions with domain $X$ and range $Y$.
+    This is exactly the definition of $Y^X$ in Axiom 3.10 (power set axiom). \qed
+\end{exer}
+
+
+\textit{(Exercise 3.5.12 and Exercise 3.5.13 are skipped for the time being.)}
 \end{document}
