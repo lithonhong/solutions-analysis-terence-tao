@@ -587,5 +587,73 @@ No definitions found in this chapter.
 \end{df}
 
 
+\subsection{Cardinality of sets}
+
+\begin{df}[Equal cardinality]{Definition 3.6.1}
+    We say that two sets $X$ and $Y$ have \emph{equal cardinality} iff there exists a bijection $f : X \to Y$ from $X$ to $Y$.
+\end{df}
+
+
+\begin{df}{Proposition 3.6.4}
+    Let $X$, $Y$, $Z$ be sets.
+    Then $X$ has equal cardinality with $X$.
+    If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$.
+    If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, then $X$ has equal cardinality with $Z$.
+\end{df}
+
+
+\begin{df}{Definition 3.6.5}
+    Let $n$ be a natural number.
+    A set $X$ is said to have \emph{cardinality} $n$, iff it has equal cardinality with $\{ i \in \mathbb{N} : 1 \le i \le n \}$.
+    We also say that $X$ \emph{has $n$ elements} iff it has cardinality $n$.
+\end{df}
+
+
+\begin{df}[Uniqueness of cardinality]{Proposition 3.6.8}
+    Let $X$ be a set with some cardinality $n$.
+    Then $X$ cannot have any other cardinality, i.e., $X$ cannot have cardinality $m$ for any $m \ne n$.
+\end{df}
+
+
+\begin{df}{Lemma 3.6.9}
+    Suppose that $n \ge 1$, and $X$ has cardinality $n$.
+    Then $X$ is non-empty, and if $x$ is any element of $X$, then the set $X - \{ x \}$ (i.e., $X$ with the element $x$ removed) has cardinality $n - 1$.
+\end{df}
+
+
+\begin{df}[Finite sets]{Definition 3.6.10}
+    A set is \emph{finite} iff it has cardinality $N$ for some natural number $n$; otherwise, the set is called \emph{infinite}.
+    If $X$ is a finite set, we use $\#(X)$ to denote the cardinality of $X$.
+\end{df}
+
+
+\begin{df}{Theorem 3.6.12}
+    The set of natural numbers $\mathbb{N}$ is infinite.
+\end{df}
+
+
+\begin{df}[Cardinal arithmetic]{Proposition 3.6.14}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item Let $X$ be a finite set, and let $x$ be an object which is not an element of $X$.
+            Then $X \cup \{ x \}$ is finite and $\#(X \cup \{ x \}) = \#(X) + 1$.
+            
+        \item  Let $X$ and $Y$ be finite sets.
+            Then $X \cup Y$ is finite and $\#(X \cup Y ) \le \#(X) + \#(Y).$
+            If in addition X and Y are disjoint (i.e., $X \cap Y = \varnothing$), then $\#(X \cup Y) = \#(X) + \#(Y)$.
+
+        \item Let $X$ be a finite set, and let $Y$ be a subset of $X$.
+            Then $Y$ is finite, and $\#(Y) \le \#(X)$.
+            If in addition $Y \ne X$ (i.e., $Y$ is a proper subset of $X$), then we have $\#(Y) < \#(X)$.
+
+        \item If $X$ is a finite set, and $f : X \to Y$ is a function, then $f(X)$ is a finite set with $\#(f(X)) \le \#(X)$.
+            If in addition $f$ is one-to-one, then $\#(f(X)) = \#(X)$.
+        
+        \item Let $X$ and $Y$ be finite sets.
+            Then Cartesian product $X \times Y$ is finite and $\#(X \times Y) = \#(X) \times \#(Y)$.
+
+        \item Let $X$ and $Y$ be finite sets.
+            Then the set $Y^X$ (defined in Axiom 3.10) is finite and $\#(Y^X) = \#(Y)^{\#(X)}$.
+    \end{enumerate}
+\end{df}
 
 \end{document}

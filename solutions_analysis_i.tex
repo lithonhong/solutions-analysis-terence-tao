@@ -1895,9 +1895,391 @@ No exercises from this subchapter.
         \{f : f \text{ has the graph } G \text{ for some } G \in \mathcal{P}(X \times Y) \}
     \]
     which is exactly equal to $Y^X$, the set of all functions with domain $X$ and range $Y$.
-    This is exactly the definition of $Y^X$ in Axiom 3.10 (power set axiom). \qed
+    This is exactly the definition of $Y^X$ in Axiom 3.10 (Power set axiom). \qed
 \end{exer}
 
 
 \textit{(Exercise 3.5.12 and Exercise 3.5.13 are skipped for the time being.)}
+
+
+\subsection{Cardinality of sets}
+
+\begin{exer}{3.6.1}{
+    Prove Proposition 3.6.4:
+    Let $X$, $Y$, $Z$ be sets.
+    Then $X$ has equal cardinality with $X$.
+    If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$.
+    If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, then $X$ has equal cardinality with $Z$.
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item \textit{$X$ has equal cardinality with $X$.}
+
+            We can form the bijection $f : X \to X$ such that $f(x) = x$ for all $x \in X$.
+            Thus, $X$ has equal cardinality with $X$.
+            
+        \item \textit{If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$.}
+        
+            If $X$ has equal cardinality with $Y$, there exists a bijection $f : X \to Y$.
+            Then, we have the bijection $f^{-1} : Y \to X$, which implies $Y$ has equal cardinality with $X$.
+
+        \item \textit{If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, then $X$ has equal cardinality with $Z$.}
+
+            If $X$ has cardinality with $Y$, the bijection $f : X \to Y$ exists.
+            Similarly, if $Y$ has cardinality with $Z$, the bijection $g : Y \to Z$ exists.
+            Hence, we can construct the composition $g \circ f : X \to Z$, which is a bijection from $X$ to $Z$.
+            Therefore, $X$ has equal cardinality with $Z$. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.6.2}{
+    Show that a set $X$ has cardinality $0$ if and only if $X$ is the empty set.
+}
+    First, consider the right-to-left implication.
+    Suppose $X = \varnothing$; we want to show $\#(\varnothing) = 0$, or that the empty function $f : \varnothing \to \{i \in \mathbb{N} : 1 \le i \le 0 \}$ is a bijection.
+    This is true because the range $\{i \in \mathbb{N} : 1 \le i \le 0 \}$ is an empty set, and from Exercise 3.3.3 the empty function is bijective when the range is also an empty set.
+
+    We will now prove the left-to-right implication.
+    Suppose a set $X$ has cardinality $0$.
+    Then the function $f : \{i \in \mathbb{N} : 1 \le i \le 0 \} \to X$ is a bijection.
+    Because the domain $\{i \in \mathbb{N} : 1 \le i \le 0 \}$ is an empty set, $f$ is an empty function.
+    By Exercise 3.3.3, an empty function is bijective only when the range is an empty set.
+    Hence, $X = \varnothing$. \qed    
+\end{exer}
+
+
+\begin{exer}{3.6.3}{
+    Let $n$ be a natural number, and let $f : \{i \in \mathbb{N} : 1 \le i \le n \} \to \mathbb{N}$ be a function. Show that there exists a natural number $M$ such that $f(i) \le M$ for all $1 \le i \le n$.
+}
+    We apply induction on $n$.
+    First, consider the base case $n = 1$ (the statement is vacuously true when $n = 0$).
+    By choosing $M = \succr{f(1)}$, we see that indeed $f(i) \le M$ for all $i \in \{ 1 \}$.
+    Thus, the statement is true for $n = 1$.
+
+    Now, suppose inductively that the statement is true for some $n$; we want to show that it is still true for $\succr{n}$.
+    We choose $M' =  M + f(\succr{n})$.
+    By this definition, $M' \ge M$ because $f(\succr{n})$ is a natural number.
+    This implies $M'$ is greater than all $f(i)$ for all $1 \le i \le n$ by the inductive hypothesis.
+    Thus, $M' \ge f(i)$ for all $1 \le i \le n$ by transitivity.
+    Also, $M' \ge f(\succr{n})$ because $M$ is a natural number.
+    Therefore, $f(i) \le M'$ for all $1 \le i \le \succr{n}$ as desired.
+    This closes the induction. \qed
+\end{exer}
+
+
+\begin{exer}{3.6.4}{
+    Prove Proposition 3.6.14 (Cardinal arithmetic).
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item \textit{%
+            Let $X$ be a finite set, and let $x$ be an object which is not an element of $X$.
+            Then $X \cup \{ x \}$ is finite and $\#(X \cup \{ x \}) = \#(X) + 1$.
+        }
+
+            Because $X$ is finite, we have $\#(X) = n$, $n \in \mathbb{N}$.
+            We can then form a bijection $f : \{ i \in \mathbb{N} : 1 \le i \le n \} \to X$.
+            Define $g : \{ i \in \mathbb{N} : 1 \le i \le n + 1 \} \to (X \cup \{ x \})$ such that $g(m) = f(m)$ for $1 \le m \le n$, and $g(n + 1) = x$.
+            As $x \notin X$, $g$ is a bijection.
+            Thus, $\#(X \cup \{ x \}) = n + 1 = \#(X) + 1$.
+            Because $X \cup \{ x \}$ has cardinality $n + 1$, it is also finite.
+            
+        \item \textit{%
+            Let $X$ and $Y$ be finite sets.
+            Then $X \cup Y$ is finite and $\#(X \cup Y ) \le \#(X) + \#(Y).$
+            If in addition X and Y are disjoint (i.e., $X \cap Y = \varnothing$), then $\#(X \cup Y) = \#(X) + \#(Y)$.
+        }
+
+            Because $X$ and $Y$ are finite, we have $\#(X) = m$, $\#(Y) = n$, $m, n \in \mathbb{N}$.
+            Then, we have the bijections $f : X \to \{ i \in \mathbb{N} : 1 \le i \le m \}$, $g : Y \to \{ i \in \mathbb{N} : 1 \le i \le n \}$.
+            Define $h(p) = f(p)$ for $p \in X$, $h(p) = g(p) + m$ for $p \in Y, p \notin X$.
+            Thus, $h$ maps bijectively from $X \cup Y$ to a subset of $\{ i \in \mathbb{N} : 1 \le i \le m + n \}$.
+            Since every subset of $\{ i \in \mathbb{N} : 1 \le i \le m + n \}$ is finite, there exists $k \le m + n$ such that the subset has cardinality $k$.
+            Hence, $\#(X \cup Y) = k$, and $\#(X \cup Y) \le \#(X) + \#(Y)$.
+            
+            In particular, if $X$ and $Y$ are disjoint, then $h$ maps bijectively from $X \cup Y$ to $\{ i \in \mathbb{N} : 1 \le i \le m +n \}$.
+            Then, $\#(X \cup Y) = \#(X) + \#(Y)$ if $X$ and $Y$ are disjoint.
+
+        \item \textit{%
+            Let $X$ be a finite set, and let $Y$ be a subset of $X$.
+            Then $Y$ is finite, and $\#(Y) \le \#(X)$.
+            If in addition $Y \ne X$ (i.e., $Y$ is a proper subset of $X$), then we have $\#(Y) < \#(X)$.
+        }
+
+            Because $X$ is finite, we have $\#(X) = m$, $m \in \mathbb{N}$.
+            We apply induction on $m$.
+            For the base case, when $m = 0$, $X = \varnothing$.
+            The only subset of $X$ is the empty set itself, which also has cardinality $0$.
+            Thus, $Y$ is finite, and $\#(Y) \le \#(X)$.
+
+            Now, assume inductively that $\#(Y) \le \#(X)$ for all $X$ with $m$ elements; we want to show this is also true for all $X'$ with $m + 1$ elements.
+            Let $X' \coloneqq X \cup \{ x \}$ for some $x \notin X$, thus $\#(X') = \#(X) + 1$ as per results from (a).
+            If $x \notin Y$, then $Y \subseteq X$, which has cardinality $n$, so the statement is true by the inductive hypothesis.
+            If instead $x \in Y$, then $Y = (Y \setminus \{ x \}) \cup \{ x \}$.
+            Because $Y \setminus \{ x \} \in X$, $Y \setminus \{ x \}$ is finite by the inductive hypothesis.
+            Then, from results in (a), we have $\#(Y) = \#(Y \setminus \{ x \}) + 1$.
+            Hence, $\#(Y) = \#(Y \setminus \{ x \}) + 1 \le \#(X) + 1 = \#(X')$.            
+
+        \item \textit{%
+            If $X$ is a finite set, and $f : X \to Y$ is a function, then $f(X)$ is a finite set with $\#(f(X)) \le \#(X)$.
+            If in addition $f$ is one-to-one, then $\#(f(X)) = \#(X)$.
+        }
+
+            First suppose $f$ is one-to-one, then $f : X \to f(X)$ is a bijection; this implies $\#(f(X)) = \#(X)$.
+            For the general case, we will induct on $m = \#(X)$.
+
+            First, consider the base case $m = 0$.
+            Then, $X$ has no elements, and therefore is empty.
+            Thus, $f(X)$ is also empty, and thus has cardinality $0$ as per Exercise 3.6.2.
+            Therefore, $\#(f(X)) \le \#(X)$.
+
+            Now suppose $\#(f(X)) \le \#(X)$ for all $X$ with $m$ elements; we want to show that this is true for all $X'$ with $m + 1$ elements.
+            Let $X' \coloneqq X \cup \{ x \}$ for some $x \notin X$, thus $\#(X') = \#(X) + 1$ as per results from (a).
+            If $f(x) \in f(X)$, then $f(X) = f(X')$; we then have
+            \[
+                \#(f(X')) = \#(f(X)) \le \#(X) \le \#(X').
+            \]
+            If instead $f(x) \notin f(X)$, then $\#(f(X')) = \#(f(X) \cup \{f(x)\}) = \#(f(X)) + 1$.
+            Because $\#(f(X)) \le \#(X)$,
+            \[
+                \#(f(X')) = \#(f(X)) + 1 \le \#(X) + 1 = \#(X').
+            \]
+            This closes the induction.
+        
+        \item \textit{%
+            Let $X$ and $Y$ be finite sets.
+            Then Cartesian product $X \times Y$ is finite and $\#(X \times Y) = \#(X) \times \#(Y)$.
+        }
+        
+            Because $X$ and $Y$ are finite, we have $\#(X) = m$ and $\#(Y) = n$, $m, n \in \mathbb{N}$.
+            We will induct on $n$, keeping $m$ fixed.
+            
+            Consider the base case $n = 0$, i.e. $Y$ is an empty set.
+            Then $X \times Y$ is the empty set, and 
+            \[
+                \#(X \times Y) = 0 = 0m = mn
+            \]
+            as per Exercise 3.6.2.
+            If $n = 1$, $Y = \{ y \}$ is a singleton set.
+            We can form a bijection $f : X \to X \times Y$ by defining $f(x) = (x, y)$ for any $x \in X$.
+            Therefore,
+            \[
+                \#(X \times Y) = \#(X) = m = 1m.
+            \]
+            Hence, the base case is proven.
+
+            Now assume inductively that $\#(X \times Y) = \#(X) \times \#(Y)$ for all $Y$ with $n$ elements;
+            We want to show that $\#(X \times Y) = \#(X) \times \#(Y)$ for all $Y$ with $n + 1$ elements.
+            Let $y$ be an arbitrary element of $Y$, thus $Y \setminus \{ y \}$ has cardinality $n$ by Lemma 3.6.9.
+            Note that $(Y \setminus \{ y \}) \cup \{ y \} = Y$, and $(Y \setminus \{ y \}) \cap \{ y \} = \varnothing$.
+            By Exercise 3.5.4,
+            \[
+                X \times Y = (X \times (Y \setminus \{ y \})) \cup (X \times \{ y \}).
+            \]
+            As shown in the base case, $X \times \{ y \}$ has $m$ elements.
+            Because $Y \setminus \{ y \}$ has $n$ elements, $X \times (Y \setminus \{ y \})$ has $mn$ elements by the inductive hypothesis.
+            Using results from (b), we have
+            \[
+                \#(X \times Y) = \#(X \times (Y \setminus \{ y \})) + \#(X \times \{ y \}) = mn + m = m(n + 1)
+            \]
+            as desired. This closes the induction.
+            
+        \item \textit{%
+            Let $X$ and $Y$ be finite sets.
+            Then the set $Y^X$ (defined in Axiom 3.10) is finite and $\#(Y^X) = \#(Y)^{\#(X)}$.
+        }
+        
+            Because $X$ and $Y$ are finite, we have $\#(X) = m$ and $\#(Y) = n$, $m, n \in \mathbb{N}$.
+            We will induct on $m$, keeping $n$ fixed.
+
+            If $m = 0$, then $X = \varnothing$ by Exercise 3.6.2.
+            Then, there is only one function from $X$ to $Y$, namely the empty function.
+            Thus, $Y^X$ has exactly $n^0 = 1$ element.
+            Hence, the base case is true.
+
+            Now suppose inductively $\#(Y^X) = n^m$ for all $X$ with $m$ elements;
+            we want to show that $\#(Y^{X'}) = n^{m+1}$ for all $X'$ with $m+1$ elements.
+            Let $X' \coloneqq X \cup \{ x \}$ for some $x \notin X$, thus $X = X' \setminus x$.
+            Then, $X'$ has $m$ elements.
+            From Exercise 3.5.10, each function $f \in Y^X$ has a graph, and this graph is unique to $f$.
+            Therefore, using the axiom of replacement (Axiom 3.6), we will replace each $f \in Y^X$ with its graph, as defined in Exercise 3.5.10.
+            Thus, we have the set
+            \[
+                S = \{G \in \mathcal{P}(X \times Y) : G \text{ is a graph for some } f \in Y^X \}.
+            \]
+            We can then construct the set of all graphs of functions from $X'$ to $Y$ by including the mapping from $x$ to some $y \in Y$:
+            \[
+                S' = \{G \cup \{(x, y)\} : G \in S, y \in Y \}.
+            \]
+            Thus, we have the mapping $h : (S \times Y) \to S'$ where $h(G, y) \coloneqq G \cup \{ (x, y) \}$.
+            
+            Suppose $h(G_1, y_1) = h(G_2, y_2)$; then $G_1 \cup \{ (x, y_1) \} = G_2 \cup \{ (x, y_2) \}$.
+            Since $x \notin X$, the only ordered pair in both graphs with first element $x$ is the added element.
+            Thus, by definition, $y_1 = y_2$.
+            Removing that common pair yields $G_1 = G_2$ as well, hence $(G_1, y_1) = (G_2, y_2)$.
+            This means $h$ is injective.
+            Let $A \in S'$, then $A$ is a graph of some $a : X' \to Y$.
+            Then, we have $B = A \setminus \{(x, a(x))\}$.
+            Because $x \notin X'$, $B$ is a graph of some function $b : X' \to Y$.
+            Thus, $B \in S$, and we have $h(B, a(x)) = B \cup \{ (x, a(x)) \} = A$.
+            This means $h$ is surjective.
+            As $h$ is both injective and surjective, $h$ is a bijection from $(S \times Y)$ to $S'$.
+            
+            We know $S$ has the same cardinality as $Y^X$, which has $n^m$ elements by the inductive hypothesis.
+            Therefore, $S \times Y$ has $n^m \times n = n^{m + 1}$ elements as proven in (e), so $S^Y$ has cardinality $n^{m + 1}$ as desired.
+            This closes the hypothesis. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{3.6.5}{
+    Let $A$ and $B$ be sets.
+    Show that $A \times B$ and $B \times A$ have equal cardinality by constructing an explicit bijection between the two sets.
+    Then use Proposition 3.6.14 to conclude an alternate proof of Lemma 2.3.2.
+}
+    Define $f : (A \times B) \to (B \times A)$ such that $f(a, b) = (b, a)$.
+    To show $f$ is a bijection, we must demonstrate its injectivity and surjectivity.
+    Suppose $f(a, b) = f(a', b')$; then $(b, a) = (b', a')$.
+    It follows that $b = b', a = a'$, and thus $(a, b) = (a', b')$.
+    Therefore, $f$ is injective.
+    Also, for any $(b, a)$ such that $b \in B$ and $a \in A$, we can always find an ordered pair $(a, b) \in A \times B$ such that $f(a, b) = (b, a)$.
+    This implies $f$ is also surjective.
+    Because $f$ is both injective and surjective, we can conclude that $f$ is a bijection from $A \times B$ to $B \times A$; hence $A \times B$ and $B \times A$ have equal cardinality.
+
+    Recall that Lemma 2.3.2 states that $n \times m = m \times n$ for any $m, n \in \mathbb{N}$.
+    Let $M$ and $N$ be sets such that $\#(M) = m$, $\#(N) = n$.
+    Then, $\#(M \times N) = m \times n$, $\#(N \times M) = n \times m$.
+    However, $\#(N \times M) = \#(M \times N)$, so $m \times n = n \times m$ as required. \qed
+\end{exer}
+
+
+\begin{exer}{3.6.6}{
+    Let $A$, $B$, $C$ be sets.
+    Show that the sets $(A^B)^C$ and $A^{B \times C}$ have equal cardinality by constructing an explicit bijection between the two sets.
+    Conclude that $(a^b)^c = a^{bc}$ for any natural numbers $a$, $b$, $c$.
+    Use a similar argument to also conclude $a^b \times a^c = a^{b+c}$.
+}
+    The set $(A^B)^C$ is the set of all functions mapping from $C$ to $A^B$,
+    and the set $A^{B \times C}$ is the set of all functions mapping from $B \times C$ to $A$.
+    Then, for any $f \in (A^B)^C$, we have $f(\gamma) \in A^B$ for any $\gamma \in C$.
+    Because $f(\gamma)$ is a function mapping from $B$ to $A$, we define $h : (A^B)^C \to A^{B \times C}$ such that $h(f)(\beta, \gamma) \coloneqq f(\gamma)(\beta)$ for any $\beta \in B, \gamma \in C$.
+
+    Suppose $h(f) = h(\tilde{f})$ for some $\tilde{f} : C \to A^B$; then $h(f)(\beta, \gamma) = h(\tilde{f})(\beta, \gamma)$ for all $\beta \in B, \gamma \in C$.
+    Thus, $f(\gamma)(\beta) = \tilde{f}(\gamma)(\beta)$, which leads to $f(\gamma) = \tilde{f}(\gamma)$, and thus $f = \tilde{f}$.
+    This implies $h$ is injective.
+    Suppose instead we have some $k \in A^{B \times C}$, thus $k : B \times C \to A$.
+    We can find a $f \in (A^B)^C$ such that $f(\gamma)(\beta) = k(\beta, \gamma)$ for any $\beta \in B, \gamma \in C$.
+    Indeed, for any fixed $\gamma \in C$, $\beta \mapsto k(\beta, \gamma)$ is a function mapping from $B$ to $A$.
+    This implies $f(\gamma) \in A^B$, and therefore $f : C \to A^B$ is well-defined.
+    For any $k$, we can find a $f$ such that $h(f) = k$; this means $h$ is surjective.
+    Hence, $h$ is a bijection, and $\#((A^B)^C) = \#(A^{B \times C})$.
+
+    Let $A, B, C$ be sets such that $\#(A) = a$, $\#(B) = b$, $\#(C) = c$.
+    Then, by Proposition 3.6.14 (Cardinal arithmetic), $\#((A^B)^C) = (a^b)^c$, $ \#(A^{B \times C}) = a^{bc}$.
+    However, $\#((A^B)^C) = \#(A^{B \times C})$, so $(a^b)^c = a^{bc}$ as required.
+
+    Now consider the statement $a^b \times a^c = a^{b+c}$.
+    For finite cardinalities $b$ and $c$, we can choose disjoint sets $B$ and $C$ such that $\#(B \cup C) = b + c$.
+    Thus, to prove this statement, we want to show $\#(A^B \times A^C) = \#(A^{B \cup C})$ for some disjoint $B$ and $C$.
+    We define $f : A^B \times A^C \to A^{B \cup C}$ such that $f(\beta, \gamma)(x) \coloneqq \beta(x)$ if $x \in B$ and $f(\beta, \gamma)(x) \coloneqq \gamma(x)$ if $x \in C$.
+
+    Suppose $f(\beta, \gamma) = f(\tilde{\beta}, \tilde{\gamma})$ for some $\beta, \tilde{\beta} \in B$ and $\gamma, \tilde{\gamma} \in C$.
+    Then, we have $f(\beta, \gamma)(x) = f(\tilde{\beta}, \tilde{\gamma})(x)$ for any $x \in B \cup C$.
+    If $x \in B$, then the equation simplifies to $\beta(x) = \tilde{\beta}(x)$, which means $\beta = \tilde{\beta}$.
+    Similarly, if $x \in C$, then $\gamma = \tilde{\gamma}$.
+    Thus, $(\beta, \gamma) = (\tilde{\beta}, \tilde{\gamma})$, which means $f$ is injective.
+    Now suppose instead we have $g \in A^{B \cup C}$; then we have a $\beta$ and $\gamma$ such that $g(x) = \beta(x)$ for $x \in B$ and $g(x) = \gamma(x)$ for $x \in C$.
+    This means there is always a $(\beta, \gamma)$ such that $f(\beta, \gamma) = g$.
+    This implies $f$ is surjective.    
+    Then, the function $f$ is a bijection.
+    Hence, we have $\#(A^B \times A^C) = \#(A^{B \cup C})$, and therefore $a^b \times a^c = a^{b+c}$ as required. \qed
+\end{exer}
+
+
+\begin{exer}{3.6.7}{
+    Let $A$ and $B$ be sets.
+    Let us say that $A$ has \emph{lesser or equal} cardinality to $B$ if there exists an injection $f : A \to B$ from $A$ to $B$.
+    Show that if $A$ and $B$ are finite sets, then $A$ has lesser or equal cardinality to $B$ if and only if $\#(A) \le \#(B)$.
+}
+    Suppose $A$ and $B$ are finite sets.
+    We will first prove the left-to-right implication.
+    Suppose $A$ has lesser or equal cardinality to $B$; we want to show that $\#(A) \le \#(B)$.
+    By definition of lesser or equal cardinality, there exists an injection $f : A \to B$.
+    Thus, $f : A \to f(A)$ is a bijection, and since $f(A) \subseteq B$, $\#(A) = \#(f(A)) \le \#(B)$.
+
+    Now consider the converse.
+    Suppose $\#(A) \le \#(B)$; we want to show that $A$ has lesser or equal cardinality to $B$.
+    We can find bijections $f : A \to \{ i \in \mathbb{N} : 1 \le i \le \#(A) \}$ and $g : B \to \{ i \in \mathbb{N} : 1 \le i \le \#(B) \}$.
+    We define $h : \{ i \in \mathbb{N} : 1 \le i \le \#(A) \} \to \{ i \in \mathbb{N} : 1 \le i \le \#(B) \}$ such that $h(i) = i$.
+    This is well-defined because every element of $\{ i \in \mathbb{N} : 1 \le i \le \#(A) \}$ is an element of $\{ i \in \mathbb{N} : 1 \le i \le \#(B) \}$.
+    
+    Then, the composition $k = g^{-1} \circ h \circ f$ maps $A$ to $B$.
+    Suppose $k(x) = k(y)$ for some $x, y \in A$; then $g^{-1}(h(f(x))) = g^{-1}(h(f(y)))$.
+    Applying $g$ on both sides produce $f(x) = f(y)$, and since $f$ is a bijection, we have $x = y$.
+    Hence, $k$ is an injection from $A$ to $B$, or $A$ has lesser or equal cardinality to $B$.
+\end{exer}
+
+
+\begin{exer}{3.6.8}{
+    Let $A$ and $B$ be sets such that there exists an injection $f : A \to B$ from $A$ to $B$ (i.e., $A$ has lesser or equal cardinality to $B$).
+    Show that there then exists a surjection $g : B \to A$ from $B$ to $A$.
+}
+    If $A$ is empty, then the function $g : B \to A$ is automatically surjective.
+    Now consider if $A$ is non-empty.
+    Define $g : B \to A$ such that $g(x) \coloneqq f^{-1}(x)$ if $x \in f(A)$, and $g(x) \coloneqq a$ for some $a \in A$ if $x \in B \setminus f(A)$.
+    To show $g$ is surjective, for any arbitrary $a \in A$, we have a $f(a) \in B$, where $g(f(a)) = f^{-1}(f(a)) = a$.
+    Hence, there exists a surjection $g : B \to A$ from $B$ to $A$.
+\end{exer}
+
+
+\begin{exer}{3.6.9}{
+    Let $A$ and $B$ be finite sets.
+    Show that $A \cup B$ and $A \cap B$ are also finite sets, and that $\#(A) + \#(B) = \#(A \cup B) + \#(A \cap B)$.
+}
+    $A \cup B$ is finite by Proposition 3.6.14(b), while by Proposition 3.6.14(c), $A \cap B$ is finite as $A \cap B \subseteq A$.
+
+    Notice that
+    \[
+        A = (A \cap B) \cup (A \setminus B) \quad \text{ and } \quad B = (A \cap B) \cup (B \setminus A).
+    \]
+    Also,
+    \[
+        (A \cap B) \cap (A \setminus B) = \varnothing \quad \text{ and } \quad (A \cap B) \cap (B \setminus A) = \varnothing.
+    \]
+    Thus, by Proposition 3.6.14(b), we have
+    \[
+        \#(A) = \#(A \cap B) + \#(A \setminus B) \quad \text{ and } \quad \#(B) = \#(A \cap B) + \#(B \setminus A).
+    \]
+    Adding the two equations together, we have
+    \[
+        \#(A) + \#(B) = \#(A \cap B) + \#(A \setminus B) + \#(A \cap B) + \#(B \setminus A).
+    \]
+    By Exercise 3.1.10, $(A \setminus B)$, $(A \cap B)$, and $(B \setminus A)$ are disjoint, and their union is $A \cup B$.
+    Thus,
+    \[
+        \#(A \setminus B) + \#(A \cap B) + \#(B \setminus A) = \#(A \cup B).
+    \]
+    Substituting this into the previous equation, we have 
+    \[
+        \#(A) + \#(B) = \#(A \cup B) + \#(A \cap B)
+    \]
+    as required. \qed
+    
+\end{exer}
+
+
+\begin{exer}{3.6.10}{
+    Let $A_1, \ldots, A_n$ be finite sets such that $\#(\bigcup_{i \in \{1,\ldots,n\}} A_i) > n$.
+    Show that there exists $i \in \{1, \ldots ,n \}$ such that $\#(A_i) \ge 2$.
+    (This is known as the \emph{pigeonhole principle}.)
+}
+    Suppose, for the sake of contradiction, that $\#(A_i) < 2$ for all $i \in \{1, \ldots ,n \}$.
+    Then, $\#(A_i) \le 1$ for all $i \in \{1, \ldots ,n \}$.
+    By applying Proposition 3.6.14(b) $n$ times, we obtain 
+    \[
+        \# \left( \bigcup_{i \in \{1,\ldots,n\}} A_i \right) \le \sum^n_{i=1} \#(A_i) \le n,
+    \]
+    which is a contradiction.
+    Thus, there exists $i \in \{1, \ldots ,n \}$ such that $\#(A_i) \ge 2$. \qed
+\end{exer}
+
 \end{document}
