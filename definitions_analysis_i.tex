@@ -20,7 +20,8 @@
 
 \setlist{parsep=1em}
 
-\newcommand{\succr}[1]{#1 \! +\!\!\!+}
+\newcommand{\succr}[1]{#1 \textrm{++}}
+\newcommand{\minus}{\textrm{ --- }}
 
 \newenvironment{df}[2][\relax]{
 \vspace{4mm}
@@ -655,5 +656,112 @@ No definitions found in this chapter.
             Then the set $Y^X$ (defined in Axiom 3.10) is finite and $\#(Y^X) = \#(Y)^{\#(X)}$.
     \end{enumerate}
 \end{df}
+
+
+\pagebreak
+
+\section{Integers and rationals}
+\subsection{The integers}
+
+\begin{df}[Integers]{Definition 4.1.1}
+    An \emph{integer} is an expression of the form $a \minus b$, where $a$ and $b$ are natural numbers.
+    Two integers are considered to be equal, $a \minus b = c \minus d$, if and only if $a + d = c + b$.
+    We let $\mathbb{Z}$ denote the set of all integers.
+\end{df}
+
+
+\begin{df}{Definition 4.1.2}
+    The sum of two integers, $(a \minus b) + (c \minus d)$, is defined by the formula
+    \[
+        (a \minus b) + (c \minus d) \coloneqq (a + c) \minus (b + d).
+    \]
+    The product of two integers $(a \minus b) \times (c \minus d)$, is defined by
+    {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
+    \[
+        (a \minus b) \times (c \minus d) \coloneqq (ac + bd) \minus (ad + bc).
+    \]
+    }
+\end{df}
+
+
+\begin{df}[Negation of integers]{Definition 4.1.4}
+    If $(a \minus b)$ is an integer, we define the negation $-(a \minus b)$ to be the integer $(b \minus a)$.
+    In particular, if $n = n \minus 0$ is a positive natural number, we can define its negation $-n = 0 \minus n$.
+\end{df}
+
+
+\begin{df}[Trichotomy of integers]{Lemma 4.1.5}
+    Let $x$ be an integer.
+    Then exactly one of the following three statements is true:
+    (a) $x$ is zero;
+    (b) $x$ is equal to a positive natural number $n$; or
+    (c) $x$ is the negation $-n$ of a positive natural number $n$.
+\end{df}
+
+
+\begin{df}[Laws of algebra for integers]{Proposition 4.1.6}
+    Let $x$, $y$, $z$ be integers.
+    Then we have
+    {\setlength{\abovedisplayskip}{0pt}
+    \begin{align*}%
+        x + y &= y + x \\
+        (x + y) + z &= x + (y + z) \\
+        x + 0 = 0 + x &= x \\
+        x + (-x) = (-x) + x &= 0 \\
+        xy &= yx \\
+        (xy)z &= x(yz) \\
+        x1 = 1x &= x \\
+        x(y + z) &= xy + xz \\
+        (y + z)x &= yx + zx.%
+    \end{align*}%
+    }%
+    \textit{Remark. } The above set of nine identities assert that the integers form a \emph{commutative ring}.
+    If one deleted the identity $xy = yx$, then they would only assert that the integers form a \emph{ring}.
+\end{df}
+
+
+\begin{df}[Integers have no zero divisors]{Proposition 4.1.8}
+    Let $a$ and $b$ be integers such that $ab = 0$.
+    Then either $a = 0$ or $b = 0$ (or both).
+\end{df}
+
+
+\begin{df}[Cancellation law for integers]{Corollary 4.1.9}
+    If $a$, $b$, $c$ are integers such that $ac = bc$ and $c$ is non-zero, then $a = b$.
+\end{df}
+
+
+\begin{df}[Ordering of the integers]{Definition 4.1.10}
+    Let $n$ and $m$ be integers.
+    We say that $n$ is \emph{greater than or equal to} $m$, 
+    and write $n \ge m$ or $m \le n$,
+    iff we have $n = m + a$ for some natural number $a$.
+    We say that $n$ is \emph{strictly greater than} $m$,
+    and write $n > m$ or $m < n$,
+    iff $n \ge m$ and $n \ne m$.
+\end{df}
+
+
+\begin{df}[Properties of order]{Lemma 4.1.11}
+    Let $a$, $b$, $c$ be integers.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item $a > b$ if and only iof $a - b$ is a positive natural number.
+        \item (Addition preserves order) If $a > b$, then $a + c > b + c$.
+        \item (Positive multiplication preserves order) If $a > b$ and $c$ is positive, then $ac > bc$.
+        \item (Negation reverses order) If $a > b$, then $-a < -b$.
+        \item (Order is transitive) If $a > b$ and $b . c$, then $a > c$.
+        \item (Order trichotomy) Exactly one of the statements $a > b$, $a < b$, or $a = b$ is true.
+    \end{enumerate}
+\end{df}
+
+
+\subsection{The rationals}
+
+\begin{df}{Definition 4.2.1}
+    A \emph{rational number} is an expression of the form $a // b$, where $a$ and $b$ are integers and $b$ is non-zero; $a // 0$ is not considered to be a rational number.
+    Two rational numbers are considered to be equal, $a // b = c // d$, if and only if $ad = cb$.
+    The set of all rational numbers is denoted $\mathbb{Q}$.
+\end{df}
+
 
 \end{document}
