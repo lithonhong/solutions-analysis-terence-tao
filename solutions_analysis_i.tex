@@ -20,7 +20,8 @@
 
 \setlist{parsep=1em}
 
-\newcommand{\succr}[1]{#1 \! +\!\!\!+}
+\newcommand{\succr}[1]{#1 \textrm{++}}
+\newcommand{\minus}{\textrm{ --- }}
 
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{lemma}{Lemma}
@@ -2280,6 +2281,275 @@ No exercises from this subchapter.
     \]
     which is a contradiction.
     Thus, there exists $i \in \{1, \ldots ,n \}$ such that $\#(A_i) \ge 2$. \qed
+\end{exer}
+
+
+\pagebreak
+
+\section{Integers and rationals}
+\subsection{The integers}
+
+\begin{exer}{4.1.1}{
+    Verify that the definition of equality on the integers is both reflexive and symmetric.
+}
+    Let $a \minus b$ and $c \minus d$ be arbitrary integers.
+    
+    To prove reflexivity, we want to show that $a \minus b = a \minus b$.
+    By definition of integers, we then have $a + b = b + a$, which is true by commutativity of addition.
+    Thus, this definition is reflexive.
+
+    To prove symmetry, we want to show that if $a \minus b = c \minus d$, then $c \minus d = a \minus b$.
+    Suppose $a \minus b = c \minus d$; then $a + d = c + b$.
+    By symmetry of equality, we then have $c + b = a + d$, which implies $c \minus d = a \minus b$. \qed    
+\end{exer}
+
+
+\begin{exer}{4.1.2}{
+    Show that the definition of negation on the integers is well-defined in the sense that if $(a \minus b) = (a' \minus b')$, then $-(a \minus b) = -(a' \minus b')$ (so equal integers have equal negations).
+}
+    Suppose $a \minus b = a' \minus b'$; then $a + b' = b + a'$.
+    By definition of negation, $-(a \minus b) = b \minus a$ and $-(a' \minus b') = b' \minus a'$.
+    To show $-(a \minus b) = -(a' \minus b')$, we will show $b \minus a = b' \minus a'$, or $b + a' = b' + a$.
+    We have shown this is true by the hypothesis. \qed    
+\end{exer}
+
+
+\begin{exer}{4.1.3}{
+    Show that $(-1) \times a = -a$ for every integer $a$.
+}
+    Suppose $a$ is an integer; then $a = m \minus n$ for natural numbers $m$ and $n$.
+    By the definition of integer products and multiplication of natural numbers, we have
+    \begin{align*}
+        (-1) \times a
+        &= (0 \minus 1)(m \minus n)
+        = (0m + 1n) \minus (0n + 1m) \\
+        &= n \minus m
+        = -(m \minus n)
+        = -a.
+    \end{align*}
+    Hence we have $(-1) \times a = -a$ as desired. \qed
+\end{exer}
+
+
+\begin{exer}{4.1.4}{
+    Prove the remaining identities in Proposition 4.1.6 (Laws of algebra for integers).
+}
+    Let $x = a \minus b$, $y = c \minus d$, $z = e \minus f$.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item $x + y = y + x$.
+            \begin{align*}
+                x + y
+                &= (a \minus b) + (c \minus d)
+                = (a + c) \minus (b + d) \\
+                y + x
+                &= (c \minus d) + (a \minus b)
+                = (c + a) \minus (d + b)
+                = (a + c) \minus (b + d)
+            \end{align*}
+            Thus $x + y = y + x$.
+            
+        \item $(x + y) + z = x + (y + z)$.
+            \begin{align*}
+                (x + y) + z
+                &= ((a \minus b) + (c \minus d)) + (e \minus f) \\
+                &= ((a + c) \minus (b + d)) + (e \minus f) \\
+                &= (a + c + e) \minus (b + d + f) \\
+                x + (y + z)
+                &= (a \minus b) + ((c \minus d) + (e \minus f)) \\
+                &= (a \minus b) + ((c + e) \minus (d + f)) \\
+                &= (a + c + e) \minus (b + d + f)
+            \end{align*}
+            Therefore, $(x + y) + z = x + (y + z)$.
+            
+        \item $x + 0 = 0 + x = x$.
+        
+            We have previously shown commutativity of addition for integers, so $x + 0 = 0 + x$.
+            Thus, we only need to show $x + 0 = x$:
+            \[
+                x + 0 = (a \minus b) + (0 \minus 0) = (a + 0) \minus (b + 0) = a \minus b = x.
+            \]
+            Hence, $x + 0 = 0 + x = x$.
+            
+        \item $x + (-x) = (-x) + x = 0$.
+        
+            We have previously shown commutativity of addition for integers, so $x + (-x) = (-x) + x$.
+            Then, we only need to show $x + (-x) = 0$:
+            \[
+                x + (-x) = (a \minus b) + (b \minus a) = (a + b) \minus (b + a) = 0.
+            \]
+            It follows that $x + (-x) = (-x) + x = 0$.
+            
+        \item $xy = yx$.
+            \begin{align*}
+                xy &= (a \minus b) \times (c \minus d) = (ac + bd) \minus (ad + bc) \\
+                yx &= (c \minus d) \times (a \minus b) = (ca + db) \minus (da + cb) = (ac + bd) \minus (ad + bc)
+            \end{align*}
+            Thus, $xy = yx$.
+            
+        \item $x1 = 1x = x$.
+        
+            We have shown previously the commutativity of integer multiplication, so $x1 = 1x$.
+            Thus, we only need to show $x1 = x$:
+            \[
+                x1 = (a \minus b)(1 \minus 0) = (a1 + b0) \minus (a0 + b1) = a \minus b = x.
+            \]
+            Therefore, $x1 = 1x = x$.
+            
+        \item $x(y + z) = xy + xz$.
+            \begin{align*}
+                x(y + z)
+                &= (a \minus b)((c \minus d) + (e \minus f)) \\
+                &= (a \minus b)((c + e) \minus (d + f)) \\
+                &= (a(c + e) + b(d + f)) \minus (a(d + f) + b(c + e)) \\
+                &= (ac + ae + bd + bf) \minus (ad + af + bc + be) \\
+                xy + xz
+                &= (a \minus b)(c \minus d) + (a \minus b)(e \minus f) \\
+                &= ((ac + bd) \minus (ad + bc)) + ((ae + bf) \minus (af + be)) \\
+                &= (ac + ae + bd + bf) \minus (ad + af + bc + be)
+            \end{align*}
+            This implies $x(y + z) = xy + xz$.
+            
+        \item $(y + z)x = yx + zx$.
+            \begin{align*}
+                (y + z)x
+                &= ((c \minus d) + (e \minus f))(a \minus b) \\
+                &= ((c + e) \minus (d + f))(a \minus b) \\
+                &= ((c + e)a + (d + f)b) \minus ((d + f)a + (c + e)b) \\
+                &= (ca + ea + db + fb) \minus (da + fa + cb + eb) \\
+                yx + zx
+                &= (c \minus d)(a \minus b) + (e \minus f)(a \minus b) \\
+                &= ((ca + db) \minus (da + cb)) + ((ea + fb) \minus (fa + eb)) \\
+                &= (ca + ea + db + fb) \minus (da + fa + cb + eb)
+            \end{align*}
+            We can conclude that $(y + z)x = yx + zx$. \qed
+            
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{4.1.5}{
+    Prove Proposition 4.1.8 (Integers have no zero divisors):
+    Let $a$ and $b$ be integers such that $ab = 0$.
+    Then either $a = 0$ or $b = 0$ (or both).
+}
+    Let $m, p, q$ be positive natural numbers, and $b = p \minus q$.
+    Suppose $ab = 0$ and $a \ne 0$; we will show this forces $b = 0$.
+    By the trichotomy of integers (Lemma 4.1.5), we will split into three cases:
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item $a = 0$.
+        
+            This case contradicts our hypothesis.
+            
+        \item $a > 0$.
+
+            Then, $a = m \minus 0$.
+            \[
+                ab = (m \minus 0)(p \minus q) = (mp + 0q)\minus (0p + mq) = mp \minus mq
+            \]
+            If $mp \minus mq = 0$, then $mp = mq$.
+            Since $m$ is nonzero, $p = q$ by the cancellation law, thus $b = 0$.
+
+        \item $a < 0$.
+
+            Then $a = 0 \minus m$.
+            \[
+                ab = (0 \minus m)(p \minus q) = (0p + mq)\minus (mp + 0q) = mq \minus mp
+            \]
+            If $mq \minus mp = 0$, then $mq = mp$.
+            Since $m$ is nonzero, $q = p$ by the cancellation law, thus $b = 0$.
+    \end{enumerate}
+
+    Hence if $ab = 0$ and $a \ne 0$, then $b = 0$. \qed
+\end{exer}
+
+
+\begin{exer}{4.1.6}{
+    Prove Corollary 4.1.9 (Cancellation law for integers):
+    If $a, b, c$ are integers such that $ac = bc$ and $c$ is non-zero, then $a = b$.
+}
+    We add $-bc$ to both sides of the equation to obtain
+    \[
+        ac + (-bc) = bc + (-bc).
+    \]
+    The right-hand side of the equation is equal to $0$.
+    We use distributivity of integers to obtain the equation $(a - b)c = 0$.
+    Because $c \ne 0$, $a - b = 0$ by Proposition 4.1.8.
+    This implies $a = b$. \qed
+\end{exer}
+
+
+\begin{exer}{4.1.7}{
+    Prove Lemma 4.1.11 (Properties of order).
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item $a > b$ if and only if $a - b$ is a positive natural number.
+
+            Suppose $a > b$; then $a \ge b$ and $a \ne b$ by ordering of integers (Definition 4.1.10).
+            This implies $a = b + n$ for some natural number $n$.
+            By adding $-b$ to both sides (using the laws of algebra (Proposition 4.1.6)), it follows that $a - b = n$.
+            Because $a \ne b$, $a - b \ne 0$, thus $n \ne 0$ by transitivity of equality.
+            As $n$ is a natural number larger than $0$, $n$ is positive.
+            Hence $a - b$ is a positive natural number.
+
+            Now consider the converse.
+            Denote $a - b = n$, and suppose $n$ is a positive natural number; thus $n > 0$.
+            Then, $a = b + n$ by adding $b$ to both sides of the equation.
+            As $n$ is an integer greater than $0$, we have $a > b$.
+            
+        \item (Addition preserves order) If $a > b$, then $a + c > b + c$.
+
+            Suppose $a > b$, then $a = b + n$ for some positive natural number $n$.
+            Adding $c$ to both sides of the equation, we have $a + c = b + c + n$.
+            Using Definition 4.1.10 again, we have $a + c > b + c$.
+        
+        \item (Positive multiplication preserves order) If $a > b$ and $c$ is positive, then $ac > bc$.
+
+            From (a), if $a > b$, then $a - b$ is positive.
+            Because both $a - b$ and $c$ are positive, $(a - b)c$ is positive by Lemma 2.3.3.
+            Using the laws of algebra and Exercise 4.1.3, we have
+            \[
+                (a - b)c = (a + (-b))c = ac + (-b)c = ac + (-1)bc = ac - bc.
+            \]
+            Then because $(a - b)c$ is positive, $ac - bc$ is also positive.
+            Using (a) again gives $ac > bc$.
+            
+        \item (Negation reverses order) If $a > b$, then $-a < -b$.
+
+            We will first introduce a short lemma: $-(-n) = n$.
+            From the laws of algebra (Proposition 4.1.6), we have $n + (-n) = 0$.
+            Adding the negation of $-n$ from both sides yield $n = 0-(-n) = -(-n)$.
+            
+            To show $-a < -b$, we need to show $(-b) - (-a) > 0$.
+            The left-hand side simplifies to $(-b) - (-a) = -b + a = a - b$.
+            However, from (a), if $a > b$, then $a - b$ is positive.
+            
+        \item (Order is transitive) If $a > b$ and $b > c$, then $a > c$.
+
+            From (a), we have $a = b + m$, $b = c + n$ for some positive natural numbers $m, n$.
+            Using the substitution axiom, it follows that $a = c + m + n$.
+            Because $m + n$ is a positive natural number, $a > c$.
+            
+        \item (Order trichotomy) Exactly one of the statements $a > b$, $a < b$, or $a = b$ is true.
+
+            Consider the integer $a - b$.
+            By the trichotomy of integers (Lemma 4.1.5), exactly one of $a - b = 0$, $a - b > 0$, $a - b < 0$ is true.
+            If $a - b = 0$, then $a = b$.
+            If $a - b > 0$, then from (a) we know $a > b$.
+            If $a - b < 0$, then $a - b = -n$ for some positive natural number $n$; it follows that $a + n = b$, and thus $a < b$.
+            Hence, exactly one of $a > b$, $a < b$, or $a = b$ is true. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{4.1.8}{
+    Show that the principle of induction (Axiom 2.5) does not apply directly to the integers. 
+    More precisely, give an example of a property $P(n)$ pertaining to an integer $n$ such that $P(0)$ is true, and that $P(n)$ implies $P(\succr{n})$ for all integers $n$, but that $P(n)$ is not true for all integers $n$.
+    Thus induction is not as useful a tool for dealing with the integers as it is with the natural numbers.
+}
+    As a counterexample, let $P(x)$ be the property pertaining to an integer $x$ that $x \ge 0$.
+    Then, $P(0)$ is true because $0 \ge 0$.
+    Suppose inductively that $P(x)$ is true, then $\succr{x} \ge x \ge 0$, which means $P(\succr{x})$ is also true.
+    However, $P(-1)$ is false because $-1 < 0$. \qed
 \end{exer}
 
 \end{document}

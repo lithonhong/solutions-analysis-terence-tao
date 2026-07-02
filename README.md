@@ -9,7 +9,7 @@ as it involves much definition-citing.
 ### Analysis I
 * ☑ Chapter 2 (Completed)
 * ☑ Chapter 3 (Completed)
-* ☐ Chapters 4 (To be started)
+* ☐ Chapters 4 (Completed to Chapter 4.1)
 * ☒ Chapters 5 - 11 (Incomplete)
 
 ### Analysis II
@@ -20,6 +20,9 @@ I am a pre-university student (as of writing) and have yet to receive any formal
 On top of being my initial introduction to analysis, this repository also serves as practice for writing in LaTeX.
 Therefore, the contents of this repository (proof methods, styling, etc.) may be revamped from time to time.
 
+## Contributing
 Pull requests to suggest fixes/improvements are welcome!
+Nevertheless, please don't suggest solutions to exercises that have yet to be attempted;
+this repository is ultimately my record of learning analysis.
 
-_Last updated on: 1st July 2026 00:16 (UTC+8)_
+_Last updated on: 2nd July 2026 13:33 (UTC+8)_
