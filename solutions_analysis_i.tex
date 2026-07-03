@@ -2385,6 +2385,10 @@ No exercises from this subchapter.
                 yx &= (c \minus d) \times (a \minus b) = (ca + db) \minus (da + cb) = (ac + bd) \minus (ad + bc)
             \end{align*}
             Thus, $xy = yx$.
+
+        \item $(xy)z = x(yz)$.
+
+            The proof of this law is given by Tao.
             
         \item $x1 = 1x = x$.
         
@@ -2412,16 +2416,11 @@ No exercises from this subchapter.
         \item $(y + z)x = yx + zx$.
             \begin{align*}
                 (y + z)x
-                &= ((c \minus d) + (e \minus f))(a \minus b) \\
-                &= ((c + e) \minus (d + f))(a \minus b) \\
-                &= ((c + e)a + (d + f)b) \minus ((d + f)a + (c + e)b) \\
-                &= (ca + ea + db + fb) \minus (da + fa + cb + eb) \\
+                &= x(y + z) \\
                 yx + zx
-                &= (c \minus d)(a \minus b) + (e \minus f)(a \minus b) \\
-                &= ((ca + db) \minus (da + cb)) + ((ea + fb) \minus (fa + eb)) \\
-                &= (ca + ea + db + fb) \minus (da + fa + cb + eb)
+                &= xy + xz
             \end{align*}
-            We can conclude that $(y + z)x = yx + zx$. \qed
+            By part (h), these are equivalent. We can conclude that $(y + z)x = yx + zx$. \qed
             
     \end{enumerate}
 \end{exer}
@@ -2550,6 +2549,218 @@ No exercises from this subchapter.
     Then, $P(0)$ is true because $0 \ge 0$.
     Suppose inductively that $P(x)$ is true, then $\succr{x} \ge x \ge 0$, which means $P(\succr{x})$ is also true.
     However, $P(-1)$ is false because $-1 < 0$. \qed
+\end{exer}
+
+
+\begin{exer}{4.2.1}{
+    Show that the definition of equality for the rational numbers is reflexive, symmetric, and transitive.
+}
+    Let $a // b$, $c // d$, $e // f$ be rational numbers.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item \textit{Reflexivity: $a // b = a // b$.}
+            By definition, $a // b = a // b$ if $ab = ab$, which is obviously true.
+
+        \item \textit{Symmetry: If $a // b = c // d$, then $c // d = a // b$.}
+            Suppose $a // b = c // d$, then $ad = cb$.
+            By commutativity of equality, we have $cb = ad$.
+            From the definition of rational numbers, this implies $c // d  = a // b$.
+
+        \item \textit{Transitivity: If $a // b = c // d$ and $c // d = e // f$, then $a // b = e // f$.}
+            Suppose $a // b = c // d$ and $c // d = e // f$.
+            Then $ad = cb$ and $cf = ed$.
+            Multiplying the first equation by $f$ and the second equation by $b$, we have $adf = cbf$ and $cbf = edb$.
+            Thus, we have $adf = edb$ by transitivity of equality.
+            According to the cancellation law for integers (Corollary 4.1.9), since $d \ne 0$ by definition of rational numbers, we have $af = eb$.
+            From the definition of rational numbers (Definition 4.2.1), this implies $a//b = e//f$. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{4.2.2}{
+    Prove the remaining components of Lemma 4.2.3:
+    The sum, product, and negation operations on rational numbers are well-defined, in the sense that if one replaces $a // b$ with another rational number $a' // b'$ which is equal to $a // b$, then the output of the operations in Definition 4.2.2 remains unchanged, and similarly for $c // d$.
+}
+    Suppose $a // b = a' // b'$; then $ab' = ba'$.
+    First consider the product operation.
+    We want to show $(a // b) \times (c // d) = (a' // b') \times (c // d)$.
+    By definition, the left-hand side is $(ac) // (bd)$ and the right-hand side is $(a'c) // (b'd)$.
+    Thus, we want to show $(ac) // (bd) = (a'c) // (b'd)$, or $acb'd = a'cbd$.
+    By the hypothesis, we have $ab' = a'b$, thus $ab'cd = a'cbd$ by multiplying $cd$ to the equation.
+    A similar argument can be made for replacing $c // d$ and $c' // d'$.
+
+    Now consider the negation operation.
+    We want to show $-(a // b) = -(a' // b')$.
+    By Definition 4.2.2, this means $(-a) // b = (-a') // b'$, and thus $-ab' = -a'b$.
+    However, from multiplying $-1$ to both sides of the equation $ab' = ba'$ and the result of Exercise 4.1.3, we know $-ab' = -a'b$ is true. \qed
+\end{exer}
+
+
+\begin{exer}{4.2.3}{
+     Prove the remaining components of Proposition 4.2.4.
+}
+    Let $x = a // b$, $y = c // d$, $z = e // f$.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item $x + y = y + x$.
+            \begin{align*}
+                x + y
+                &= (a // b) + (c // d)
+                = (ad + bc) // (bd) \\
+                y + x
+                &= (c // d) + (a // b)
+                = (cb + da) // (db)
+                = (ad + bc) // (bd)
+            \end{align*}
+            Thus $x + y = y + x$.
+            
+        \item $(x + y) + z = x + (y + z)$.
+            
+            The proof of this law is given by Tao.
+            
+        \item $x + 0 = 0 + x = x$.
+        
+            We have previously shown commutativity of addition for rationals, so $x + 0 = 0 + x$.
+            Thus, we only need to show $x + 0 = x$:
+            \[
+                x + 0 = (a // b) + (0 // 1) = (a1 + b0) // (b1) = a // b = x.
+            \]
+            Hence, $x + 0 = 0 + x = x$.
+            
+        \item $x + (-x) = (-x) + x = 0$.
+        
+            We have previously shown commutativity of addition for rationals, so $x + (-x) = (-x) + x$.
+            Then, we only need to show $x + (-x) = 0$:
+            \[
+                x + (-x) = (a // b) + ((-a) // b) = (a + (-a)) // (bb) = 0 // (b^2).
+            \]
+            Note that $0 // (b^2) = 0 // 1 = 0$ because $0 \times 1 = 0 \times b^2$.
+            Then, it follows that $x + (-x) = (-x) + x = 0$.
+            
+        \item $xy = yx$.
+            \begin{align*}
+                xy &= (a // b) \times (c // d) = (ac) // (bd) \\
+                yx &= (c // d) \times (a // b) = (ca) // (db) = (ac) // (bd)
+            \end{align*}
+            Thus, $xy = yx$.
+
+        \item $(xy)z = x(yz)$.
+            \begin{align*}
+                (xy)z &= ((a // b)(c // d))(e // f) = (ac // bd)(e // f) = (ace) // (bdf) \\
+                x(yz) &= (a // b)((c // d)(e // f)) = (a // b)(ce // df) = (ace) // (bdf)
+            \end{align*}
+            Hence, $(xy)z = x(yz)$.
+            
+        \item $x1 = 1x = x$.
+        
+            We have shown previously the commutativity of rational multiplication, so $x1 = 1x$.
+            Thus, we only need to show $x1 = x$:
+            \[
+                x1 = (a // b)(1 // 1) = (a1) // (b1) = a // b = x.
+            \]
+            Therefore, $x1 = 1x = x$.
+            
+        \item $x(y + z) = xy + xz$.
+            \begin{align*}
+                x(y + z)
+                &= (a // b)((c // d) + (e // f)) \\
+                &= (a // b)((cf + ed) // (df)) \\
+                &= (acf + ade) // bdf \\
+                xy + xz
+                &= (a // b)(c // d) + (a // b)(e // f) \\
+                &= (ac // bd) + (ae // bf) \\
+                &= (acbf + bdae) // (bdbf) \\
+            \end{align*}
+            As $(acf + ade) b^2 df = (acbf + bdae)bdf$, this implies $x(y + z) = xy + xz$.
+            
+        \item $(y + z)x = yx + zx$.
+            \begin{align*}
+                (y + z)x
+                &= x(y + z) \\
+                yx + zx
+                &= xy + xz
+            \end{align*}
+            By part (h), these are equivalent. We can conclude that $(y + z)x = yx + zx$. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{4.2.4}{
+    Prove Lemma 4.2.7:
+    Let $x$ be a rational number.
+    Then exactly one of the following three statements is true:
+    (a) $x$ is equal to $0$.
+    (b) $x$ is a positive rational number.
+    (c) $x$ is a negative rational number.
+}
+    Let $x$ = $a / b$ for some integer $a$ and $b$ such that $b$ is positive.
+    By the trichotomy of integers, exactly one of $a = 0$, $a > 0$ and $a < 0$ is true.
+    If $a = 0$, then $x = 0$.
+    By Definition 4.2.7, $x$ is positive if and only if $a > 0$.
+    Similarly, $x$ is negative if and only if $a < 0$.
+    Therefore, the three statements correspond to the three mutually exclusive cases of $a$.
+    Hence, exactly one of the statements holds.
+\end{exer}
+
+
+\begin{exer}{4.2.5}{
+    Prove Proposition 4.2.9.
+}
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item (Order trichotomy) Exactly one of the three statements $x = y$, $x < y$, or $x > y$ is true.
+
+            Consider the integer $x - y$.
+            From Lemma 4.2.7, exactly one of $x - y$ being zero, positive, or negative is true.
+            According to Definition 4.2.8, $x - y$ is positive if and only if $x > y$, and $x - y$ is negative if and only if $x < y$.
+            Similarly, $x = y$ if and only if $x = y$.
+            Thus, the three statements correspond to the three mutually exclusive cases of $x - y$.
+            Hence, exactly one of the statements is true.
+            
+        \item (Order is anti-symmetric) One has $x < y$ if and only if $y > x$.
+
+            Suppose $x < y$; then $x - y < 0$.
+            Thus, $x - y = (-a) / b$ for some positive integers $a$ and $b$.
+            We then have $y - x = -(x - y) = a / b$, a positive rational.
+            Hence, $y > x$.
+
+            Suppose instead $y > x$; then $y - x > 0$.
+            Thus, $y - x = a / b$ for some positive integers $a$ and $b$.
+            We then have $x - y = -(y - x) = (-a) / b$, a negative rational.
+            Hence, $x < y$.
+            
+        \item (Order is transitive) If $x < y$ and $y < z$, then $x < z$.
+
+            Suppose $x < y$ and $y < z$.
+            Then, we have $x - y = (-a) / b$ and $y - z = (-c) / d$ for some positive integers $a, b, c, d$.
+            It follows that
+            \[
+                x - z = (x - y) + (y - z) = (-a) / b + (-c) / d = (-ad -bc) / bd = -(ad + bc) / bd.
+            \]
+            Because $bd$ and $(ad + bc)$ are positive, $x - z$ is a negative rational.
+            Hence, $x < z$.
+            
+        \item (Addition preserves order) If $x < y$, then $x + z < y + z$.
+
+            Suppose $x < y$; then $x - y$ is negative.
+            However, $(x + z) - (y + z) = x - y$; it follows that $(x + z) - (y + z)$ is negative, and thus $x + z < y + z$.
+            
+        \item (Positive multiplication preserves order) If $x < y$ and $z$ is positive, then $xz < yz$.
+
+            Suppose $x < y$; then $x - y = (-a) / b$ for some positive integers $a$ and $b$.
+            Suppose also $z$ is positive; write $z = c / d$. for positive integers $c$ and $d$.
+            Then, $xz - yz = (x - y)z = ((-a) / b)(c / d) = (-ac) / bd$.
+            Because $(a-c)$ is negative and $bd$ is positive, $xz - yz$ is negative.
+            Hence, $xz < yz$. \qed
+    \end{enumerate}
+\end{exer}
+
+
+\begin{exer}{4.2.6}{
+    Show that if $x$, $y$, $z$ are rational numbers such that $x < y$ and $z$ is negative, then $xz > yz$.
+}
+    Suppose $x < y$; then $x - y = (-a) / b$ for some positive integers $a$ and $b$.
+    Suppose also $z$ is negative; write $z = (-c) / d$. for positive integers $c$ and $d$.
+    Then, $xz - yz = (x - y)z = ((-a) / b)((-c) / d) = ((-a)(-c)) / bd = ac / bd$.
+    Because $ac$ and $bd$ are positive, $xz - yz$ is positive.
+    Hence, $xz > yz$. \qed
 \end{exer}
 
 \end{document}

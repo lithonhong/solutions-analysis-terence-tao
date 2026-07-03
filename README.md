@@ -9,7 +9,7 @@ as it involves much definition-citing.
 ### Analysis I
 * ☑ Chapter 2 (Completed)
 * ☑ Chapter 3 (Completed)
-* ☐ Chapters 4 (Completed to Chapter 4.1)
+* ☐ Chapters 4 (Completed to Chapter 4.2)
 * ☒ Chapters 5 - 11 (Incomplete)
 
 ### Analysis II
@@ -25,4 +25,4 @@ Pull requests to suggest fixes/improvements are welcome!
 Nevertheless, please don't suggest solutions to exercises that have yet to be attempted;
 this repository is ultimately my record of learning analysis.
 
-_Last updated on: 2nd July 2026 13:33 (UTC+8)_
+_Last updated on: 2nd July 2026 16:03 (UTC+8)_
