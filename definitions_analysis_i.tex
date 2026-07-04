@@ -871,4 +871,121 @@ No definitions found in this chapter.
     \end{enumerate}
 \end{df}
 
+
+\subsection{Absolute value and exponentiation}
+
+\begin{df}[Absolute value]{Definition 4.3.1}
+    If $x$ is a rational number, the \emph{absolute value} $\abs{x}$ of $x$ is defined as follows.
+    If $x$ is positive, then $\abs{x} \coloneqq x$.
+    If $x$ is negative, then $\abs{x} \coloneqq -x$.
+    If $x$ is zero, then $\abs{x} \coloneqq 0$.
+\end{df}
+
+
+\begin{df}[Distance]{Definition 4.3.2}
+    Let $x$ and $y$ be rational numbers.
+    The quantity $\abs{x - y}$ is called the \emph{distance between $x$ and $y$} and is sometimes denoted $d(x, y)$, thus $d(x, y) \coloneqq \abs{x - y}$.
+    For instance, d(3, 5) = 2.
+\end{df}
+
+
+\begin{df}[Basic properties of absolute value and distance]{Proposition 4.3.3}
+    Let $x$, $y$, $z$ be rational numbers.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item (Non-degeneracy of absolute value)
+            We have $\abs{x} \ge 0$.
+            Also, $\abs{x} = 0$ if and only if $x$ is $0$.
+
+        \item (Triangle inequality for absolute value)
+            We have $\abs{x+y} \ge \abs{x} + \abs{y}$.
+
+        \item We have the inequalities $-y \le x \le y$ if and only if $y \ge \abs{x}$.
+            In particular, we have $-\abs{x} \le x \le \abs{x}$.
+
+        \item (Multiplicativity of absolute value)
+            We have $\abs{xy} = \abs{x}\abs{y}$.
+            In particular, $\abs{-x} = \abs{x}$.
+
+        \item (Non-degeneracy of distance)
+            We have $d(x, y) \ge 0$.
+            Also, $d(x, y) = 0$ if and only if $x = y$.
+
+        \item (Symmetry of distance)
+            $d(x, y)= d(y, x)$.
+
+        \item (Triangle inequality for distance)
+            $d(x, z) \le d(x, y) + d(y, z)$.
+    \end{enumerate}
+\end{df}
+
+
+\begin{df}[$\varepsilon$-closeness]{Definition 4.3.4}
+    Let $\varepsilon > 0$ be a rational number, and let $x$, $y$ be rational numbers.
+    We say that $y$ is \emph{$\varepsilon$-close} to $x$ iff we have $d(y, x) \le \varepsilon$.    
+\end{df}
+
+
+\begin{df}{Proposition 4.3.7}
+    Let $x, y, z, w$ be rational numbers.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item If $x = y$, then $x$ is $\varepsilon$-close to $y$ for every $\varepsilon > 0$.
+        Conversely, if $x$ is $\varepsilon$-close to $y$ for every $\varepsilon > 0$, then we have $x = y$.
+
+        \item Let $\varepsilon > 0$. If $x$ is $\varepsilon$-close to $y$, then $y$ is $\varepsilon$-close to $x$.
+
+        \item Let $\varepsilon, \delta > 0$. If $x$ is $\varepsilon$-close to $y$, and $y$ is $\delta$-close to $z$, then $x$ and $z$ are $(\varepsilon + \delta)$-close.
+
+        \item Let $\varepsilon, \delta > 0$. If $x$ and $y$ are $\varepsilon$-close, and $z$ and $w$ are $\delta$-close, then $x + z$ and $y + w$ are $(\varepsilon + \delta)$-close, and $x - z$ and $y - w$ are also $(\varepsilon + \delta)$-close.
+
+        \item Let $\varepsilon > 0$. If $x$ and $y$ are $\varepsilon$-close, they are also $\varepsilon'$-close for every $\varepsilon' > \varepsilon$.
+
+        \item Let $\varepsilon > 0$. If $y$ and $z$ are both $\varepsilon$-close to $x$, and $w$ is between $y$ and $z$ (i.e., $y \le w \le z$ or $z \le w \le y$), then $w$ is also $\varepsilon$-close to $x$.
+        
+        \item Let $\varepsilon > 0$. If $x$ and $y$ are $\varepsilon$-close, and $z$ is non-zero, then $xz$ and $yz$ are $\varepsilon\abs{z}$-close.
+
+        \item Let $\varepsilon, \delta > 0$. If $x$ and $y$ are $\varepsilon$-close, and $z$ and $w$ are $\delta$-close, then $xz$ and $yw$ are $(\varepsilon\abs{z} + \delta\abs{x} + \varepsilon\delta)$-close.
+    \end{enumerate}
+\end{df}
+
+
+\begin{df}[Exponentiation to a natural number]{Definition 4.3.9}
+     Let $x$ be a rational number.
+     To raise $x$ to the power $0$, we define $x^0 \coloneqq 1$; in particular we define $0^0 \coloneqq 1$.
+     Now suppose inductively that $x^n$ has been defined for some natural number $n$, then we define $x^{n+1} \coloneqq x^n \times x$.
+\end{df}
+
+
+\begin{df}[Properties of exponentiation, I]{Proposition 4.3.10}
+    Let $x, y$ be rational numbers, and let $n, m$ be natural numbers.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item We have $x^n x^m = x^{n+m}$, $(x^n)^m = x^{nm}$, and $(x^y)^n = x^n y^n$.
+        
+        \item Suppose $n > 0$. Then we have $x^n =0$ if and only if $x = 0$.
+
+        \item If $x \ge y \ge 0$, then $x^n \ge y^n \ge 0$. If $x > y \ge 0$ and $n > 0$, then $x^n > y^n \ge 0$.
+
+        \item We have $\abs{x^n} = \abs{x}^n$.
+    \end{enumerate}
+\end{df}
+
+
+\begin{df}[Exponentiation to a negative number]{Definition 4.3.11}
+    Let $x$ be a non-zero rational number.
+    Then for any negative integer $-n$, we define $x^{-n} \coloneqq 1/x^n$.
+\end{df}
+
+
+\begin{df}[Properties of exponentiation, II]{Proposition 4.3.12}
+    Let $x, y$ be non-zero rational numbers, and let $n, m$ be natural numbers.
+    \begin{enumerate}[topsep=0mm,label=(\alph*)]
+        \item We have $x^n x^m = x^{n+m}$, $(x^n)^m = x^{nm}$, and $(x^y)^n = x^n y^n$.
+        
+        \item If $x \ge y > 0$, then $x^n \ge y^n > 0$ if $n$ is positive, and $0 < x^n \le y^n$ if $n$ is negative.
+
+        \item If $x, y > 0$, $n \ne 0$, and $x^n = y^n$, then $x = y$.
+
+        \item We have $\abs{x^n} = \abs{x}^n$.
+    \end{enumerate}
+\end{df}
+
 \end{document}
