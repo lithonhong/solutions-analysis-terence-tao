@@ -22,6 +22,8 @@
 
 \newcommand{\succr}[1]{#1 \textrm{++}}
 \newcommand{\minus}{\textrm{ --- }}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 
 \newenvironment{df}[2][\relax]{
 \vspace{4mm}
@@ -958,8 +960,8 @@ No definitions found in this chapter.
 \begin{df}[Properties of exponentiation, I]{Proposition 4.3.10}
     Let $x, y$ be rational numbers, and let $n, m$ be natural numbers.
     \begin{enumerate}[topsep=0mm,label=(\alph*)]
-        \item We have $x^n x^m = x^{n+m}$, $(x^n)^m = x^{nm}$, and $(x^y)^n = x^n y^n$.
-        
+        \item We have $x^n x^m = x^{n+m}$, $(x^n)^m = x^{nm}$, and $(xy)^n = x^n y^n$.
+
         \item Suppose $n > 0$. Then we have $x^n =0$ if and only if $x = 0$.
 
         \item If $x \ge y \ge 0$, then $x^n \ge y^n \ge 0$. If $x > y \ge 0$ and $n > 0$, then $x^n > y^n \ge 0$.
@@ -976,9 +978,9 @@ No definitions found in this chapter.
 
 
 \begin{df}[Properties of exponentiation, II]{Proposition 4.3.12}
-    Let $x, y$ be non-zero rational numbers, and let $n, m$ be natural numbers.
+    Let $x, y$ be non-zero rational numbers, and let $n, m$ be integers.
     \begin{enumerate}[topsep=0mm,label=(\alph*)]
-        \item We have $x^n x^m = x^{n+m}$, $(x^n)^m = x^{nm}$, and $(x^y)^n = x^n y^n$.
+        \item We have $x^n x^m = x^{n+m}$, $(x^n)^m = x^{nm}$, and $(xy)^n = x^n y^n$.
         
         \item If $x \ge y > 0$, then $x^n \ge y^n > 0$ if $n$ is positive, and $0 < x^n \le y^n$ if $n$ is negative.
 
@@ -986,6 +988,26 @@ No definitions found in this chapter.
 
         \item We have $\abs{x^n} = \abs{x}^n$.
     \end{enumerate}
+\end{df}
+
+
+\subsection{Gaps in the rational numbers}
+
+\begin{df}[Interspersing of integers by rationals]{Proposition 4.4.1}
+    Let $x$ be a rational number.
+    Then there exists an integer $n$ such that $n \le x < n+1$.
+    In fact, this integer is unique (i.e., for each $x$ there is only one $n$ for which $n \le x \le n + 1$).
+    In particular, there exists a natural number $N$ such that $N > x$ (i.e., there is no such thing as a rational number which is larger than all the natural numbers).
+\end{df}
+
+
+\begin{df}{Remark 4.4.2}
+    The integer $N$ for which $n \le x < n + 1$ is sometimes referred to as the \emph{integer part} of $x$ and is sometimes denoted $n = \floor{x}$.
+\end{df}
+
+
+\begin{df}[Interspersing of rationals by rationals]{Proposition 4.4.3}
+    If $x$ and $y$ are two rationals such that $x < y$, then there exists a third rational $z$ such that $x < z < y$.
 \end{df}
 
 \end{document}
