@@ -3336,4 +3336,39 @@ No exercises from this subchapter.
     \end{enumerate}
 \end{exer}
 
+
+\pagebreak
+
+
+\section{The real numbers}
+\subsection{Cauchy sequences}
+
+\begin{exer}{5.1.1}{
+    Prove Lemma 5.1.15:
+    Every Cauchy sequence $(a_n)^\infty_{n=1}$ is bounded.
+}
+    Suppose $(a_n)^\infty_{n=1}$ is a Cauchy sequence.
+    Then, the sequence is eventually $\varepsilon$-steady for every rational number $\varepsilon > 0$.
+    In particular, this sequence is eventually $1$-steady, or the sequence $(a_n)^\infty_{n=N}$ is $1$-steady.
+    The sequence $(a_n)^{N-1}_{n=1}$ is finite, and thus is bounded by Lemma 5.1.14.
+    By the definition of bounded sequences, the sequence is bounded by some rational $M \ge 0$.
+    
+    The infinite sequence $(a_n)^\infty_{n=N}$ is eventually $\varepsilon$-steady.
+    This implies $d(a_j, a_k) = \abs{a_j - a_k} \le 1$ for all $j, k \ge N$.
+    Take $k = N$, so $\abs{a_j - a_N} \le 1$.
+    Then, 
+    \[
+        \abs{a_j - a_N} + \abs{a_N} \le 1 + \abs{a_N}.
+    \]
+    By Proposition 4.3.3(b), we have
+    \[
+        \abs{a_j - a_N + a_N} = \abs{a_j} \le \abs{a_j - a_N} + \abs{a_N}.
+    \]
+    Thus, by transitivity of inequality, we have $\abs{a_j} \le 1 + \abs{a_N}$.
+    Because $1 + \abs{a_N}$ is rational, the infinite sequence $(a_n)^\infty_{n=N}$ is bounded.
+
+    We can now find the bound of the entire sequence.
+    If $M \ge 1 + \abs{a_N}$, then the sequence is bounded by $M$, otherwise it is bounded by $1 + \abs{a_N}$. \qed    
+\end{exer}
+
 \end{document}

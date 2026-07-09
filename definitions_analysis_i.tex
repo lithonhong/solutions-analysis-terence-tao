@@ -87,7 +87,7 @@ No definitions found in this chapter.
 
 
 \begin{df}{Axiom 2.4}
-    Different natural numbers must have different successors; i.e. if $n$, $m$ are natural numbers and $n \ne m$, then $\succr{n} = \succr{m}$.
+    Different natural numbers must have different successors; i.e. if $n, m$ are natural numbers and $n \ne m$, then $\succr{n} = \succr{m}$.
     Equivalently, if $\succr{n} = \succr{m}$, then we must have $n = m$.    
 \end{df}
 
@@ -125,12 +125,12 @@ No definitions found in this chapter.
 
 
 \begin{df}[Addition is associative]{Proposition 2.2.5}
-    For any natural numbers $a$, $b$, $c$, we have $(a + b) + c = a +(b + c)$.
+    For any natural numbers $a, b, c$, we have $(a + b) + c = a +(b + c)$.
 \end{df}
 
 
 \begin{df}[Cancellation law]{Proposition 2.2.6}
-    Let $a$, $b$, $c$ be natural numbers such that $a + b = a + c$.
+    Let $a, b, c$ be natural numbers such that $a + b = a + c$.
     Then we have $b = c$.
 \end{df}
 
@@ -164,7 +164,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Basic properties of order for natural numbers]{Proposition 2.2.12}
-    Let $a$, $b$, $c$ be natural numbers. Then
+    Let $a, b, c$ be natural numbers. Then
     \begin{enumerate}[topsep=0mm,parsep=0mm,label=(\alph*)]
         \item \textit{Reflexivity: $a \ge a$.}
         \item \textit{Transitivity: If  $a \ge b$ and $b \ge c$, then $a \ge c$.}
@@ -200,42 +200,42 @@ No definitions found in this chapter.
 
 
 \begin{df}[Multiplication is commutative]{Lemma 2.3.2}
-    Let $n$, $m$ be natural numbers.
+    Let $n, m$ be natural numbers.
     Then $n \times m = m \times n$.    
 \end{df}
 
 
 \begin{df}[Positive natural numbers have no zero divisors]{Lemma 2.3.3}
-    Let $n$, $m$ be natural numbers.
-    Then $n \times m = 0$ if and only if at least one of $n$, $m$ is equal to $0$.
+    Let $n, m$ be natural numbers.
+    Then $n \times m = 0$ if and only if at least one of $n, m$ is equal to $0$.
     In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.
 \end{df}
 
 
 \begin{df}[Distributive law]{Proposition 2.3.4}
-    For any natural numbers $a$, $b$, $c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.
+    For any natural numbers $a, b, c$, we have $a(b + c) = ab + ac$ and $(b + c)a = ba + ca$.
 \end{df}
 
 
 \begin{df}[Multiplication is associative]{Proposition 2.3.5}
-    For any natural numbers $a$, $b$, $c$, we have $(a \times b)\times c = a \times (b \times c)$
+    For any natural numbers $a, b, c$, we have $(a \times b)\times c = a \times (b \times c)$
 \end{df}
 
 
 \begin{df}[Multiplication preserves order]{Proposition 2.3.6}
-    If $a$, $b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac < bc$.
+    If $a, b$ are natural numbers such that $a < b$, and $c$ is positive, then $ac < bc$.
 \end{df}
 
 
 \begin{df}[Cancellation law]{Corollary 2.3.7}
-    Let $a$, $b$, $c$ be natural numbers such that $ac = bc$ and $c$ is nonzero.
+    Let $a, b, c$ be natural numbers such that $ac = bc$ and $c$ is nonzero.
     Then $a = b$.
 \end{df}
 
 
 \begin{df}[Euclidean algorithm]{Proposition 2.3.9}
     Let $n$ be a natural number, and let $q$ be a positive number.
-    Then there exist natural numbers $m$, $r$ such that $0 \le r < q$ and $n = mq + r$.
+    Then there exist natural numbers $m, r$ such that $0 \le r < q$ and $n = mq + r$.
 \end{df}
 
 
@@ -281,7 +281,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Pairwise union]{Axiom 3.4}
-    Given any two sets $A$, $B$, there exists a set $A \cup B$, called the \emph{union} $A \cup B$ of $A$ and $B$, whose elements consist of all the elements which belong to $A$, or $B$ or both.
+    Given any two sets $A, B$, there exists a set $A \cup B$, called the \emph{union} $A \cup B$ of $A$ and $B$, whose elements consist of all the elements which belong to $A$, or $B$ or both.
     In other words, for any object $x$,
     {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
     \[
@@ -293,13 +293,13 @@ No definitions found in this chapter.
 
 \begin{df}{Lemma 3.1.13}
     If $a$ and $b$ are objects, then $\{ a, b \} = \{ a \} \cup \{ b \}$.
-    If $A$, $B$, $C$ are sets, then the union operation is commutative (i.e., $A \cup B = B \cup A$) and associative (i.e., $(A \cup B) \cup C = A \cup (B \cup C)$).
+    If $A, B, C$ are sets, then the union operation is commutative (i.e., $A \cup B = B \cup A$) and associative (i.e., $(A \cup B) \cup C = A \cup (B \cup C)$).
     Also, we have $A \cup A = A \cup \varnothing = \varnothing \cup A = A$.
 \end{df}
 
 
 \begin{df}[Subsets]{Definition 3.1.15}
-    Let $A$, $B$ be sets.
+    Let $A, B$ be sets.
     We say that $A$ is a \emph{subset} of $B$, denoted $A \subseteq B$, iff every element of $A$ is also an element of $B$, i.e.
     \[
         \text{For any object } x, \quad x \in a \implies x \in B.
@@ -309,7 +309,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Sets are partially ordered by set inclusion]{Proposition 3.1.18}
-    Let $A$, $B$, $C$ be sets.
+    Let $A, B, C$ be sets.
     If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
     If $A \subseteq B$ and $B \subseteq A$, then $A = B$.
     Finally, if $A \subsetneq B$ and $B \subsetneq C$, then $A \subsetneq C$.
@@ -399,7 +399,7 @@ No definitions found in this chapter.
 
 \subsection{Functions}
 \begin{df}[Functions]{Definition 3.3.1}
-     Let $X$, $Y$ be sets, and let $P(x, y)$ be a property pertaining to an object $x \in X$ and an object $y \in Y$, such that for every $x \in X$, there is exactly one $y \in Y$ for which $P(x, y)$ is true (this is sometimes known as the \emph{vertical line test}).
+     Let $X, Y$ be sets, and let $P(x, y)$ be a property pertaining to an object $x \in X$ and an object $y \in Y$, such that for every $x \in X$, there is exactly one $y \in Y$ for which $P(x, y)$ is true (this is sometimes known as the \emph{vertical line test}).
      Then we define the \emph{function $f : X \to Y$ defined by $P$ on the domain $X$ and range $Y$} to be the object which, given any input $x \in X$, assigns an output $f(x) \in Y$, defined to be the unique object $f(x)$ for which $P(x, f(x))$ is true.
      Thus, for any $x \in X$ and $y \in Y$,
      {\setlength{\belowdisplayskip}{-10pt} \setlength{\belowdisplayshortskip}{-10pt}
@@ -664,6 +664,7 @@ No definitions found in this chapter.
 
 \pagebreak
 
+
 \section{Integers and rationals}
 \subsection{The integers}
 
@@ -709,7 +710,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Laws of algebra for integers]{Proposition 4.1.6}
-    Let $x$, $y$, $z$ be integers.
+    Let $x, y, z$ be integers.
     Then we have
     {\setlength{\abovedisplayskip}{0pt}
     \begin{align*}%
@@ -744,7 +745,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Cancellation law for integers]{Corollary 4.1.9}
-    If $a$, $b$, $c$ are integers such that $ac = bc$ and $c$ is non-zero, then $a = b$.
+    If $a, b, c$ are integers such that $ac = bc$ and $c$ is non-zero, then $a = b$.
 \end{df}
 
 
@@ -760,7 +761,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Properties of order]{Lemma 4.1.11}
-    Let $a$, $b$, $c$ be integers.
+    Let $a, b, c$ be integers.
     \begin{enumerate}[topsep=0mm,label=(\alph*)]
         \item $a > b$ if and only if $a - b$ is a positive natural number.
         \item (Addition preserves order) If $a > b$, then $a + c > b + c$.
@@ -806,7 +807,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[Laws of algebra for rationals]{Proposition 4.2.4}
-    Let $x$, $y$, $z$ be rationals.
+    Let $x, y, z$ be rationals.
     Then the following laws of algebra hold:
     {\setlength{\abovedisplayskip}{0pt}
     \begin{align*}%
@@ -892,14 +893,14 @@ No definitions found in this chapter.
 
 
 \begin{df}[Basic properties of absolute value and distance]{Proposition 4.3.3}
-    Let $x$, $y$, $z$ be rational numbers.
+    Let $x, y, z$ be rational numbers.
     \begin{enumerate}[topsep=0mm,label=(\alph*)]
         \item (Non-degeneracy of absolute value)
             We have $\abs{x} \ge 0$.
             Also, $\abs{x} = 0$ if and only if $x$ is $0$.
 
         \item (Triangle inequality for absolute value)
-            We have $\abs{x+y} \ge \abs{x} + \abs{y}$.
+            We have $\abs{x+y} \le \abs{x} + \abs{y}$.
 
         \item We have the inequalities $-y \le x \le y$ if and only if $y \ge \abs{x}$.
             In particular, we have $-\abs{x} \le x \le \abs{x}$.
@@ -922,7 +923,7 @@ No definitions found in this chapter.
 
 
 \begin{df}[$\varepsilon$-closeness]{Definition 4.3.4}
-    Let $\varepsilon > 0$ be a rational number, and let $x$, $y$ be rational numbers.
+    Let $\varepsilon > 0$ be a rational number, and let $x, y$ be rational numbers.
     We say that $y$ is \emph{$\varepsilon$-close} to $x$ iff we have $d(y, x) \le \varepsilon$.    
 \end{df}
 
@@ -1008,6 +1009,59 @@ No definitions found in this chapter.
 
 \begin{df}[Interspersing of rationals by rationals]{Proposition 4.4.3}
     If $x$ and $y$ are two rationals such that $x < y$, then there exists a third rational $z$ such that $x < z < y$.
+\end{df}
+
+
+\pagebreak
+
+
+\section{The real numbers}
+\subsection{Cauchy sequences}
+
+\begin{df}[Sequences]{Definition 5.1.1}
+    Let $m$ be an integer.
+    A \emph{sequence $(a_n)^\infty_{n=m}$ of rational numbers} is any function from the set $\{ n \in \mathbb{Z} : n \ge m \}$ to $\mathbb{Q}$,
+    i.e., a mapping which assigns to each integer $n$ greater or equal to $m$, a rational number $a_n$.
+    More informally, a sequence $(a_n)^\infty_{n=m}$ of rational numbers is a collection of rationals $a_m, a_{m+1}, a_{m+2}, \ldots$.
+\end{df}
+
+
+\begin{df}[$\varepsilon$-steadiness]{Definition 5.1.3}
+    Let $\varepsilon > 0$. A sequence $(a_n)^\infty_{n=0}$ is said to be \emph{$\varepsilon$-steady} iff each pair $a_j, a_k$ of sequence elements is $\varepsilon$-close for every natural number $j, k$.
+    In other words, the sequence $a_0, a_1, a_2, \ldots$ is $\varepsilon$-steady iff $d(a_j, a_k) \le \varepsilon$ for all $j, k$.
+\end{df}
+
+
+\begin{df}[Eventual $\varepsilon$-steadiness]{Definition 5.1.6}
+    Let $\varepsilon > 0$.
+    A sequence $(a_n)^\infty_{n=0}$ is said to be \emph{eventually $\varepsilon$-steady} iff the sequence $a_N, a_{N+1}, a_{N+2}, \ldots$ is $\varepsilon$-steady for some natural number $N \ge 0$.
+    In other words, the sequence $a_0, a_1, a_2, \ldots$ is eventually $\varepsilon$-steady iff there exists an $N \ge 0$ such that $d(a_j, a_k) \le \varepsilon$ for all $j, k \ge N$.
+\end{df}
+
+
+\begin{df}[Cauchy sequences]{Definition 5.1.8}
+    A sequence $(a_n)^\infty_{n=0}$ of rational numbers is said to be a \emph{Cauchy sequence}
+    iff for every rational number $\varepsilon > 0$,
+    the sequence $(a_n)^\infty_{n=0}$ is eventually $\varepsilon$-steady.
+    In other words, the sequence $a_0, a_1, a_2, \ldots$ is a Cauchy sequence iff for every $\varepsilon > 0$, there exists an $N \ge 0$ such that $d(a_j, a_k) \le \varepsilon$ for all $j, k \ge N$.
+\end{df}
+
+
+\begin{df}[Bounded sequences]{Definition 5.1.12}
+    Let $M \ge 0$ be rational.
+    A finite sequence $a_1, a_2, \ldots, a_n$ is \emph{bounded by $M$} iff $\abs{a_i} \le M$ for all $1 \le i \le n$.
+    An infinite sequence $(a_n)^\infty_{n=1}$ is \emph{bounded by $M$} iff $\abs{a_i} \le M$ for all $i \ge 1$.
+    A sequence is said to be \emph{bounded} iff it is bounded by $M$ for some rational $M \ge 0$.
+\end{df}
+
+
+\begin{df}[Finite sequences are bounded]{Lemma 5.1.14}
+    Every finite sequence $a_1, a_2, \ldots, a_n$ is bounded.
+\end{df}
+
+
+\begin{df}[Cauchy sequences are bounded]{Lemma 5.1.15}
+    Every Cauchy sequence $(a_n)^\infty_{n=1}$ is bounded.
 \end{df}
 
 \end{document}
