@@ -9,8 +9,9 @@ as it involves much definition-citing.
 ### Analysis I
 * ☑ Chapter 2 (Completed)
 * ☑ Chapter 3 (Completed)
-* ☑ Chapters 4 (Completed)
-* ☒ Chapters 5 - 11 (To be started)
+* ☑ Chapter 4 (Completed)
+* ☐ Chapter 5 (Completed to Chapter 5.2)
+* ☒ Chapters 6 - 11 (To be started)
 
 ### Analysis II
 Not started yet!
@@ -25,4 +26,4 @@ Pull requests to suggest fixes/improvements are welcome!
 Nevertheless, please don't suggest solutions to exercises that have yet to be attempted;
 this repository is ultimately my record of learning analysis.
 
-_Last updated on: 8th July 2026 23:52 (UTC+8)_
+_Last updated on: 11th July 2026 00:28 (UTC+8)_

@@ -1064,4 +1064,26 @@ No definitions found in this chapter.
     Every Cauchy sequence $(a_n)^\infty_{n=1}$ is bounded.
 \end{df}
 
+
+\subsection{Equivalent Cauchy sequences}
+
+\begin{df}[$\varepsilon$-close sequences]{Definition 5.2.1}
+    Let $(a_n)^\infty_{n=0}$ and $(b_n)^\infty_{n=0}$ be two sequences, and let $\varepsilon > 0$.
+    We say that the sequence $(a_n)^\infty_{n=0}$ is \emph{$\varepsilon$-close} to $(b_n)^\infty_{n=0}$ if $a_n$ is $\varepsilon$-close to $b_n$ for each $n \in \mathbb{N}$.
+    In other words, the sequence $a_0, a_1, a_2, \ldots$ is $\varepsilon$-close to the sequence $b_0, b_1, b_2, \ldots$ iff $\abs{a_n - b_n} \le \varepsilon$ for all $n = 0, 1, 2, \ldots$.
+\end{df}
+
+
+\begin{df}[Eventually $\varepsilon$-close sequences]{Definition 5.2.3}
+    Let $(a_n)^\infty_{n=0}$ and $(b_n)^\infty_{n=0}$ be two sequences, and let $\varepsilon > 0$.
+    We say that the sequence $(a_n)^\infty_{n=0}$ is \emph{eventually $\varepsilon$-close} to $(b_n)^\infty_{n=0}$ iff there exists an $N \ge 0$ such that the sequences $(a_n)^\infty_{n=N}$ and $(b_n)^\infty_{n=N}$ are $\varepsilon$-close.
+    In other words, $a_0, a_1, a_2, \ldots$ is eventually $\varepsilon$-close to $b_0, b_1, b_2, \ldots$ iff there exists an $N \ge 0$ such that $\abs{a_n - b_n} \le \varepsilon$ for all $n \ge N$.
+\end{df}
+
+
+\begin{df}[Equivalent sequences]{Definition 5.2.6}
+    Two sequences $(a_n)^\infty_{n=0}$ and $(b_n)^\infty_{n=0}$ are \emph{equivalent} iff for each rational $\varepsilon > 0$, the sequences $(a_n)^\infty_{n=0}$ and $(b_n)^\infty_{n=0}$ are eventually $\varepsilon$-close.
+    In other words, $a_0, a_1, a_2, \ldots$ and $b_0, b_1, b_2, \ldots$ are equivalent iff for every rational $\varepsilon > 0$, there exists an $N \ge 0$ such that $\abs{a_n - b_n} \le \varepsilon$  for all $n \ge N$.
+\end{df}
+
 \end{document}

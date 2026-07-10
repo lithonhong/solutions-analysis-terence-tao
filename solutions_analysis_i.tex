@@ -3353,7 +3353,7 @@ No exercises from this subchapter.
     The sequence $(a_n)^{N-1}_{n=1}$ is finite, and thus is bounded by Lemma 5.1.14.
     By the definition of bounded sequences, the sequence is bounded by some rational $M \ge 0$.
     
-    The infinite sequence $(a_n)^\infty_{n=N}$ is eventually $\varepsilon$-steady.
+    The infinite sequence $(a_n)^\infty_{n=N}$ is eventually $1$-steady.
     This implies $d(a_j, a_k) = \abs{a_j - a_k} \le 1$ for all $j, k \ge N$.
     Take $k = N$, so $\abs{a_j - a_N} \le 1$.
     Then, 
@@ -3366,9 +3366,61 @@ No exercises from this subchapter.
     \]
     Thus, by transitivity of inequality, we have $\abs{a_j} \le 1 + \abs{a_N}$.
     Because $1 + \abs{a_N}$ is rational, the infinite sequence $(a_n)^\infty_{n=N}$ is bounded.
+    Thus, the bound of the entire sequence is $\max{(M, 1 + \abs{a_N})}$\footnote{The maximum function is as defined by Tao in Lemma 5.3.6; however, this is not circular as its definition only relies on Proposition 2.2.13.}. \qed
+\end{exer}
 
-    We can now find the bound of the entire sequence.
-    If $M \ge 1 + \abs{a_N}$, then the sequence is bounded by $M$, otherwise it is bounded by $1 + \abs{a_N}$. \qed    
+
+\subsection{Equivalent Cauchy sequences}
+
+\begin{exer}{5.2.1}{
+    Show that if $(a_n)^\infty_{n=1}$ and $(b_n)^\infty_{n=1}$ are equivalent sequences of rationals, then $(a_n)^\infty_{n=1}$ is a Cauchy sequence if and only if $(b_n)^\infty_{n=1}$ is a Cauchy sequence.
+}
+    Suppose $(a_n)^\infty_{n=1}$ and $(b_n)^\infty_{n=1}$ are equivalent sequences of rationals.
+    Suppose also $(a_n)^\infty_{n=1}$ is a Cauchy sequence; we will prove $(b_n)^\infty_{n=1}$ is a Cauchy sequence.
+    The converse can be proven by reversing the roles of the sequences.
+    
+    From the definition of Cauchy sequences (Definition 5.1.8), there exists an $N_1 \ge 1$ such that $\abs{a_j - a_k} \le \varepsilon$ for all $j, k \ge N_1$.
+    By the definition of equivalent sequences (Definition 5.2.6), there exists an $N_2 \ge 1$ such that $\abs{a_n - b_n} \le \varepsilon$ for all $n \ge N_2$.
+    Take $N_3 \coloneqq \max(N_1, N_2)$, $\varepsilon \coloneqq \delta/3$, and consider $j, k \ge N_3$.
+    Then, we have
+    \[
+        \abs{a_j - a_k} \le \delta / 3 \qquad \abs{a_k - b_k} \le \delta/3 \qquad \abs{b_j - a_j} = \abs{a_j - b_j} \le \delta /3.
+    \]
+    By Proposition 4.3.3(b), we have
+    \begin{align*}
+        \abs{b_j - b_k}
+        &= \abs{(b_j - a_j) + (a_j - a_k) + (a_k - b_k)} \\
+        &\le \abs{b_j - a_j} + \abs{a_j - a_k} + \abs{a_k - b_k} \\
+        &\le \delta/3 + \delta/3 + \delta/3 = \delta.
+    \end{align*}
+    Hence, for every $\delta > 0$, there exists $N_3$ such that $\abs{b_j - b_k} \le \delta$ for any $j, k \ge N_3$.
+    This implies $(b_n)^\infty_{n=1}$ is a Cauchy sequence by definition. \qed
+\end{exer}
+
+
+\begin{exer}{5.2.2}{
+    Let $\varepsilon > 0$.
+    Show that if $(a_n)^\infty_{n=1}$ and $(b_n)^\infty_{n=1}$ are eventually $\varepsilon$-close, then $(a_n)^\infty_{n=1}$ is bounded if and only if $(b_n)^\infty_{n=1}$ is bounded.
+}
+    Let $\varepsilon > 0$ as given.
+    Suppose $(a_n)^\infty_{n=1}$ and $(b_n)^\infty_{n=1}$ are eventually $\varepsilon$-close.
+    Suppose also $(a_n)^\infty_{n=1}$ is bounded; we will prove $(b_n)^\infty_{n=1}$ is bounded.
+    The converse can be proven by swapping the roles of the sequences.
+
+    By definition of eventually $\varepsilon$-close sequences, there exists an $M \ge 0$ such that $\abs{b_n - a_n} \le \varepsilon$ for all $n \ge M$.
+    From the definition of bounded sequences, there exists a rational $N \ge 0$ such that $\abs{a_i} \le N$ for all $i \ge 1$.
+    Take $i = n$.
+    Then, by Proposition 4.3.3(b), we have
+    \[
+        \abs{b_n - a_n} + \abs{a_n} \ge \abs{b_n - a_n + a_n} = \abs{b_n}.
+    \]
+    But also,
+    \[
+        \abs{b_n - a_n} + \abs{a_n} \le \varepsilon + N.
+    \]
+    Thus, $\abs{b_n} \le \varepsilon + N$ for all $n$; it follows that $(b_n)^\infty_{n=M}$ is bounded by $(N + \varepsilon)$.
+    By Lemma 5.1.14, $(b_n)^{M-1}_{n=1}$ is finite, and thus is bounded by some rational $Z \ge 0$.
+    Hence, $(b_n)^\infty_{n=1}$ is bounded by $\max{(Z, \varepsilon + N)}$. \qed
 \end{exer}
 
 \end{document}
